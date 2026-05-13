@@ -74,47 +74,46 @@ function Home() {
       <div className="bg-grain pointer-events-none fixed inset-0 z-50 opacity-[0.12] mix-blend-overlay" />
 
       {/* HERO */}
-      <section className="relative isolate flex min-h-[100svh] flex-col overflow-hidden">
+      <section className="relative isolate flex h-[100svh] max-h-[860px] min-h-[600px] flex-col overflow-hidden">
         {/* ambient backdrop */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-walnut/60 via-umber to-umber" />
         <div
           className="absolute inset-0 -z-10 opacity-40"
           style={{
             background:
-              "radial-gradient(60% 50% at 75% 40%, oklch(0.45 0.10 50 / 0.55), transparent 70%)",
+              "radial-gradient(55% 45% at 78% 42%, oklch(0.45 0.10 50 / 0.55), transparent 70%)",
           }}
         />
 
         <SiteHeader />
 
-        <div className="mx-auto grid w-full max-w-7xl flex-1 items-center gap-10 px-6 pt-24 pb-20 md:grid-cols-[1.05fr_1fr] md:px-10 md:pt-28 md:pb-24">
+        <div className="mx-auto grid w-full max-w-6xl flex-1 items-center gap-8 px-6 py-8 md:grid-cols-[1.1fr_1fr] md:gap-12 md:px-10 md:py-10">
           {/* LEFT — copy */}
-          <div className="relative z-10 max-w-xl">
+          <div className="relative z-10 max-w-lg">
             <span className="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.4em] text-sand/80">
               <span className="h-px w-8 bg-sand/50" /> Est. in the wild
             </span>
-            <h1 className="text-shadow-soft mt-6 font-display text-[clamp(2.6rem,5.6vw,4.75rem)] leading-[0.98] text-cream">
+            <h1 className="text-shadow-soft mt-4 font-display text-[clamp(2.1rem,4.4vw,3.75rem)] leading-[1.02] text-cream">
               Rooted in{" "}
               <em className="font-light italic text-terra not-italic">reverence.</em>
               <br />
               Grown for the <span className="text-sand">few.</span>
             </h1>
-            <p className="mt-6 max-w-md text-[15px] leading-relaxed text-cream/70">
+            <p className="mt-4 max-w-md text-[14px] leading-relaxed text-cream/70">
               A sanctuary of certified-pure botanicals — powders, premixes, tonics and
-              tablets — cultivated by hand, proven by science. For those who consume
-              with intention.
+              tablets. Cultivated by hand, proven by science.
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-5">
+            <div className="mt-6 flex flex-wrap items-center gap-5">
               <a
                 href="#catalog"
-                className="group inline-flex items-center gap-3 rounded-full bg-cream px-6 py-3 text-[12px] uppercase tracking-[0.22em] text-umber transition hover:bg-sand"
+                className="group inline-flex items-center gap-3 rounded-full bg-cream px-5 py-2.5 text-[11px] uppercase tracking-[0.22em] text-umber transition hover:bg-sand"
               >
                 Shop the collection
-                <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
               </a>
               <a
                 href="#story"
-                className="text-[12px] uppercase tracking-[0.22em] text-cream/70 underline-offset-8 hover:text-cream hover:underline"
+                className="text-[11px] uppercase tracking-[0.22em] text-cream/70 underline-offset-8 hover:text-cream hover:underline"
               >
                 Our philosophy
               </a>
@@ -123,7 +122,7 @@ function Home() {
 
           {/* RIGHT — product image */}
           <div className="relative">
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-[460px] overflow-hidden rounded-sm">
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-[340px] overflow-hidden rounded-sm md:max-w-[380px]">
               <img
                 src={heroImg}
                 alt="Aranya botanical apothecary jars on moss"
@@ -135,8 +134,8 @@ function Home() {
               <div className="absolute inset-0 ring-1 ring-inset ring-cream/10" />
             </div>
             {/* floating mark badge */}
-            <div className="absolute -left-4 top-6 hidden h-20 w-20 items-center justify-center rounded-full border border-sand/30 bg-umber/80 backdrop-blur md:flex">
-              <span className="font-display text-[11px] uppercase tracking-[0.2em] text-sand">
+            <div className="absolute -left-2 top-4 hidden h-16 w-16 items-center justify-center rounded-full border border-sand/30 bg-umber/80 backdrop-blur md:flex">
+              <span className="font-display text-[10px] uppercase tracking-[0.2em] text-sand">
                 Pure
                 <br />
                 ·08·
@@ -147,7 +146,7 @@ function Home() {
 
         {/* trust strip */}
         <div className="border-t border-cream/10 bg-umber/70 backdrop-blur-md">
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-2 px-6 py-3 text-[10px] uppercase tracking-[0.28em] text-cream/55 md:px-10">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-2 px-6 py-2.5 text-[10px] uppercase tracking-[0.28em] text-cream/55 md:px-10">
             <span className="flex items-center gap-2"><ShieldCheck className="h-3.5 w-3.5" /> USDA Organic</span>
             <span className="flex items-center gap-2"><Leaf className="h-3.5 w-3.5" /> India Organic</span>
             <span className="hidden md:inline">FSSAI Certified</span>
