@@ -122,7 +122,7 @@ function Home() {
 
           {/* RIGHT — product image */}
           <div className="relative">
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-[340px] overflow-hidden rounded-sm md:max-w-[380px]">
+            <div className="relative mx-auto aspect-[5/5] w-full max-w-[440px] overflow-hidden rounded-sm md:max-w-[500px]">
               <img
                 src={heroImg}
                 alt="Aranya botanical apothecary jars on moss"
