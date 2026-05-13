@@ -74,55 +74,80 @@ function Home() {
       <div className="bg-grain pointer-events-none fixed inset-0 z-50 opacity-[0.12] mix-blend-overlay" />
 
       {/* HERO */}
-      <section className="relative isolate min-h-[100svh] overflow-hidden">
-        <img
-          src={heroImg}
-          alt="Aranya botanical jars on moss"
-          width={1280}
-          height={1280}
-          className="absolute inset-0 -z-10 h-full w-full object-cover"
+      <section className="relative isolate flex min-h-[100svh] flex-col overflow-hidden">
+        {/* ambient backdrop */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-walnut/60 via-umber to-umber" />
+        <div
+          className="absolute inset-0 -z-10 opacity-40"
+          style={{
+            background:
+              "radial-gradient(60% 50% at 75% 40%, oklch(0.45 0.10 50 / 0.55), transparent 70%)",
+          }}
         />
-        <div className="bg-vignette absolute inset-0 -z-10" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-umber/80 via-umber/30 to-umber" />
 
         <SiteHeader />
 
-        <div className="mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-6 pt-32 pb-24 md:px-10">
-          <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.35em] text-sand/80">
-              <span className="h-px w-10 bg-sand/50" /> Est. in the wild
+        <div className="mx-auto grid w-full max-w-7xl flex-1 items-center gap-10 px-6 pt-24 pb-20 md:grid-cols-[1.05fr_1fr] md:px-10 md:pt-28 md:pb-24">
+          {/* LEFT — copy */}
+          <div className="relative z-10 max-w-xl">
+            <span className="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.4em] text-sand/80">
+              <span className="h-px w-8 bg-sand/50" /> Est. in the wild
             </span>
-            <h1 className="text-shadow-soft mt-8 font-display text-[clamp(3rem,8vw,6.5rem)] leading-[0.95] text-cream">
-              Rooted in <em className="text-terra not-italic font-light italic">reverence.</em>
+            <h1 className="text-shadow-soft mt-6 font-display text-[clamp(2.6rem,5.6vw,4.75rem)] leading-[0.98] text-cream">
+              Rooted in{" "}
+              <em className="font-light italic text-terra not-italic">reverence.</em>
               <br />
               Grown for the <span className="text-sand">few.</span>
             </h1>
-            <p className="mt-8 max-w-lg text-base leading-relaxed text-cream/75">
-              Aranya is a sanctuary of certified-pure botanicals — powders, premixes, tonics
-              and tablets — cultivated by hand and proven by science. For those who consume
-              with intention, and live to flourish.
+            <p className="mt-6 max-w-md text-[15px] leading-relaxed text-cream/70">
+              A sanctuary of certified-pure botanicals — powders, premixes, tonics and
+              tablets — cultivated by hand, proven by science. For those who consume
+              with intention.
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-5">
+            <div className="mt-8 flex flex-wrap items-center gap-5">
               <a
                 href="#catalog"
-                className="group inline-flex items-center gap-3 rounded-full bg-cream px-7 py-3.5 text-[13px] uppercase tracking-[0.22em] text-umber transition hover:bg-sand"
+                className="group inline-flex items-center gap-3 rounded-full bg-cream px-6 py-3 text-[12px] uppercase tracking-[0.22em] text-umber transition hover:bg-sand"
               >
                 Shop the collection
                 <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
               </a>
               <a
                 href="#story"
-                className="text-[13px] uppercase tracking-[0.22em] text-cream/70 underline-offset-8 hover:text-cream hover:underline"
+                className="text-[12px] uppercase tracking-[0.22em] text-cream/70 underline-offset-8 hover:text-cream hover:underline"
               >
                 Our philosophy
               </a>
             </div>
           </div>
+
+          {/* RIGHT — product image */}
+          <div className="relative">
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-[460px] overflow-hidden rounded-sm">
+              <img
+                src={heroImg}
+                alt="Aranya botanical apothecary jars on moss"
+                width={1280}
+                height={1280}
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-umber/70 via-transparent to-transparent" />
+              <div className="absolute inset-0 ring-1 ring-inset ring-cream/10" />
+            </div>
+            {/* floating mark badge */}
+            <div className="absolute -left-4 top-6 hidden h-20 w-20 items-center justify-center rounded-full border border-sand/30 bg-umber/80 backdrop-blur md:flex">
+              <span className="font-display text-[11px] uppercase tracking-[0.2em] text-sand">
+                Pure
+                <br />
+                ·08·
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* trust strip */}
-        <div className="absolute inset-x-0 bottom-0 border-t border-cream/10 bg-umber/60 backdrop-blur-md">
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-3 px-6 py-4 text-[11px] uppercase tracking-[0.28em] text-cream/55 md:px-10">
+        <div className="border-t border-cream/10 bg-umber/70 backdrop-blur-md">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-2 px-6 py-3 text-[10px] uppercase tracking-[0.28em] text-cream/55 md:px-10">
             <span className="flex items-center gap-2"><ShieldCheck className="h-3.5 w-3.5" /> USDA Organic</span>
             <span className="flex items-center gap-2"><Leaf className="h-3.5 w-3.5" /> India Organic</span>
             <span className="hidden md:inline">FSSAI Certified</span>
