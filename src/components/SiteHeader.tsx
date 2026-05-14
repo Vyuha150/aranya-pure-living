@@ -5,8 +5,10 @@ import { AranyaMark } from "./AranyaMark";
 const links = [
   { to: "/philosophy", label: "Philosophy" },
   { to: "/products", label: "Products" },
+  { to: "/lifestyle", label: "Lifestyle" },
   { to: "/rituals", label: "Rituals" },
   { to: "/journal", label: "Journal" },
+  { to: "/contact", label: "Contact" },
 ] as const;
 
 export function SiteHeader() {
