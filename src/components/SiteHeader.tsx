@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, LayoutDashboard } from "lucide-react";
 import { AranyaMark } from "./AranyaMark";
 
 const links = [
