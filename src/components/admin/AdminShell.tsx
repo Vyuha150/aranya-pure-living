@@ -58,7 +58,7 @@ export function AdminShell() {
             return (
               <Link
                 key={item.to}
-                to={item.to}
+                to={item.to as any}
                 className={`group flex items-center gap-3 rounded-md px-3 py-2 text-sm transition ${
                   active
                     ? "bg-terra/15 text-cream"
