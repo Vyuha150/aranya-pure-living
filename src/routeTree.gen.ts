@@ -12,7 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as RitualsRouteImport } from './routes/rituals'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as PhilosophyRouteImport } from './routes/philosophy'
+import { Route as LifestyleRouteImport } from './routes/lifestyle'
 import { Route as JournalRouteImport } from './routes/journal'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 
 const RitualsRoute = RitualsRouteImport.update({
@@ -30,9 +32,19 @@ const PhilosophyRoute = PhilosophyRouteImport.update({
   path: '/philosophy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LifestyleRoute = LifestyleRouteImport.update({
+  id: '/lifestyle',
+  path: '/lifestyle',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const JournalRoute = JournalRouteImport.update({
   id: '/journal',
   path: '/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -43,14 +55,18 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/journal': typeof JournalRoute
+  '/lifestyle': typeof LifestyleRoute
   '/philosophy': typeof PhilosophyRoute
   '/products': typeof ProductsRoute
   '/rituals': typeof RitualsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/journal': typeof JournalRoute
+  '/lifestyle': typeof LifestyleRoute
   '/philosophy': typeof PhilosophyRoute
   '/products': typeof ProductsRoute
   '/rituals': typeof RitualsRoute
@@ -58,22 +74,48 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/journal': typeof JournalRoute
+  '/lifestyle': typeof LifestyleRoute
   '/philosophy': typeof PhilosophyRoute
   '/products': typeof ProductsRoute
   '/rituals': typeof RitualsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/journal' | '/philosophy' | '/products' | '/rituals'
+  fullPaths:
+    | '/'
+    | '/contact'
+    | '/journal'
+    | '/lifestyle'
+    | '/philosophy'
+    | '/products'
+    | '/rituals'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/journal' | '/philosophy' | '/products' | '/rituals'
-  id: '__root__' | '/' | '/journal' | '/philosophy' | '/products' | '/rituals'
+  to:
+    | '/'
+    | '/contact'
+    | '/journal'
+    | '/lifestyle'
+    | '/philosophy'
+    | '/products'
+    | '/rituals'
+  id:
+    | '__root__'
+    | '/'
+    | '/contact'
+    | '/journal'
+    | '/lifestyle'
+    | '/philosophy'
+    | '/products'
+    | '/rituals'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
   JournalRoute: typeof JournalRoute
+  LifestyleRoute: typeof LifestyleRoute
   PhilosophyRoute: typeof PhilosophyRoute
   ProductsRoute: typeof ProductsRoute
   RitualsRoute: typeof RitualsRoute
@@ -102,11 +144,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PhilosophyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/lifestyle': {
+      id: '/lifestyle'
+      path: '/lifestyle'
+      fullPath: '/lifestyle'
+      preLoaderRoute: typeof LifestyleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/journal': {
       id: '/journal'
       path: '/journal'
       fullPath: '/journal'
       preLoaderRoute: typeof JournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -121,7 +177,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
   JournalRoute: JournalRoute,
+  LifestyleRoute: LifestyleRoute,
   PhilosophyRoute: PhilosophyRoute,
   ProductsRoute: ProductsRoute,
   RitualsRoute: RitualsRoute,
@@ -129,3 +187,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
