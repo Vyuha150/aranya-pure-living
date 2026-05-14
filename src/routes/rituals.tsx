@@ -91,8 +91,8 @@ function CircadianDial() {
     <svg viewBox={`0 0 ${size} ${size}`} className="h-full w-full">
       <defs>
         <radialGradient id="dialGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="hsl(var(--terra) / 0.18)" />
-          <stop offset="60%" stopColor="hsl(var(--terra) / 0)" />
+          <stop offset="0%" stopColor="color-mix(in oklab, var(--terra) 18%, transparent)" />
+          <stop offset="60%" stopColor="color-mix(in oklab, var(--terra) 0%, transparent)" />
         </radialGradient>
       </defs>
       <circle cx={cx} cy={cy} r={r + 40} fill="url(#dialGlow)" />
@@ -106,7 +106,7 @@ function CircadianDial() {
         cy={cy}
         r={r}
         fill="none"
-        stroke="hsl(var(--terra))"
+        stroke="var(--terra)"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeDasharray={2 * Math.PI * r}
@@ -178,7 +178,7 @@ function CircadianDial() {
               cx={x}
               cy={y}
               r="9"
-              fill="hsl(var(--terra))"
+              fill="var(--terra)"
               initial={{ scale: 0, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
@@ -190,7 +190,7 @@ function CircadianDial() {
               cy={y}
               r="20"
               fill="none"
-              stroke="hsl(var(--terra))"
+              stroke="var(--terra)"
               strokeOpacity="0.4"
               initial={{ scale: 0 }}
               whileInView={{ scale: [0, 1.4, 1] }}
