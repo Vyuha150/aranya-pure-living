@@ -3,11 +3,11 @@ import { ShoppingBag } from "lucide-react";
 import { AranyaMark } from "./AranyaMark";
 
 const links = [
-  { to: "/", label: "Philosophy" },
-  { to: "/", label: "Catalog" },
-  { to: "/", label: "Rituals" },
-  { to: "/", label: "Journal" },
-];
+  { to: "/philosophy", label: "Philosophy" },
+  { to: "/products", label: "Products" },
+  { to: "/rituals", label: "Rituals" },
+  { to: "/journal", label: "Journal" },
+] as const;
 
 export function SiteHeader() {
   return (
@@ -21,9 +21,14 @@ export function SiteHeader() {
         </Link>
         <nav className="hidden items-center gap-10 text-[13px] tracking-[0.2em] uppercase text-cream/80 md:flex">
           {links.map((l) => (
-            <a key={l.label} href="#" className="transition hover:text-cream">
+            <Link
+              key={l.label}
+              to={l.to}
+              className="transition hover:text-cream"
+              activeProps={{ className: "text-cream" }}
+            >
               {l.label}
-            </a>
+            </Link>
           ))}
         </nav>
         <button
