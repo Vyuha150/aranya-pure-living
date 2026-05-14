@@ -13,7 +13,8 @@ import {
 } from "lucide-react";
 import { AranyaMark } from "@/components/AranyaMark";
 
-const nav = [
+type NavItem = { to: string; label: string; icon: any; exact?: boolean };
+const nav: NavItem[] = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { to: "/admin/products", label: "Products", icon: Package },
   { to: "/admin/orders", label: "Orders", icon: ShoppingBag },
