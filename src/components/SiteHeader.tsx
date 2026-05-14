@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, LayoutDashboard } from "lucide-react";
 import { AranyaMark } from "./AranyaMark";
 
 const links = [
@@ -33,12 +33,22 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <button
-          aria-label="Cart"
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 bg-cream/5 text-cream/90 backdrop-blur-sm transition hover:bg-cream/15"
-        >
-          <ShoppingBag className="h-4 w-4" />
-        </button>
+        <div className="flex items-center gap-2">
+          <Link
+            to="/admin"
+            aria-label="Admin Panel"
+            title="Admin Panel"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 bg-cream/5 text-cream/90 backdrop-blur-sm transition hover:bg-cream/15"
+          >
+            <LayoutDashboard className="h-4 w-4" />
+          </Link>
+          <button
+            aria-label="Cart"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 bg-cream/5 text-cream/90 backdrop-blur-sm transition hover:bg-cream/15"
+          >
+            <ShoppingBag className="h-4 w-4" />
+          </button>
+        </div>
       </div>
     </header>
   );
