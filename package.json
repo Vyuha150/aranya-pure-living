@@ -4,10 +4,11 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
+    "dev": "vite dev --port 3737 --host",
     "build": "vite build",
+    "postbuild": "node ./scripts/make-server-shim.mjs",
     "build:dev": "vite build --mode development",
-    "preview": "vite preview",
+    "preview": "vite preview --port 3737 --host",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
