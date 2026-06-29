@@ -112,10 +112,25 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const [showLoader, setShowLoader] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      if (!sessionStorage.getItem("aranya:loaded")) {
+        setShowLoader(true);
+        sessionStorage.setItem("aranya:loaded", "1");
+      }
+    } catch {
+      setShowLoader(true);
+    }
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
+      {showLoader && <LogoLoader />}
       <Outlet />
     </QueryClientProvider>
   );
 }
+
