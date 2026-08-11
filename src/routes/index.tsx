@@ -227,7 +227,7 @@ function Home() {
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.1, ease }}
-              className="relative mx-auto aspect-square w-full max-w-[460px]"
+              className="relative mx-auto aspect-square w-full max-w-[420px]"
             >
               <div className="absolute inset-0 overflow-hidden rounded-full">
                 <AnimatePresence mode="popLayout" initial={false} custom={dir}>
