@@ -1,15 +1,29 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Leaf, ShieldCheck, Sparkles } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ArrowRight,
+  Leaf,
+  ShieldCheck,
+  Sparkles,
+  Sun,
+  FlaskConical,
+  Truck,
+  ChevronLeft,
+  ChevronRight,
+  Plus,
+} from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { AranyaMark } from "@/components/AranyaMark";
-import heroImg from "@/assets/hero-products.jpg";
+import heroBowl from "@/assets/hero-bowl.jpg";
 import p1 from "@/assets/product-1.jpg";
 import p2 from "@/assets/product-2.jpg";
 import p3 from "@/assets/product-3.jpg";
 import p4 from "@/assets/product-4.jpg";
 import careImg from "@/assets/care-banner.jpg";
 import ingredientsImg from "@/assets/ingredients-hero.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
