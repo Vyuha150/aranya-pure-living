@@ -127,7 +127,7 @@ function Home() {
       <div className="bg-grain pointer-events-none fixed inset-0 z-50 opacity-[0.12] mix-blend-overlay" />
 
       {/* HERO */}
-      <section className="relative isolate flex min-h-[100svh] flex-col overflow-hidden">
+      <section className="relative isolate flex min-h-[92svh] flex-col overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-walnut/50 via-umber to-umber" />
         <div
           className="absolute inset-0 -z-10 opacity-50"
