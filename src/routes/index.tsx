@@ -140,7 +140,7 @@ function Home() {
         <SiteHeader />
 
         {/* offer marquee */}
-        <div className="relative z-20 mt-[86px] overflow-hidden border-y border-cream/10 bg-clay/25 py-2 backdrop-blur-sm">
+        <div className="relative z-20 mt-[68px] overflow-hidden border-y border-cream/10 bg-clay/25 py-1.5 backdrop-blur-sm">
           <motion.div
             className="flex w-max gap-10 whitespace-nowrap"
             animate={{ x: ["0%", "-50%"] }}
@@ -158,7 +158,7 @@ function Home() {
         </div>
 
         {/* centered headline */}
-        <div className="mx-auto w-full max-w-5xl px-6 pt-10 text-center md:pt-14">
+        <div className="mx-auto w-full max-w-5xl px-6 pt-6 text-center md:pt-8">
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -179,7 +179,7 @@ function Home() {
         </div>
 
         {/* three-column composition */}
-        <div className="mx-auto grid w-full max-w-7xl flex-1 items-center gap-8 px-6 py-8 md:grid-cols-[1fr_1.25fr_1fr] md:gap-6 md:px-10">
+        <div className="mx-auto grid w-full max-w-7xl flex-1 items-center gap-6 px-6 py-4 md:grid-cols-[1fr_1.25fr_1fr] md:gap-5 md:px-10">
           {/* LEFT */}
           <motion.div
             initial={{ opacity: 0, x: -28 }}
