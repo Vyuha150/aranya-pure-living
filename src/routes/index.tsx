@@ -229,13 +229,24 @@ function Home() {
               transition={{ duration: 1.1, ease }}
               className="relative mx-auto aspect-square w-full max-w-[460px]"
             >
-              <img
-                src={heroBowl}
-                alt="Aranya botanical powders and roots in earthen bowls"
-                width={1024}
-                height={1024}
-                className="h-full w-full rounded-full object-cover"
-              />
+              <div className="absolute inset-0 overflow-hidden rounded-full">
+                <AnimatePresence mode="popLayout" initial={false} custom={dir}>
+                  <motion.img
+                    key={item.name}
+                    src={item.img}
+                    alt={`${item.name} — ${item.note}`}
+                    width={1024}
+                    height={1024}
+                    custom={dir}
+                    initial={{ opacity: 0, scale: 1.08, rotate: dir * 6, x: dir * 60 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
+                    exit={{ opacity: 0, scale: 0.94, rotate: dir * -6, x: dir * -60 }}
+                    transition={{ duration: 0.7, ease }}
+                    className="absolute inset-0 h-full w-full rounded-full object-cover"
+                  />
+                </AnimatePresence>
+              </div>
+
               <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-cream/10" />
               <motion.div
                 aria-hidden
