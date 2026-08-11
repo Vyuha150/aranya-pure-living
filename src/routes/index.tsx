@@ -298,7 +298,26 @@ function Home() {
                 <ChevronRight className="h-4 w-4" />
               </button>
             </div>
+
+            {/* thumbnails */}
+            <div className="mt-5 flex items-center justify-center gap-3">
+              {featured.map((f, i) => (
+                <button
+                  key={f.name}
+                  aria-label={f.name}
+                  onClick={() => setSlide(([a]) => [i, i > a ? 1 : -1])}
+                  className={`h-11 w-11 overflow-hidden rounded-full border transition ${
+                    i === active
+                      ? "scale-110 border-terra"
+                      : "border-cream/15 opacity-60 hover:opacity-100"
+                  }`}
+                >
+                  <img src={f.img} alt={f.name} className="h-full w-full object-cover" />
+                </button>
+              ))}
+            </div>
           </div>
+
 
           {/* RIGHT */}
           <motion.div
