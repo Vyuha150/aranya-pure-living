@@ -275,7 +275,7 @@ function Home() {
             </motion.div>
 
             {/* carousel controls */}
-            <div className="mt-8 flex items-center justify-center gap-4">
+            <div className="mt-5 flex items-center justify-center gap-4">
               <button
                 aria-label="Previous botanical"
                 onClick={() => go(-1)}
@@ -300,7 +300,7 @@ function Home() {
             </div>
 
             {/* thumbnails */}
-            <div className="mt-5 flex items-center justify-center gap-3">
+            <div className="mt-3 flex items-center justify-center gap-3">
               {featured.map((f, i) => (
                 <button
                   key={f.name}
@@ -349,7 +349,7 @@ function Home() {
 
         {/* bottom feature strip */}
         <div className="border-t border-cream/10 bg-walnut/25 backdrop-blur-md">
-          <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-6 py-5 md:grid-cols-4 md:px-10">
+          <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-6 py-3 md:grid-cols-4 md:px-10">
             {heroStrip.map((s, i) => (
               <motion.div
                 key={s.title}
