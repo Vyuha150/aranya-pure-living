@@ -83,11 +83,13 @@ const ingredients = [
 ];
 
 const featured = [
-  { img: p1, name: "Golden Turmeric", note: "Wildcrafted root" },
+  { img: heroBowl, name: "Golden Turmeric", note: "Wildcrafted root" },
   { img: p2, name: "Ashwagandha Oil", note: "Cold-pressed" },
   { img: p3, name: "Triphala Premix", note: "Daily ritual" },
   { img: p4, name: "Tulsi Amber Tonic", note: "Adaptogen" },
+  { img: p1, name: "Amla Gold Powder", note: "Vitamin-C rich" },
 ];
+
 
 const marquee = [
   "Founders' Edition — 30% off",
