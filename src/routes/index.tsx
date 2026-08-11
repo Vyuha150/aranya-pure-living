@@ -83,11 +83,13 @@ const ingredients = [
 ];
 
 const featured = [
-  { img: p1, name: "Golden Turmeric", note: "Wildcrafted root" },
+  { img: heroBowl, name: "Golden Turmeric", note: "Wildcrafted root" },
   { img: p2, name: "Ashwagandha Oil", note: "Cold-pressed" },
   { img: p3, name: "Triphala Premix", note: "Daily ritual" },
   { img: p4, name: "Tulsi Amber Tonic", note: "Adaptogen" },
+  { img: p1, name: "Amla Gold Powder", note: "Vitamin-C rich" },
 ];
+
 
 const marquee = [
   "Founders' Edition — 30% off",
@@ -114,8 +116,11 @@ const heroStrip = [
 const ease = [0.22, 1, 0.36, 1] as const;
 
 function Home() {
-  const [active, setActive] = useState(0);
+  const [[active, dir], setSlide] = useState<[number, number]>([0, 1]);
+  const go = (d: number) =>
+    setSlide(([a]) => [(a + d + featured.length) % featured.length, d]);
   const item = featured[active];
+
 
   return (
     <div className="relative min-h-screen bg-umber text-cream">
@@ -224,13 +229,24 @@ function Home() {
               transition={{ duration: 1.1, ease }}
               className="relative mx-auto aspect-square w-full max-w-[460px]"
             >
-              <img
-                src={heroBowl}
-                alt="Aranya botanical powders and roots in earthen bowls"
-                width={1024}
-                height={1024}
-                className="h-full w-full rounded-full object-cover"
-              />
+              <div className="absolute inset-0 overflow-hidden rounded-full">
+                <AnimatePresence mode="popLayout" initial={false} custom={dir}>
+                  <motion.img
+                    key={item.name}
+                    src={item.img}
+                    alt={`${item.name} — ${item.note}`}
+                    width={1024}
+                    height={1024}
+                    custom={dir}
+                    initial={{ opacity: 0, scale: 1.08, rotate: dir * 6, x: dir * 60 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0, x: 0 }}
+                    exit={{ opacity: 0, scale: 0.94, rotate: dir * -6, x: dir * -60 }}
+                    transition={{ duration: 0.7, ease }}
+                    className="absolute inset-0 h-full w-full rounded-full object-cover"
+                  />
+                </AnimatePresence>
+              </div>
+
               <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-cream/10" />
               <motion.div
                 aria-hidden
@@ -262,7 +278,7 @@ function Home() {
             <div className="mt-8 flex items-center justify-center gap-4">
               <button
                 aria-label="Previous botanical"
-                onClick={() => setActive((a) => (a - 1 + featured.length) % featured.length)}
+                onClick={() => go(-1)}
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-cream/80 transition hover:border-sand hover:text-cream"
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -276,13 +292,32 @@ function Home() {
               </a>
               <button
                 aria-label="Next botanical"
-                onClick={() => setActive((a) => (a + 1) % featured.length)}
+                onClick={() => go(1)}
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-cream/80 transition hover:border-sand hover:text-cream"
               >
                 <ChevronRight className="h-4 w-4" />
               </button>
             </div>
+
+            {/* thumbnails */}
+            <div className="mt-5 flex items-center justify-center gap-3">
+              {featured.map((f, i) => (
+                <button
+                  key={f.name}
+                  aria-label={f.name}
+                  onClick={() => setSlide(([a]) => [i, i > a ? 1 : -1])}
+                  className={`h-11 w-11 overflow-hidden rounded-full border transition ${
+                    i === active
+                      ? "scale-110 border-terra"
+                      : "border-cream/15 opacity-60 hover:opacity-100"
+                  }`}
+                >
+                  <img src={f.img} alt={f.name} className="h-full w-full object-cover" />
+                </button>
+              ))}
+            </div>
           </div>
+
 
           {/* RIGHT */}
           <motion.div
