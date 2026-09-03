@@ -461,6 +461,54 @@ function Home() {
           </motion.div>
         </div>
 
+        {/* category circles */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.5, ease }}
+          className="mx-auto flex w-full max-w-5xl flex-wrap items-start justify-center gap-5 px-6 pb-10 pt-2 md:gap-8"
+        >
+          {[
+            { img: p1, label: "Powders" },
+            { img: p3, label: "Premixes" },
+            { img: p2, label: "Oils" },
+            { img: p4, label: "Tonics" },
+            { img: ritualAwaken, label: "Ritual Sets" },
+            { img: lifestyleGlow, label: "Blends" },
+          ].map((c, i) => (
+            <a
+              key={c.label}
+              href="/products"
+              className="group flex flex-col items-center gap-2"
+            >
+              <motion.span
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.55 + i * 0.08, ease }}
+                className={`block h-16 w-16 overflow-hidden rounded-full ring-1 transition duration-300 group-hover:scale-105 md:h-[72px] md:w-[72px] ${
+                  i === 0
+                    ? "ring-2 ring-sand shadow-[0_0_24px_oklch(0.85_0.045_70/0.25)]"
+                    : "ring-cream/20 group-hover:ring-sand"
+                }`}
+              >
+                <img
+                  src={c.img}
+                  alt={c.label}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </motion.span>
+              <span
+                className={`text-[9px] uppercase tracking-[0.2em] transition ${
+                  i === 0 ? "text-sand" : "text-cream/55 group-hover:text-cream"
+                }`}
+              >
+                {c.label}
+              </span>
+            </a>
+          ))}
+        </motion.div>
+
         {/* apothecary menu grid */}
         <div className="mx-auto w-full max-w-7xl px-6 pb-16 md:px-10">
           <motion.div
