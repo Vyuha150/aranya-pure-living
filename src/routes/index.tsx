@@ -164,12 +164,6 @@ const heroStrip = [
 const ease = [0.22, 1, 0.36, 1] as const;
 
 function Home() {
-  const [[active, dir], setSlide] = useState<[number, number]>([0, 1]);
-  const go = (d: number) =>
-    setSlide(([a]) => [(a + d + featured.length) % featured.length, d]);
-  const item = featured[active];
-
-
   return (
     <div className="relative min-h-screen bg-umber text-cream">
       <div className="bg-grain pointer-events-none fixed inset-0 z-50 opacity-[0.12] mix-blend-overlay" />
