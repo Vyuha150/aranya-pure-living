@@ -405,7 +405,7 @@ function Home() {
         </div>
 
         {/* apothecary menu grid */}
-        <div className="mx-auto w-full max-w-7xl px-6 pb-24 md:px-10">
+        <div className="mx-auto w-full max-w-7xl px-6 pb-14 md:px-10">
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -415,23 +415,23 @@ function Home() {
           >
             <div className="grid md:grid-cols-[1fr_3fr]">
               {/* sidebar — category panel */}
-              <aside className="flex flex-col justify-between gap-10 border-b border-cream/10 p-8 md:border-b-0 md:border-r md:p-10">
+              <aside className="flex flex-col justify-between gap-8 border-b border-cream/10 p-6 md:border-b-0 md:border-r md:p-8">
                 <div>
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full border border-cream/20 text-terra">
-                    <Leaf className="h-5 w-5" />
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-terra">
+                    <Leaf className="h-4 w-4" />
                   </span>
-                  <h2 className="mt-6 font-display text-3xl leading-tight text-cream md:text-4xl">
+                  <h2 className="mt-4 font-display text-2xl leading-tight text-cream md:text-3xl">
                     Signature
                     <br />
                     Botanicals
                   </h2>
-                  <p className="mt-4 max-w-[26ch] text-[12.5px] leading-relaxed text-cream/55">
+                  <p className="mt-3 max-w-[26ch] text-[12px] leading-relaxed text-cream/55">
                     Carefully crafted whole-plant preparations that balance
                     tradition and modernity.
                   </p>
                   <a
                     href="/products"
-                    className="group mt-6 inline-flex items-center gap-3 rounded-full border border-cream/30 px-5 py-2.5 text-[10px] uppercase tracking-[0.24em] text-cream transition hover:border-sand hover:bg-cream hover:text-umber"
+                    className="group mt-4 inline-flex items-center gap-3 rounded-full border border-cream/30 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-cream transition hover:border-sand hover:bg-cream hover:text-umber"
                   >
                     Explore Botanicals
                     <ArrowRight className="h-3 w-3 transition group-hover:translate-x-1" />
@@ -439,17 +439,17 @@ function Home() {
                 </div>
 
                 {/* origin card */}
-                <div className="relative overflow-hidden rounded-sm bg-gradient-to-br from-clay/40 to-walnut/50 p-6">
-                  <AranyaMark size={120} className="absolute -right-6 -top-6 text-cream/8" />
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-sand/80">
+                <div className="relative overflow-hidden rounded-sm bg-gradient-to-br from-clay/40 to-walnut/50 p-5">
+                  <AranyaMark size={100} className="absolute -right-5 -top-5 text-cream/8" />
+                  <span className="text-[9px] uppercase tracking-[0.3em] text-sand/80">
                     From the Nilgiris, India
                   </span>
-                  <p className="mt-3 text-[11.5px] leading-relaxed text-cream/65">
+                  <p className="mt-2 text-[11px] leading-relaxed text-cream/65">
                     Our botanicals are sourced directly from heritage farms —
                     known for their rich soil, pure water, and centuries of
                     plant mastery.
                   </p>
-                  <span className="mt-4 flex items-center gap-2 text-[9px] uppercase tracking-[0.24em] text-cream/45">
+                  <span className="mt-3 flex items-center gap-2 text-[9px] uppercase tracking-[0.24em] text-cream/45">
                     <ShieldCheck className="h-3 w-3 text-terra" /> USDA · India
                     Organic Certified
                   </span>
@@ -465,9 +465,9 @@ function Home() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ duration: 0.7, delay: i * 0.07, ease }}
-                    className="group flex flex-col border-cream/10 p-7 transition hover:bg-cream/[0.03] sm:border-l sm:[&:nth-child(odd)]:border-l-0 lg:[&:nth-child(odd)]:border-l lg:[&:nth-child(3n+1)]:border-l-0 [&:nth-child(n+2)]:border-t sm:[&:nth-child(-n+2)]:border-t-0 lg:[&:nth-child(-n+3)]:border-t-0 lg:[&:nth-child(n+2)]:border-t"
+                    className="group flex flex-col border-cream/10 p-5 transition hover:bg-cream/[0.03] sm:border-l sm:[&:nth-child(odd)]:border-l-0 lg:[&:nth-child(odd)]:border-l lg:[&:nth-child(3n+1)]:border-l-0 [&:nth-child(n+2)]:border-t sm:[&:nth-child(-n+2)]:border-t-0 lg:[&:nth-child(-n+3)]:border-t-0 lg:[&:nth-child(n+2)]:border-t"
                   >
-                    <div className="relative mx-auto aspect-square w-full max-w-[190px] overflow-hidden rounded-full">
+                    <div className="relative mx-auto aspect-square w-full max-w-[150px] overflow-hidden rounded-full">
                       <img
                         src={m.img}
                         alt={m.name}
@@ -479,31 +479,31 @@ function Home() {
                       <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-cream/15" />
                     </div>
 
-                    <span className="mt-6 w-fit rounded-full border border-cream/20 px-3 py-1 text-[9px] uppercase tracking-[0.22em] text-cream/70">
+                    <span className="mt-4 w-fit rounded-full border border-cream/20 px-3 py-1 text-[9px] uppercase tracking-[0.22em] text-cream/70">
                       {m.form}
                     </span>
-                    <h3 className="mt-3 font-display text-2xl leading-tight text-cream">
+                    <h3 className="mt-2 font-display text-xl leading-tight text-cream">
                       {m.name}
                     </h3>
-                    <p className="mt-1 font-display text-[13px] italic text-terra/90">
+                    <p className="mt-0.5 font-display text-[12px] italic text-terra/90">
                       {m.note}
                     </p>
-                    <p className="mt-3 text-[11.5px] leading-relaxed text-cream/55">
+                    <p className="mt-2 text-[11px] leading-relaxed text-cream/55">
                       {m.body}
                     </p>
 
-                    <div className="mt-4 flex flex-wrap gap-1.5">
+                    <div className="mt-3 flex flex-wrap gap-1.5">
                       {m.chips.map((c) => (
                         <span
                           key={c}
-                          className="rounded-sm bg-cream/8 px-2.5 py-1 text-[9px] uppercase tracking-[0.14em] text-cream/60"
+                          className="rounded-sm bg-cream/8 px-2 py-0.5 text-[9px] uppercase tracking-[0.14em] text-cream/60"
                         >
                           {c}
                         </span>
                       ))}
                     </div>
 
-                    <span className="mt-5 font-display text-xl text-sand">
+                    <span className="mt-4 font-display text-lg text-sand">
                       {m.price}
                     </span>
                   </motion.article>
@@ -512,7 +512,7 @@ function Home() {
             </div>
 
             {/* bottom feature strip */}
-            <div className="grid grid-cols-2 gap-6 border-t border-cream/10 bg-walnut/25 px-8 py-4 md:grid-cols-4 md:px-10">
+            <div className="grid grid-cols-2 gap-4 border-t border-cream/10 bg-walnut/25 px-6 py-3 md:grid-cols-4 md:px-8">
               {heroStrip.map((s, i) => (
                 <motion.div
                   key={s.title}
@@ -520,14 +520,14 @@ function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: i * 0.08, ease }}
-                  className="flex items-center gap-3"
+                  className="flex items-center gap-2.5"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-clay/25 text-sand">
-                    <s.icon className="h-4 w-4" />
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-clay/25 text-sand">
+                    <s.icon className="h-3.5 w-3.5" />
                   </span>
                   <span>
-                    <span className="block text-[12px] text-cream/90">{s.title}</span>
-                    <span className="block text-[10px] uppercase tracking-[0.16em] text-cream/45">
+                    <span className="block text-[11px] text-cream/90">{s.title}</span>
+                    <span className="block text-[9px] uppercase tracking-[0.16em] text-cream/45">
                       {s.sub}
                     </span>
                   </span>
