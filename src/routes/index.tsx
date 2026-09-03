@@ -173,16 +173,41 @@ const heroSlides = [
 function Home() {
   const [[slide, dir], setSlide] = useState<[number, number]>([0, 1]);
   const lock = useRef(0);
+  const slideRef = useRef(0);
+  const showcaseRef = useRef<HTMLDivElement | null>(null);
   const paginate = (d: number) =>
-    setSlide(([i]) => [(i + d + heroSlides.length) % heroSlides.length, d]);
-  const onWheel = (e: React.WheelEvent) => {
-    const now = Date.now();
-    if (now - lock.current < 650) return;
-    if (Math.abs(e.deltaY) < 12) return;
-    lock.current = now;
-    paginate(e.deltaY > 0 ? 1 : -1);
+    setSlide(([i]) => {
+      const n = Math.min(Math.max(i + d, 0), heroSlides.length - 1);
+      slideRef.current = n;
+      return [n, d];
+    });
+  const goTo = (i: number) => {
+    slideRef.current = i;
+    setSlide(([p]) => [i, i > p ? 1 : -1]);
   };
+
+  // Scroll-driven: hold the page while slides advance, then release scrolling.
+  useEffect(() => {
+    const el = showcaseRef.current;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      const dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 100 : 1);
+      if (Math.abs(dy) < 4) return;
+      const i = slideRef.current;
+      const canAdvance = dy > 0 ? i < heroSlides.length - 1 : i > 0 && window.scrollY <= 2;
+      if (!canAdvance) return;
+      e.preventDefault();
+      const now = Date.now();
+      if (now - lock.current < 620) return;
+      lock.current = now;
+      paginate(dy > 0 ? 1 : -1);
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, []);
+
   const active = heroSlides[slide]!;
+
 
   return (
     <div className="relative min-h-screen bg-umber text-cream">
