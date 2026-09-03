@@ -210,9 +210,9 @@ function Home() {
           </motion.div>
         </div>
 
-        {/* top band — intro copy + hero image */}
-        <div className="mx-auto grid w-full max-w-7xl gap-8 px-6 pb-14 pt-12 md:grid-cols-[1fr_1.1fr] md:items-end md:gap-12 md:px-10 md:pt-16">
-          <div className="pb-2">
+        {/* top band — intro copy + full-bleed hero image */}
+        <div className="grid w-full md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+          <div className="mx-auto w-full max-w-xl px-6 pb-12 pt-12 md:pl-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))] md:pr-10 md:pt-20">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -270,32 +270,26 @@ function Home() {
             </motion.div>
           </div>
 
-          {/* hero image */}
+          {/* hero image — bleeds to the right edge, melts into the background */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.15, ease }}
-            className="relative"
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.15, ease }}
+            className="relative min-h-[320px] md:min-h-[460px]"
           >
-            <div className="relative aspect-[16/10] overflow-hidden rounded-sm border border-cream/10">
-              <img
-                src={heroProducts}
-                alt="Aranya apothecary jars of wildcrafted botanicals on stone"
-                width={1600}
-                height={1024}
-                className="h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-umber/55 via-transparent to-transparent" />
-              <span className="absolute bottom-4 right-4 text-[9px] uppercase tracking-[0.3em] text-cream/70">
-                A Ritual of Calm
-              </span>
-            </div>
-            <motion.div
-              aria-hidden
-              animate={{ rotate: 360 }}
-              transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-              className="absolute -bottom-8 -left-8 hidden h-24 w-24 rounded-full border border-dashed border-sand/25 md:block"
+            <img
+              src={heroProducts}
+              alt="Aranya apothecary jars of wildcrafted botanicals on stone"
+              width={1600}
+              height={1024}
+              className="absolute inset-0 h-full w-full object-cover"
             />
+            {/* blend edges into the umber backdrop */}
+            <div className="absolute inset-0 bg-gradient-to-r from-umber via-umber/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-umber via-transparent to-umber/40" />
+            <span className="absolute bottom-5 right-6 text-[9px] uppercase tracking-[0.34em] text-cream/60">
+              A Ritual of Calm
+            </span>
           </motion.div>
         </div>
 
