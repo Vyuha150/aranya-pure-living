@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   Leaf,
@@ -9,9 +8,6 @@ import {
   Sun,
   FlaskConical,
   Truck,
-  ChevronLeft,
-  ChevronRight,
-  Plus,
 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -85,12 +81,61 @@ const ingredients = [
   },
 ];
 
-const featured = [
-  { img: heroBowl, name: "Golden Turmeric", note: "Wildcrafted root" },
-  { img: p2, name: "Ashwagandha Oil", note: "Cold-pressed" },
-  { img: p3, name: "Triphala Premix", note: "Daily ritual" },
-  { img: p4, name: "Tulsi Amber Tonic", note: "Adaptogen" },
-  { img: p1, name: "Amla Gold Powder", note: "Vitamin-C rich" },
+const menuItems = [
+  {
+    img: p1,
+    form: "Powder",
+    name: "Golden Turmeric",
+    note: "Energise Your Day",
+    body: "Vibrant and grounding. Stone-ground Lakadong turmeric with 7%+ curcumin and a clean, earthy lift.",
+    chips: ["Grounding", "Smooth", "Immunity"],
+    price: "₹ 1,240",
+  },
+  {
+    img: p2,
+    form: "Oil",
+    name: "Ashwagandha Vitality Oil",
+    note: "Deep Restoration",
+    body: "Creamy and restorative. Cold-pressed root infusion for quiet strength and restful evenings.",
+    chips: ["Calming", "Adaptogen", "Restorative"],
+    price: "₹ 1,890",
+  },
+  {
+    img: p3,
+    form: "Premix",
+    name: "Triphala Morning Premix",
+    note: "Pure · Balanced · Timeless",
+    body: "The classic three-fruit blend, gently dried and milled for daily digestive intelligence.",
+    chips: ["Balanced", "Digestive", "Mindful"],
+    price: "₹ 1,460",
+  },
+  {
+    img: ritualAwaken,
+    form: "Latte",
+    name: "Dawn Golden Latte",
+    note: "Gentle Energy",
+    body: "Fresh and uplifting. Turmeric, ashwagandha and cinnamon whisked into warm plant milk.",
+    chips: ["Uplifting", "Energising", "Revitalising"],
+    price: "₹ 980",
+  },
+  {
+    img: p4,
+    form: "Tonic",
+    name: "Tulsi Amber Tonic",
+    note: "Soft Comfort",
+    body: "Rich and aromatic. Holy basil steeped slow for warmth, comfort, and quiet moments.",
+    chips: ["Aromatic", "Warming", "Comforting"],
+    price: "₹ 2,210",
+  },
+  {
+    img: lifestyleGlow,
+    form: "Blend",
+    name: "Luminous Glow Blend",
+    note: "Pure · Radiant · Timeless",
+    body: "A thoughtfully crafted blend of amla, rose and moringa — harmonious balance and a soothing glow.",
+    chips: ["Refined", "Radiant", "Mindful"],
+    price: "₹ 1,650",
+  },
 ];
 
 
