@@ -256,26 +256,27 @@ function Home() {
           </motion.div>
         </div>
 
-        {/* top band — intro copy + full-bleed hero image */}
-        <div className="grid w-full md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
-          <div className="mx-auto w-full max-w-xl px-6 pb-10 pt-10 md:pl-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))] md:pr-10 md:pt-16">
+        {/* top band — editorial copy + background-blended product showcase */}
+        <div className="grid w-full items-center md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+          <div className="mx-auto w-full max-w-xl px-6 pb-8 pt-10 md:pl-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))] md:pr-10 md:pt-14">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease }}
-              className="text-[10px] uppercase tracking-[0.42em] text-sand/70"
+              className="inline-flex items-center gap-2 rounded-full border border-sand/25 bg-sand/5 px-4 py-1.5 text-[10px] uppercase tracking-[0.32em] text-sand"
             >
-              Our Apothecary
+              <Leaf className="h-3 w-3" /> Certified Pure · Sacred Bloom
             </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.1, ease }}
-              className="text-shadow-soft mt-5 font-display text-[clamp(2.1rem,4.2vw,3.7rem)] leading-[1.05]"
+              className="text-shadow-soft mt-5 font-display text-[clamp(2.2rem,4.4vw,3.9rem)] leading-[1.04]"
             >
-              Crafted with Intention.
+              From the Forest,
               <br />
-              Rooted in <em className="italic text-terra">Ayurveda.</em>
+              to Your Ritual —{" "}
+              <em className="italic text-terra">Pure. Proven.</em>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 14 }}
@@ -283,30 +284,41 @@ function Home() {
               transition={{ duration: 0.8, delay: 0.22, ease }}
               className="mt-4 max-w-sm text-[12.5px] leading-relaxed text-cream/60"
             >
-              From wildcrafted roots to rare single-origin herbs — each jar is a
-              moment of calm, clarity, and connection to the forest.
+              Powders, premixes, tonics and gummies — grown on our own
+              certified farms, packed in small batches, and traced from soil to
+              your shelf.
             </motion.p>
-            <motion.a
+            <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.32, ease }}
-              href="/products"
-              className="group mt-6 inline-flex items-center gap-3 rounded-full border border-cream/30 px-5 py-2.5 text-[11px] uppercase tracking-[0.24em] text-cream transition hover:border-sand hover:bg-cream hover:text-umber"
+              className="mt-6 flex flex-wrap items-center gap-3"
             >
-              View Full Collection
-              <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
-            </motion.a>
+              <a
+                href="/products"
+                className="group inline-flex items-center gap-3 rounded-full bg-sand px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-umber transition hover:bg-cream"
+              >
+                Explore Botanicals
+                <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
+              </a>
+              <a
+                href="/philosophy"
+                className="inline-flex items-center gap-3 rounded-full border border-cream/25 px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-cream transition hover:border-sand hover:text-sand"
+              >
+                Our Philosophy
+              </a>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.42, ease }}
-              className="mt-7 flex gap-5"
+              className="mt-8 flex flex-wrap gap-6"
             >
               {heroBadges.map((b) => (
-                <div key={b.label} className="flex items-center gap-2">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-cream/20 text-sand">
-                    <b.icon className="h-3 w-3" />
+                <div key={b.label} className="flex items-center gap-2.5">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-sand/25 bg-sand/5 text-sand">
+                    <b.icon className="h-3.5 w-3.5" />
                   </span>
                   <span className="text-[9px] uppercase tracking-[0.16em] text-cream/60">
                     {b.label}
@@ -316,38 +328,58 @@ function Home() {
             </motion.div>
           </div>
 
-          {/* hero showcase — scroll-driven image transitions */}
+          {/* hero showcase — frameless, blended into the umber backdrop */}
           <motion.div
             initial={{ opacity: 0, scale: 1.04 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.15, ease }}
             ref={showcaseRef}
-            className="relative h-[clamp(300px,44svh,460px)] max-h-[52svh] w-full overflow-hidden overscroll-contain"
+            className="relative h-[clamp(340px,56svh,560px)] w-full overflow-hidden overscroll-contain"
           >
-            <AnimatePresence initial={false} custom={dir} mode="popLayout">
-              <motion.img
-                key={slide}
-                custom={dir}
-                src={active.img}
-                alt={active.name}
-                width={1600}
-                height={1024}
-                variants={{
-                  enter: (d: number) => ({ opacity: 0, y: d > 0 ? 70 : -70, scale: 1.08 }),
-                  center: { opacity: 1, y: 0, scale: 1 },
-                  exit: (d: number) => ({ opacity: 0, y: d > 0 ? -70 : 70, scale: 1.04 }),
-                }}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.85, ease }}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            </AnimatePresence>
+            {/* warm glow behind the product */}
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(46% 52% at 50% 46%, oklch(0.50 0.11 52 / 0.45), transparent 74%)",
+              }}
+            />
+            {/* slow rotating dashed halo */}
+            <motion.div
+              aria-hidden
+              animate={{ rotate: 360 }}
+              transition={{ duration: 46, repeat: Infinity, ease: "linear" }}
+              className="pointer-events-none absolute left-1/2 top-1/2 h-[78%] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-sand/20"
+            />
 
-            {/* blend edges into the umber backdrop */}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-umber via-umber/20 to-transparent" />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-umber via-transparent to-umber/40" />
+            {/* floating wrapper + scroll-driven transitions */}
+            <motion.div
+              animate={{ y: [0, -12, 0] }}
+              transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <AnimatePresence initial={false} custom={dir} mode="popLayout">
+                <motion.img
+                  key={slide}
+                  custom={dir}
+                  src={active.img}
+                  alt={active.name}
+                  width={1600}
+                  height={1024}
+                  variants={{
+                    enter: (d: number) => ({ opacity: 0, y: d > 0 ? 70 : -70, scale: 1.1, rotate: d > 0 ? 2.5 : -2.5 }),
+                    center: { opacity: 1, y: 0, scale: 1, rotate: 0 },
+                    exit: (d: number) => ({ opacity: 0, y: d > 0 ? -70 : 70, scale: 1.05, rotate: d > 0 ? -2 : 2 }),
+                  }}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.85, ease }}
+                  className="absolute inset-0 h-full w-full object-cover [mask-image:radial-gradient(72%_72%_at_50%_46%,black_52%,transparent_98%)]"
+                />
+              </AnimatePresence>
+            </motion.div>
+
 
             {/* price + caption rail */}
             <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-6 md:p-8">
@@ -428,6 +460,54 @@ function Home() {
             </AnimatePresence>
           </motion.div>
         </div>
+
+        {/* category circles */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.5, ease }}
+          className="mx-auto flex w-full max-w-5xl flex-wrap items-start justify-center gap-5 px-6 pb-10 pt-2 md:gap-8"
+        >
+          {[
+            { img: p1, label: "Powders" },
+            { img: p3, label: "Premixes" },
+            { img: p2, label: "Oils" },
+            { img: p4, label: "Tonics" },
+            { img: ritualAwaken, label: "Ritual Sets" },
+            { img: lifestyleGlow, label: "Blends" },
+          ].map((c, i) => (
+            <a
+              key={c.label}
+              href="/products"
+              className="group flex flex-col items-center gap-2"
+            >
+              <motion.span
+                initial={{ opacity: 0, scale: 0.7 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.55 + i * 0.08, ease }}
+                className={`block h-16 w-16 overflow-hidden rounded-full ring-1 transition duration-300 group-hover:scale-105 md:h-[72px] md:w-[72px] ${
+                  i === 0
+                    ? "ring-2 ring-sand shadow-[0_0_24px_oklch(0.85_0.045_70/0.25)]"
+                    : "ring-cream/20 group-hover:ring-sand"
+                }`}
+              >
+                <img
+                  src={c.img}
+                  alt={c.label}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </motion.span>
+              <span
+                className={`text-[9px] uppercase tracking-[0.2em] transition ${
+                  i === 0 ? "text-sand" : "text-cream/55 group-hover:text-cream"
+                }`}
+              >
+                {c.label}
+              </span>
+            </a>
+          ))}
+        </motion.div>
 
         {/* apothecary menu grid */}
         <div className="mx-auto w-full max-w-7xl px-6 pb-16 md:px-10">
