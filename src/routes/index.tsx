@@ -214,7 +214,7 @@ function Home() {
         </div>
 
         {/* offer marquee */}
-        <div className="relative z-20 mt-[52px] overflow-hidden border-y border-cream/10 bg-clay/25 py-1.5 backdrop-blur-sm">
+        <div className="relative z-20 mt-[60px] overflow-hidden border-y border-cream/10 bg-clay/25 py-1.5 backdrop-blur-sm">
           <motion.div
             className="flex w-max gap-10 whitespace-nowrap"
             animate={{ x: ["0%", "-50%"] }}
@@ -233,7 +233,7 @@ function Home() {
 
         {/* top band — intro copy + full-bleed hero image */}
         <div className="grid w-full md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
-          <div className="mx-auto w-full max-w-xl px-6 pb-8 pt-8 md:pl-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))] md:pr-10 md:pt-14">
+          <div className="mx-auto w-full max-w-xl px-6 pb-10 pt-10 md:pl-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))] md:pr-10 md:pt-16">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -246,7 +246,7 @@ function Home() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.1, ease }}
-              className="text-shadow-soft mt-4 font-display text-[clamp(2rem,3.8vw,3.4rem)] leading-[1.06]"
+              className="text-shadow-soft mt-5 font-display text-[clamp(2.1rem,4.2vw,3.7rem)] leading-[1.05]"
             >
               Crafted with Intention.
               <br />
@@ -266,7 +266,7 @@ function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.32, ease }}
               href="/products"
-              className="group mt-5 inline-flex items-center gap-3 rounded-full border border-cream/30 px-5 py-2.5 text-[11px] uppercase tracking-[0.24em] text-cream transition hover:border-sand hover:bg-cream hover:text-umber"
+              className="group mt-6 inline-flex items-center gap-3 rounded-full border border-cream/30 px-5 py-2.5 text-[11px] uppercase tracking-[0.24em] text-cream transition hover:border-sand hover:bg-cream hover:text-umber"
             >
               View Full Collection
               <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
@@ -297,7 +297,7 @@ function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.15, ease }}
             onWheel={onWheel}
-            className="relative min-h-[280px] overflow-hidden md:min-h-[380px]"
+            className="relative min-h-[320px] overflow-hidden md:min-h-[440px]"
           >
             <AnimatePresence initial={false} custom={dir} mode="popLayout">
               <motion.img
@@ -405,7 +405,7 @@ function Home() {
         </div>
 
         {/* apothecary menu grid */}
-        <div className="mx-auto w-full max-w-7xl px-6 pb-14 md:px-10">
+        <div className="mx-auto w-full max-w-7xl px-6 pb-16 md:px-10">
           <motion.div
             initial={{ opacity: 0, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -467,7 +467,7 @@ function Home() {
                     transition={{ duration: 0.7, delay: i * 0.07, ease }}
                     className="group flex flex-col border-cream/10 p-5 transition hover:bg-cream/[0.03] sm:border-l sm:[&:nth-child(odd)]:border-l-0 lg:[&:nth-child(odd)]:border-l lg:[&:nth-child(3n+1)]:border-l-0 [&:nth-child(n+2)]:border-t sm:[&:nth-child(-n+2)]:border-t-0 lg:[&:nth-child(-n+3)]:border-t-0 lg:[&:nth-child(n+2)]:border-t"
                   >
-                    <div className="relative mx-auto aspect-square w-full max-w-[150px] overflow-hidden rounded-full">
+                    <div className="relative mx-auto aspect-square w-full max-w-[165px] overflow-hidden rounded-full">
                       <img
                         src={m.img}
                         alt={m.name}
