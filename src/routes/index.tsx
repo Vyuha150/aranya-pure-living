@@ -307,9 +307,14 @@ function Home() {
                 alt={active.name}
                 width={1600}
                 height={1024}
-                initial={(d: number) => ({ opacity: 0, y: d > 0 ? 70 : -70, scale: 1.08 })}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={(d: number) => ({ opacity: 0, y: d > 0 ? -70 : 70, scale: 1.04 })}
+                variants={{
+                  enter: (d: number) => ({ opacity: 0, y: d > 0 ? 70 : -70, scale: 1.08 }),
+                  center: { opacity: 1, y: 0, scale: 1 },
+                  exit: (d: number) => ({ opacity: 0, y: d > 0 ? -70 : 70, scale: 1.04 }),
+                }}
+                initial="enter"
+                animate="center"
+                exit="exit"
                 transition={{ duration: 0.85, ease }}
                 className="absolute inset-0 h-full w-full object-cover"
               />
