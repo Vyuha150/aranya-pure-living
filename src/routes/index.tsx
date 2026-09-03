@@ -233,7 +233,7 @@ function Home() {
 
         {/* top band — intro copy + full-bleed hero image */}
         <div className="grid w-full md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
-          <div className="mx-auto w-full max-w-xl px-6 pb-12 pt-12 md:pl-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))] md:pr-10 md:pt-20">
+          <div className="mx-auto w-full max-w-xl px-6 pb-8 pt-8 md:pl-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))] md:pr-10 md:pt-14">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -246,7 +246,7 @@ function Home() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.1, ease }}
-              className="text-shadow-soft mt-5 font-display text-[clamp(2.4rem,4.6vw,4.2rem)] leading-[1.04]"
+              className="text-shadow-soft mt-4 font-display text-[clamp(2rem,3.8vw,3.4rem)] leading-[1.06]"
             >
               Crafted with Intention.
               <br />
@@ -256,7 +256,7 @@ function Home() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.22, ease }}
-              className="mt-5 max-w-md text-[13px] leading-relaxed text-cream/60"
+              className="mt-4 max-w-sm text-[12.5px] leading-relaxed text-cream/60"
             >
               From wildcrafted roots to rare single-origin herbs — each jar is a
               moment of calm, clarity, and connection to the forest.
@@ -266,7 +266,7 @@ function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.32, ease }}
               href="/products"
-              className="group mt-7 inline-flex items-center gap-3 rounded-full border border-cream/30 px-6 py-3 text-[11px] uppercase tracking-[0.24em] text-cream transition hover:border-sand hover:bg-cream hover:text-umber"
+              className="group mt-5 inline-flex items-center gap-3 rounded-full border border-cream/30 px-5 py-2.5 text-[11px] uppercase tracking-[0.24em] text-cream transition hover:border-sand hover:bg-cream hover:text-umber"
             >
               View Full Collection
               <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
@@ -276,14 +276,14 @@ function Home() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.42, ease }}
-              className="mt-9 flex gap-6"
+              className="mt-7 flex gap-5"
             >
               {heroBadges.map((b) => (
-                <div key={b.label} className="flex items-center gap-2.5">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-cream/20 text-sand">
-                    <b.icon className="h-3.5 w-3.5" />
+                <div key={b.label} className="flex items-center gap-2">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full border border-cream/20 text-sand">
+                    <b.icon className="h-3 w-3" />
                   </span>
-                  <span className="text-[10px] uppercase tracking-[0.16em] text-cream/60">
+                  <span className="text-[9px] uppercase tracking-[0.16em] text-cream/60">
                     {b.label}
                   </span>
                 </div>
@@ -297,7 +297,7 @@ function Home() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.15, ease }}
             onWheel={onWheel}
-            className="relative min-h-[340px] overflow-hidden md:min-h-[480px]"
+            className="relative min-h-[280px] overflow-hidden md:min-h-[380px]"
           >
             <AnimatePresence initial={false} custom={dir} mode="popLayout">
               <motion.img
