@@ -275,7 +275,8 @@ function Home() {
             >
               From the Forest,
               <br />
-              to Your Ritual —{" "}
+              to Your Ritual —
+              <br />
               <em className="italic text-terra">Pure. Proven.</em>
             </motion.h1>
             <motion.p
