@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
   Leaf,
@@ -162,7 +163,27 @@ const heroStrip = [
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
+const heroSlides = [
+  { img: heroProducts, name: "Apothecary Edit", caption: "A Ritual of Calm", price: "\u20b9 2,480" },
+  { img: p2, name: "Ashwagandha Vitality Oil", caption: "Cold-Pressed Root", price: "\u20b9 1,890" },
+  { img: p4, name: "Tulsi Amber Tonic", caption: "Adaptogen Beverage", price: "\u20b9 2,210" },
+  { img: ritualAwaken, name: "Awaken Ritual Set", caption: "First Light Blend", price: "\u20b9 3,150" },
+];
+
 function Home() {
+  const [[slide, dir], setSlide] = useState<[number, number]>([0, 1]);
+  const lock = useRef(0);
+  const paginate = (d: number) =>
+    setSlide(([i]) => [(i + d + heroSlides.length) % heroSlides.length, d]);
+  const onWheel = (e: React.WheelEvent) => {
+    const now = Date.now();
+    if (now - lock.current < 650) return;
+    if (Math.abs(e.deltaY) < 12) return;
+    lock.current = now;
+    paginate(e.deltaY > 0 ? 1 : -1);
+  };
+  const active = heroSlides[slide]!;
+
   return (
     <div className="relative min-h-screen bg-umber text-cream">
       <div className="bg-grain pointer-events-none fixed inset-0 z-50 opacity-[0.12] mix-blend-overlay" />
@@ -270,26 +291,116 @@ function Home() {
             </motion.div>
           </div>
 
-          {/* hero image — bleeds to the right edge, melts into the background */}
+          {/* hero showcase — scroll-driven image transitions */}
           <motion.div
             initial={{ opacity: 0, scale: 1.04 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.15, ease }}
-            className="relative min-h-[320px] md:min-h-[460px]"
+            onWheel={onWheel}
+            className="relative min-h-[340px] overflow-hidden md:min-h-[480px]"
           >
-            <img
-              src={heroProducts}
-              alt="Aranya apothecary jars of wildcrafted botanicals on stone"
-              width={1600}
-              height={1024}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
+            <AnimatePresence initial={false} custom={dir} mode="popLayout">
+              <motion.img
+                key={slide}
+                custom={dir}
+                src={active.img}
+                alt={active.name}
+                width={1600}
+                height={1024}
+                variants={{
+                  enter: (d: number) => ({ opacity: 0, y: d > 0 ? 70 : -70, scale: 1.08 }),
+                  center: { opacity: 1, y: 0, scale: 1 },
+                  exit: (d: number) => ({ opacity: 0, y: d > 0 ? -70 : 70, scale: 1.04 }),
+                }}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.85, ease }}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </AnimatePresence>
+
             {/* blend edges into the umber backdrop */}
-            <div className="absolute inset-0 bg-gradient-to-r from-umber via-umber/20 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-umber via-transparent to-umber/40" />
-            <span className="absolute bottom-5 right-6 text-[9px] uppercase tracking-[0.34em] text-cream/60">
-              A Ritual of Calm
-            </span>
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-umber via-umber/20 to-transparent" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-umber via-transparent to-umber/40" />
+
+            {/* price + caption rail */}
+            <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-6 md:p-8">
+              <div className="flex items-start justify-end">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={active.name}
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -14 }}
+                    transition={{ duration: 0.5, ease }}
+                    className="text-right"
+                  >
+                    <span className="font-display text-3xl text-sand md:text-4xl">
+                      {active.price}
+                    </span>
+                    <p className="mt-1 text-[10px] uppercase tracking-[0.28em] text-cream/55">
+                      {active.name}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              <div className="flex items-end justify-between">
+                {/* arrows + counter */}
+                <div className="pointer-events-auto flex items-center gap-3">
+                  <button
+                    aria-label="Previous botanical"
+                    onClick={() => paginate(-1)}
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-cream/25 text-cream/80 transition hover:border-sand hover:bg-cream hover:text-umber"
+                  >
+                    <ArrowRight className="h-3.5 w-3.5 rotate-180" />
+                  </button>
+                  <button
+                    aria-label="Next botanical"
+                    onClick={() => paginate(1)}
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-cream/25 text-cream/80 transition hover:border-sand hover:bg-cream hover:text-umber"
+                  >
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </button>
+                  <span className="ml-1 text-[10px] tracking-[0.28em] text-cream/50">
+                    {String(slide + 1).padStart(2, "0")} /{" "}
+                    {String(heroSlides.length).padStart(2, "0")}
+                  </span>
+                </div>
+
+                {/* thumbnails */}
+                <div className="pointer-events-auto flex items-center gap-2">
+                  {heroSlides.map((s, i) => (
+                    <button
+                      key={s.name}
+                      aria-label={s.name}
+                      onClick={() => setSlide([i, i > slide ? 1 : -1])}
+                      className={`h-11 w-11 overflow-hidden rounded-full ring-1 transition ${
+                        i === slide
+                          ? "ring-sand opacity-100 scale-110"
+                          : "ring-cream/20 opacity-55 hover:opacity-90"
+                      }`}
+                    >
+                      <img src={s.img} alt="" className="h-full w-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={active.caption}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="pointer-events-none absolute bottom-24 left-1/2 -translate-x-1/2 text-[9px] uppercase tracking-[0.34em] text-cream/60"
+              >
+                {active.caption}
+              </motion.span>
+            </AnimatePresence>
           </motion.div>
         </div>
 
