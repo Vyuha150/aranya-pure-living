@@ -12,7 +12,6 @@ import {
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { AranyaMark } from "@/components/AranyaMark";
-import heroBowl from "@/assets/hero-bowl.jpg";
 import heroProducts from "@/assets/hero-products.jpg";
 import p1 from "@/assets/product-1.jpg";
 import p2 from "@/assets/product-2.jpg";
