@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
@@ -321,8 +321,8 @@ function Home() {
             initial={{ opacity: 0, scale: 1.04 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.15, ease }}
-            onWheel={onWheel}
-            className="relative min-h-[320px] overflow-hidden md:min-h-[440px]"
+            ref={showcaseRef}
+            className="relative h-[clamp(300px,44svh,460px)] max-h-[52svh] w-full overflow-hidden overscroll-contain"
           >
             <AnimatePresence initial={false} custom={dir} mode="popLayout">
               <motion.img
@@ -400,7 +400,7 @@ function Home() {
                     <button
                       key={s.name}
                       aria-label={s.name}
-                      onClick={() => setSlide([i, i > slide ? 1 : -1])}
+                      onClick={() => goTo(i)}
                       className={`h-11 w-11 overflow-hidden rounded-full ring-1 transition ${
                         i === slide
                           ? "ring-sand opacity-100 scale-110"
