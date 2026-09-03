@@ -257,8 +257,8 @@ function Home() {
         </div>
 
         {/* top band — editorial copy + background-blended product showcase */}
-        <div className="grid w-full items-center md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
-          <div className="mx-auto w-full max-w-xl px-6 pb-8 pt-10 md:pl-[max(2.5rem,calc((100vw-80rem)/2+2.5rem))] md:pr-10 md:pt-14">
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-8 px-6 pb-6 pt-10 md:grid-cols-2 md:gap-10 md:px-10 md:pb-8 md:pt-12">
+          <div className="w-full max-w-xl">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -271,7 +271,7 @@ function Home() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.1, ease }}
-              className="text-shadow-soft mt-5 font-display text-[clamp(2.2rem,4.4vw,3.9rem)] leading-[1.04]"
+              className="text-shadow-soft mt-5 font-display text-[clamp(2.2rem,4.2vw,3.7rem)] leading-[1.05]"
             >
               From the Forest,
               <br />
@@ -282,7 +282,7 @@ function Home() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.22, ease }}
-              className="mt-4 max-w-sm text-[12.5px] leading-relaxed text-cream/60"
+              className="mt-4 max-w-md text-[13px] leading-relaxed text-cream/60"
             >
               Powders, premixes, tonics and gummies — grown on our own
               certified farms, packed in small batches, and traced from soil to
@@ -292,7 +292,7 @@ function Home() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.32, ease }}
-              className="mt-6 flex flex-wrap items-center gap-3"
+              className="mt-7 flex flex-wrap items-center gap-3"
             >
               <a
                 href="/products"
@@ -313,14 +313,14 @@ function Home() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.42, ease }}
-              className="mt-8 flex flex-wrap gap-6"
+              className="mt-8 grid grid-cols-3 gap-3"
             >
               {heroBadges.map((b) => (
                 <div key={b.label} className="flex items-center gap-2.5">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-sand/25 bg-sand/5 text-sand">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-sand/25 bg-sand/5 text-sand">
                     <b.icon className="h-3.5 w-3.5" />
                   </span>
-                  <span className="text-[9px] uppercase tracking-[0.16em] text-cream/60">
+                  <span className="text-[9px] uppercase leading-tight tracking-[0.16em] text-cream/60">
                     {b.label}
                   </span>
                 </div>
@@ -328,6 +328,8 @@ function Home() {
             </motion.div>
           </div>
 
+          {/* right column — blended showcase + category circles */}
+          <div className="flex w-full flex-col items-center">
           {/* hero showcase — frameless, blended into the umber backdrop */}
           <motion.div
             initial={{ opacity: 0, scale: 1.04 }}
@@ -459,55 +461,76 @@ function Home() {
               </motion.span>
             </AnimatePresence>
           </motion.div>
+            {/* category circles */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.5, ease }}
+              className="mt-6 flex w-full flex-wrap items-start justify-center gap-4 md:gap-6"
+            >
+              {[
+                { img: p1, label: "Powders" },
+                { img: p3, label: "Premixes" },
+                { img: p2, label: "Oils" },
+                { img: p4, label: "Tonics" },
+                { img: ritualAwaken, label: "Ritual Sets" },
+                { img: lifestyleGlow, label: "Blends" },
+              ].map((c, i) => (
+                <a
+                  key={c.label}
+                  href="/products"
+                  className="group flex w-[64px] flex-col items-center gap-2"
+                >
+                  <motion.span
+                    initial={{ opacity: 0, scale: 0.7 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 0.55 + i * 0.08, ease }}
+                    className={`block h-14 w-14 overflow-hidden rounded-full ring-1 transition duration-300 group-hover:scale-105 md:h-16 md:w-16 ${
+                      i === 0
+                        ? "ring-2 ring-sand shadow-[0_0_24px_oklch(0.85_0.045_70/0.25)]"
+                        : "ring-cream/20 group-hover:ring-sand"
+                    }`}
+                  >
+                    <img
+                      src={c.img}
+                      alt={c.label}
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
+                  </motion.span>
+                  <span
+                    className={`text-center text-[8.5px] uppercase tracking-[0.16em] transition ${
+                      i === 0 ? "text-sand" : "text-cream/55 group-hover:text-cream"
+                    }`}
+                  >
+                    {c.label}
+                  </span>
+                </a>
+              ))}
+            </motion.div>
+          </div>
         </div>
 
-        {/* category circles */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.5, ease }}
-          className="mx-auto flex w-full max-w-5xl flex-wrap items-start justify-center gap-5 px-6 pb-10 pt-2 md:gap-8"
-        >
-          {[
-            { img: p1, label: "Powders" },
-            { img: p3, label: "Premixes" },
-            { img: p2, label: "Oils" },
-            { img: p4, label: "Tonics" },
-            { img: ritualAwaken, label: "Ritual Sets" },
-            { img: lifestyleGlow, label: "Blends" },
-          ].map((c, i) => (
-            <a
-              key={c.label}
-              href="/products"
-              className="group flex flex-col items-center gap-2"
-            >
-              <motion.span
-                initial={{ opacity: 0, scale: 0.7 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.55 + i * 0.08, ease }}
-                className={`block h-16 w-16 overflow-hidden rounded-full ring-1 transition duration-300 group-hover:scale-105 md:h-[72px] md:w-[72px] ${
-                  i === 0
-                    ? "ring-2 ring-sand shadow-[0_0_24px_oklch(0.85_0.045_70/0.25)]"
-                    : "ring-cream/20 group-hover:ring-sand"
-                }`}
-              >
-                <img
-                  src={c.img}
-                  alt={c.label}
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
-              </motion.span>
+        {/* certification strip */}
+        <div className="border-y border-cream/10 bg-walnut/25">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-6 py-3 md:justify-between md:px-10">
+            {[
+              "Fair For Life",
+              "India Organic",
+              "USDA Organic",
+              "FSSAI Certified",
+              "Non-GMO Verified",
+              "Lab Tested",
+            ].map((c) => (
               <span
-                className={`text-[9px] uppercase tracking-[0.2em] transition ${
-                  i === 0 ? "text-sand" : "text-cream/55 group-hover:text-cream"
-                }`}
+                key={c}
+                className="flex items-center gap-2 text-[9px] uppercase tracking-[0.24em] text-cream/55"
               >
-                {c.label}
+                <ShieldCheck className="h-3 w-3 text-terra" /> {c}
               </span>
-            </a>
-          ))}
-        </motion.div>
+            ))}
+          </div>
+        </div>
 
         {/* apothecary menu grid */}
         <div className="mx-auto w-full max-w-7xl px-6 pb-16 md:px-10">
