@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
@@ -173,16 +173,41 @@ const heroSlides = [
 function Home() {
   const [[slide, dir], setSlide] = useState<[number, number]>([0, 1]);
   const lock = useRef(0);
+  const slideRef = useRef(0);
+  const showcaseRef = useRef<HTMLDivElement | null>(null);
   const paginate = (d: number) =>
-    setSlide(([i]) => [(i + d + heroSlides.length) % heroSlides.length, d]);
-  const onWheel = (e: React.WheelEvent) => {
-    const now = Date.now();
-    if (now - lock.current < 650) return;
-    if (Math.abs(e.deltaY) < 12) return;
-    lock.current = now;
-    paginate(e.deltaY > 0 ? 1 : -1);
+    setSlide(([i]) => {
+      const n = Math.min(Math.max(i + d, 0), heroSlides.length - 1);
+      slideRef.current = n;
+      return [n, d];
+    });
+  const goTo = (i: number) => {
+    slideRef.current = i;
+    setSlide(([p]) => [i, i > p ? 1 : -1]);
   };
+
+  // Scroll-driven: hold the page while slides advance, then release scrolling.
+  useEffect(() => {
+    const el = showcaseRef.current;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      const dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 100 : 1);
+      if (Math.abs(dy) < 4) return;
+      const i = slideRef.current;
+      const canAdvance = dy > 0 ? i < heroSlides.length - 1 : i > 0 && window.scrollY <= 2;
+      if (!canAdvance) return;
+      e.preventDefault();
+      const now = Date.now();
+      if (now - lock.current < 620) return;
+      lock.current = now;
+      paginate(dy > 0 ? 1 : -1);
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, []);
+
   const active = heroSlides[slide]!;
+
 
   return (
     <div className="relative min-h-screen bg-umber text-cream">
@@ -296,8 +321,8 @@ function Home() {
             initial={{ opacity: 0, scale: 1.04 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.15, ease }}
-            onWheel={onWheel}
-            className="relative min-h-[320px] overflow-hidden md:min-h-[440px]"
+            ref={showcaseRef}
+            className="relative h-[clamp(300px,44svh,460px)] max-h-[52svh] w-full overflow-hidden overscroll-contain"
           >
             <AnimatePresence initial={false} custom={dir} mode="popLayout">
               <motion.img
@@ -375,7 +400,7 @@ function Home() {
                     <button
                       key={s.name}
                       aria-label={s.name}
-                      onClick={() => setSlide([i, i > slide ? 1 : -1])}
+                      onClick={() => goTo(i)}
                       className={`h-11 w-11 overflow-hidden rounded-full ring-1 transition ${
                         i === slide
                           ? "ring-sand opacity-100 scale-110"
