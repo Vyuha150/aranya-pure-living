@@ -214,7 +214,7 @@ function Home() {
         </div>
 
         {/* offer marquee */}
-        <div className="relative z-20 mt-[68px] overflow-hidden border-y border-cream/10 bg-clay/25 py-1.5 backdrop-blur-sm">
+        <div className="relative z-20 mt-[52px] overflow-hidden border-y border-cream/10 bg-clay/25 py-1.5 backdrop-blur-sm">
           <motion.div
             className="flex w-max gap-10 whitespace-nowrap"
             animate={{ x: ["0%", "-50%"] }}
