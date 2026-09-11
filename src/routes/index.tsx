@@ -164,10 +164,12 @@ const heroStrip = [
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const heroSlides = [
-  { img: heroProducts, name: "Apothecary Edit", caption: "A Ritual of Calm", price: "\u20b9 2,480" },
+  { img: p1, name: "Golden Turmeric Powder", caption: "Stone-ground Lakadong", price: "\u20b9 1,240" },
+  { img: p3, name: "Triphala Morning Premix", caption: "Daily Digestive Ritual", price: "\u20b9 1,460" },
   { img: p2, name: "Ashwagandha Vitality Oil", caption: "Cold-Pressed Root", price: "\u20b9 1,890" },
   { img: p4, name: "Tulsi Amber Tonic", caption: "Adaptogen Beverage", price: "\u20b9 2,210" },
   { img: ritualAwaken, name: "Awaken Ritual Set", caption: "First Light Blend", price: "\u20b9 3,150" },
+  { img: lifestyleGlow, name: "Luminous Glow Blend", caption: "Amla · Rose · Moringa", price: "\u20b9 1,650" },
 ];
 
 function Home() {
@@ -460,9 +462,10 @@ function Home() {
                 { img: ritualAwaken, label: "Ritual Sets" },
                 { img: lifestyleGlow, label: "Blends" },
               ].map((c, i) => (
-                <a
+                <button
                   key={c.label}
-                  href="/products"
+                  type="button"
+                  onClick={() => goTo(i)}
                   className="group flex w-[64px] flex-col items-center gap-2"
                 >
                   <motion.span
@@ -470,7 +473,7 @@ function Home() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: 0.55 + i * 0.08, ease }}
                     className={`block h-14 w-14 overflow-hidden rounded-full ring-1 transition duration-300 group-hover:scale-105 md:h-16 md:w-16 ${
-                      i === 0
+                      i === slide
                         ? "ring-2 ring-sand shadow-[0_0_24px_oklch(0.85_0.045_70/0.25)]"
                         : "ring-cream/20 group-hover:ring-sand"
                     }`}
@@ -484,12 +487,12 @@ function Home() {
                   </motion.span>
                   <span
                     className={`text-center text-[8.5px] uppercase tracking-[0.16em] transition ${
-                      i === 0 ? "text-sand" : "text-cream/55 group-hover:text-cream"
+                      i === slide ? "text-sand" : "text-cream/55 group-hover:text-cream"
                     }`}
                   >
                     {c.label}
                   </span>
-                </a>
+                </button>
               ))}
             </motion.div>
           </div>
