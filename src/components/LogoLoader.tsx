@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-
-const PETAL_ANGLES = [0, 45, 90, 135, 180, 225, 270, 315];
+import logoAsset from "@/assets/aranya-logo.jpg.asset.json";
 
 export function LogoLoader({ duration = 2200 }: { duration?: number }) {
   const [show, setShow] = useState(true);
