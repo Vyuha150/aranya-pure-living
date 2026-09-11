@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ShoppingBag, LayoutDashboard } from "lucide-react";
-import { AranyaMark } from "./AranyaMark";
+import logoAsset from "@/assets/aranya-logo.jpg.asset.json";
 
 const links = [
   { to: "/philosophy", label: "Philosophy" },
