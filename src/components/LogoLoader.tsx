@@ -40,8 +40,8 @@ export function LogoLoader({ duration = 2200 }: { duration?: number }) {
 
           <div className="relative flex flex-col items-center gap-8">
             <motion.div
-              initial={{ scale: 0.85 }}
-              animate={{ scale: 1 }}
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
               className="relative"
             >
@@ -51,11 +51,11 @@ export function LogoLoader({ duration = 2200 }: { duration?: number }) {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
               >
-                <svg viewBox="0 0 140 140" width={160} height={160}>
+                <svg viewBox="0 0 180 180" width={180} height={180}>
                   <circle
-                    cx="70"
-                    cy="70"
-                    r="66"
+                    cx="90"
+                    cy="90"
+                    r="86"
                     fill="none"
                     stroke="var(--sand)"
                     strokeOpacity="0.35"
@@ -71,11 +71,11 @@ export function LogoLoader({ duration = 2200 }: { duration?: number }) {
                 animate={{ rotate: -360 }}
                 transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
               >
-                <svg viewBox="0 0 140 140" width={160} height={160}>
+                <svg viewBox="0 0 180 180" width={180} height={180}>
                   <circle
-                    cx="70"
-                    cy="70"
-                    r="56"
+                    cx="90"
+                    cy="90"
+                    r="76"
                     fill="none"
                     stroke="var(--terra)"
                     strokeOpacity="0.5"
@@ -85,75 +85,17 @@ export function LogoLoader({ duration = 2200 }: { duration?: number }) {
                 </svg>
               </motion.div>
 
-              {/* mark */}
-              <svg
-                viewBox="0 0 100 100"
+              {/* uploaded logo mark */}
+              <motion.img
+                src={logoAsset.url}
+                alt="Aranya"
                 width={160}
                 height={160}
-                className="text-[var(--sand)]"
-                aria-label="Aranya"
-              >
-                {/* core breath */}
-                <motion.circle
-                  cx="50"
-                  cy="50"
-                  r="48"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="0.6"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 0.55 }}
-                  transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-                />
-                <motion.circle
-                  cx="50"
-                  cy="50"
-                  r="42"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="0.5"
-                  strokeDasharray="1 2"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 0.55 }}
-                  transition={{ duration: 1.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                />
-
-                {/* petals bloom */}
-                <g>
-                  {PETAL_ANGLES.map((a, i) => (
-                    <motion.ellipse
-                      key={a}
-                      cx="50"
-                      cy="22"
-                      rx="3.4"
-                      ry="14"
-                      fill="currentColor"
-                      transform={`rotate(${a} 50 50)`}
-                      initial={{ opacity: 0, scale: 0.2 }}
-                      animate={{ opacity: i % 2 === 0 ? 1 : 0.55, scale: 1 }}
-                      style={{ transformOrigin: "50px 50px", transformBox: "fill-box" as never }}
-                      transition={{
-                        duration: 0.7,
-                        delay: 0.25 + i * 0.07,
-                        ease: [0.22, 1, 0.36, 1],
-                      }}
-                    />
-                  ))}
-                </g>
-
-                {/* pulsing seed */}
-                <motion.circle
-                  cx="50"
-                  cy="50"
-                  r="3"
-                  fill="currentColor"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: [0, 1.4, 1] }}
-                  transition={{ duration: 1.1, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                  style={{ transformOrigin: "50px 50px" }}
-                />
-                <circle cx="50" cy="50" r="1.2" fill="var(--umber)" />
-              </svg>
+                className="relative h-40 w-40 rounded-full object-cover ring-1 ring-sand/20 md:h-44 md:w-44"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              />
             </motion.div>
 
             {/* wordmark with staggered letters */}
