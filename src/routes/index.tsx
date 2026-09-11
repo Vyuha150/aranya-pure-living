@@ -164,10 +164,12 @@ const heroStrip = [
 const ease = [0.22, 1, 0.36, 1] as const;
 
 const heroSlides = [
-  { img: heroProducts, name: "Apothecary Edit", caption: "A Ritual of Calm", price: "\u20b9 2,480" },
+  { img: p1, name: "Golden Turmeric Powder", caption: "Stone-ground Lakadong", price: "\u20b9 1,240" },
+  { img: p3, name: "Triphala Morning Premix", caption: "Daily Digestive Ritual", price: "\u20b9 1,460" },
   { img: p2, name: "Ashwagandha Vitality Oil", caption: "Cold-Pressed Root", price: "\u20b9 1,890" },
   { img: p4, name: "Tulsi Amber Tonic", caption: "Adaptogen Beverage", price: "\u20b9 2,210" },
   { img: ritualAwaken, name: "Awaken Ritual Set", caption: "First Light Blend", price: "\u20b9 3,150" },
+  { img: lifestyleGlow, name: "Luminous Glow Blend", caption: "Amla · Rose · Moringa", price: "\u20b9 1,650" },
 ];
 
 function Home() {
