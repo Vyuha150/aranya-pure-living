@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import logoAsset from "@/assets/aranya-logo.jpg.asset.json";
+import aranyaLogo from "@/assets/aranya-logo.jpg";
 
 export function LogoLoader({ duration = 2200 }: { duration?: number }) {
   const [show, setShow] = useState(true);
@@ -87,7 +87,7 @@ export function LogoLoader({ duration = 2200 }: { duration?: number }) {
 
               {/* uploaded logo mark */}
               <motion.img
-                src={logoAsset.url}
+                src={aranyaLogo}
                 alt="Aranya"
                 width={160}
                 height={160}
