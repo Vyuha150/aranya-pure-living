@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ShoppingBag, LayoutDashboard } from "lucide-react";
-import { AranyaMark } from "./AranyaMark";
+import logoAsset from "@/assets/aranya-logo.jpg.asset.json";
 
 const links = [
   { to: "/philosophy", label: "Philosophy" },
@@ -15,11 +15,14 @@ export function SiteHeader() {
   return (
     <header className="absolute inset-x-0 top-0 z-30">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-10 md:py-8">
-        <Link to="/" className="flex items-center gap-3 text-cream">
-          <AranyaMark size={36} className="text-sand" />
-          <span className="font-display text-2xl tracking-[0.18em] uppercase">
-            aranya
-          </span>
+        <Link to="/" className="flex items-center text-cream">
+          <img
+            src={logoAsset.url}
+            alt="Aranya"
+            className="h-10 w-auto object-contain md:h-12"
+            width={140}
+            height={48}
+          />
         </Link>
         <nav className="hidden items-center gap-10 text-[13px] tracking-[0.2em] uppercase text-cream/80 md:flex">
           {links.map((l) => (
