@@ -429,23 +429,6 @@ function Home() {
                   </span>
                 </div>
 
-                {/* thumbnails */}
-                <div className="pointer-events-auto flex items-center gap-2">
-                  {heroSlides.map((s, i) => (
-                    <button
-                      key={s.name}
-                      aria-label={s.name}
-                      onClick={() => goTo(i)}
-                      className={`h-11 w-11 overflow-hidden rounded-full ring-1 transition ${
-                        i === slide
-                          ? "ring-sand opacity-100 scale-110"
-                          : "ring-cream/20 opacity-55 hover:opacity-90"
-                      }`}
-                    >
-                      <img src={s.img} alt="" className="h-full w-full object-cover" />
-                    </button>
-                  ))}
-                </div>
               </div>
             </div>
 
