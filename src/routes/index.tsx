@@ -88,7 +88,6 @@ function Home() {
   const [activeFilm, setActiveFilm] = useState(0);
   const heroRef = useRef<HTMLElement | null>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const videoY = useTransform(scrollYProgress, [0, 1], [0, 110]);
   const titleY = useTransform(scrollYProgress, [0, 1], [0, -45]);
 
   useEffect(() => {
