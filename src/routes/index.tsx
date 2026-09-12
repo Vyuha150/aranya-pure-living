@@ -155,15 +155,6 @@ function Home() {
                 <span className="h-px w-12 bg-gold" /> Origin collection · {film.index}
               </motion.p>
               <div className="relative">
-                <motion.h1
-                  initial={{ opacity: 0, y: 55 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1.15, ease }}
-                  className="font-display text-[clamp(5rem,13vw,11rem)] leading-[0.7] text-foreground"
-                >
-                  WILD
-                  <span className="block text-transparent [-webkit-text-stroke:1px_color-mix(in_oklab,var(--foreground)_65%,transparent)]">NATURE</span>
-                </motion.h1>
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={film.title}
