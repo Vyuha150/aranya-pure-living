@@ -103,37 +103,26 @@ function Home() {
   return (
     <div className="cinematic-theme min-h-screen bg-background text-foreground">
       <section ref={heroRef} className="relative h-[100svh] min-h-[620px] w-full overflow-hidden bg-background">
-        <motion.div style={{ y: videoY }} className="absolute inset-0 scale-110">
-          <video
-            aria-hidden="true"
-            src={westernGhatsVideo.url}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="h-full w-full object-cover opacity-35 blur-[2px]"
-          />
-          <div className="absolute inset-0 bg-background/60" />
-        </motion.div>
-
         <div className="relative h-full w-full overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.video
-              key={film.video}
-              src={film.video}
-              autoPlay
-              muted
-              loop
-              playsInline
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.02 }}
-              transition={{ duration: 1.1, ease }}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </AnimatePresence>
-          <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/20 to-background/30" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/75 via-transparent to-background/90" />
+          <div className="absolute inset-0 flex items-center justify-center p-5 md:p-12">
+            <AnimatePresence mode="wait">
+              <motion.video
+                key={film.video}
+                src={film.video}
+                autoPlay
+                muted
+                loop
+                playsInline
+                initial={{ opacity: 0, scale: 1.04 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.01 }}
+                transition={{ duration: 1.1, ease }}
+                className="h-[78%] w-[92%] border border-foreground/10 object-cover opacity-95 shadow-2xl"
+              />
+            </AnimatePresence>
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-background/10 to-background/25" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/35 via-transparent to-background/70" />
           <div className="pointer-events-none absolute inset-3 border border-foreground/15" />
 
           <SiteHeader />
