@@ -2,7 +2,7 @@ import { AranyaMark } from "./AranyaMark";
 
 export function SiteFooter() {
   return (
-    <footer className="atlas-frame paper-panel border-x-0 border-b-0 bg-umber">
+    <footer className="paper-atlas-panel atlas-frame paper-panel border-x-0 border-b-0 bg-umber">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 md:grid-cols-[1.2fr_1fr_1fr_1fr] md:px-10">
         <div>
           <div className="flex items-center gap-3 text-cream">

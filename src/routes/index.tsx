@@ -228,7 +228,7 @@ function Home() {
 
 
   return (
-    <div className="relative min-h-screen bg-umber text-cream">
+    <div className="paper-atlas-surface relative min-h-screen bg-umber text-cream">
       <div className="bg-grain pointer-events-none fixed inset-0 z-50 opacity-[0.2] mix-blend-multiply" />
 
       {/* HERO — apothecary menu composition */}
