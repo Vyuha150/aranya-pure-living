@@ -117,7 +117,7 @@ function Home() {
           <div className="absolute inset-0 bg-background/60" />
         </motion.div>
 
-        <div className="relative h-full w-full overflow-hidden bg-background">
+        <div className="relative h-full w-full overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.video
               key={film.video}
@@ -130,7 +130,7 @@ function Home() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.02 }}
               transition={{ duration: 1.1, ease }}
-              className="absolute inset-0 h-full w-full object-contain"
+              className="absolute inset-0 h-full w-full object-cover"
             />
           </AnimatePresence>
           <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/20 to-background/30" />

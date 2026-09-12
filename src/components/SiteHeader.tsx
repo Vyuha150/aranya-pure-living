@@ -13,7 +13,7 @@ const links = [
 
 export function SiteHeader() {
   return (
-    <header className="absolute inset-x-0 top-0 z-30 border-b border-sand/25 bg-umber/90 backdrop-blur-sm">
+    <header className="absolute inset-x-0 top-0 z-30 border-b border-cream/15 bg-transparent">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10 md:py-5">
         <Link to="/" className="flex items-center text-cream">
           <img
