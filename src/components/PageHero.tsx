@@ -11,19 +11,19 @@ type Props = {
 
 export function PageHero({ eyebrow, title, subtitle, image, imageAlt }: Props) {
   return (
-    <section className="relative isolate overflow-hidden">
+    <section className="relative isolate overflow-hidden border-b border-sand/30 bg-umber">
       <SiteHeader />
       <div className="absolute inset-0 -z-10">
         <img
           src={image}
           alt={imageAlt}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover opacity-25 grayscale mix-blend-multiply"
           width={1600}
           height={1024}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-umber/85 via-umber/60 to-umber" />
+        <div className="absolute inset-0 bg-gradient-to-b from-umber/80 via-umber/72 to-umber" />
       </div>
-      <div className="mx-auto flex min-h-[62svh] max-w-6xl flex-col justify-end px-6 pb-16 pt-40 md:px-10 md:pb-24 md:pt-44">
+      <div className="mx-auto flex min-h-[58svh] max-w-6xl flex-col justify-end px-6 pb-16 pt-36 md:px-10 md:pb-20 md:pt-40">
         <motion.span
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ export function PageHero({ eyebrow, title, subtitle, image, imageAlt }: Props) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.1 }}
-          className="text-shadow-soft mt-5 max-w-3xl font-display text-[clamp(2.4rem,5.4vw,4.75rem)] leading-[1.02] text-cream"
+          className="mt-5 max-w-3xl font-display text-[clamp(2.4rem,5.4vw,4.75rem)] leading-[1.08] text-cream"
         >
           {title}
         </motion.h1>
