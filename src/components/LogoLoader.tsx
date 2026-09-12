@@ -18,7 +18,7 @@ export function LogoLoader({ duration = 2200 }: { duration?: number }) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, filter: "blur(8px)" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-[200] flex items-center justify-center overflow-hidden bg-[var(--umber)]"
+          className="paper-panel fixed inset-0 z-[200] flex items-center justify-center overflow-hidden bg-[var(--umber)]"
         >
           {/* radial warmth */}
           <div
@@ -26,7 +26,7 @@ export function LogoLoader({ duration = 2200 }: { duration?: number }) {
             className="pointer-events-none absolute inset-0"
             style={{
               background:
-                "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--clay) 28%, transparent) 0%, transparent 55%)",
+                "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--gold) 18%, transparent) 0%, transparent 55%)",
             }}
           />
           {/* drifting grain */}
@@ -111,7 +111,7 @@ export function LogoLoader({ duration = 2200 }: { duration?: number }) {
                       delay: 0.6 + i * 0.06,
                       ease: [0.22, 1, 0.36, 1],
                     }}
-                    className="font-display text-[var(--cream)] text-3xl tracking-[0.6em] pl-[0.6em]"
+                className="font-display text-[var(--cream)] text-3xl tracking-[0.45em] pl-[0.45em]"
                   >
                     {ch}
                   </motion.span>

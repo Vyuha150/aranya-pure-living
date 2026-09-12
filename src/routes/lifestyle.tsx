@@ -24,6 +24,8 @@ export const Route = createFileRoute("/lifestyle")({
         property: "og:description",
         content: "Stacks, timing and absorption science for the body you intend to build.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: LifestylePage,

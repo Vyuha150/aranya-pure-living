@@ -18,6 +18,8 @@ export const Route = createFileRoute("/philosophy")({
       },
       { property: "og:title", content: "Aranya — Our Philosophy" },
       { property: "og:description", content: "Rooted in reverence. Grown for the few." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: PhilosophyPage,

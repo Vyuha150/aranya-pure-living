@@ -18,6 +18,8 @@ export const Route = createFileRoute("/contact")({
       },
       { property: "og:title", content: "Contact Aranya" },
       { property: "og:description", content: "Herbalists, hours and the door of the apothecary." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: ContactPage,

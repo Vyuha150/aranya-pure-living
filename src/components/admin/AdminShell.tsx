@@ -29,7 +29,7 @@ export function AdminShell() {
   const current = nav.find((n) => (n.exact ? path === n.to : path.startsWith(n.to)))?.label ?? "Admin";
 
   return (
-    <div className="flex min-h-screen w-full bg-[#0e0c0a] text-cream">
+    <div className="admin-theme flex min-h-screen w-full bg-[#0e0c0a] text-cream">
       {/* SIDEBAR */}
       <aside className="hidden w-[248px] shrink-0 flex-col border-r border-cream/8 bg-[#161310] md:flex">
         <div className="flex items-center gap-3 px-6 py-6">

@@ -74,14 +74,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Aranya — Sacred Botanicals" },
+      { name: "description", content: "Certified-pure botanicals rooted in Indian growing traditions." },
+      { name: "author", content: "Aranya Botanicals" },
+      { property: "og:title", content: "Aranya — Sacred Botanicals" },
+      { property: "og:description", content: "Certified-pure botanicals rooted in Indian growing traditions." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {

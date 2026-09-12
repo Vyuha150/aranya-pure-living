@@ -9,6 +9,12 @@ import {
   Sun,
   FlaskConical,
   Truck,
+  Bird,
+  Rabbit,
+  Fish,
+  Turtle,
+  Squirrel,
+  Snail,
 } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -36,6 +42,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Aranya — Sacred Botanicals" },
       { property: "og:description", content: "Premium, certified-pure Ayurvedic botanicals." },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
@@ -172,6 +179,15 @@ const heroSlides = [
   { img: lifestyleGlow, name: "Luminous Glow Blend", caption: "Amla · Rose · Moringa", price: "\u20b9 1,650" },
 ];
 
+const animalFamilies = [
+  { icon: Bird, label: "Powders", trait: "Clarity", specimen: "Hornbill" },
+  { icon: Rabbit, label: "Premixes", trait: "Vitality", specimen: "Hare" },
+  { icon: Fish, label: "Oils", trait: "Flow", specimen: "Mahseer" },
+  { icon: Turtle, label: "Tonics", trait: "Longevity", specimen: "Tortoise" },
+  { icon: Squirrel, label: "Ritual Sets", trait: "Readiness", specimen: "Palm Squirrel" },
+  { icon: Snail, label: "Blends", trait: "Patience", specimen: "Forest Snail" },
+];
+
 function Home() {
   const [[slide, dir], setSlide] = useState<[number, number]>([0, 1]);
   const lock = useRef(0);
@@ -213,16 +229,16 @@ function Home() {
 
   return (
     <div className="relative min-h-screen bg-umber text-cream">
-      <div className="bg-grain pointer-events-none fixed inset-0 z-50 opacity-[0.12] mix-blend-overlay" />
+      <div className="bg-grain pointer-events-none fixed inset-0 z-50 opacity-[0.2] mix-blend-multiply" />
 
       {/* HERO — apothecary menu composition */}
-      <section className="relative isolate overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-walnut/50 via-umber to-umber" />
+      <section className="relative isolate overflow-hidden border-b border-sand/40">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-walnut/35 via-umber to-umber" />
         <div
           className="absolute inset-0 -z-10 opacity-50"
           style={{
             background:
-              "radial-gradient(45% 35% at 72% 22%, oklch(0.45 0.10 50 / 0.5), transparent 72%)",
+                "radial-gradient(45% 35% at 72% 22%, color-mix(in oklab, var(--gold) 18%, transparent), transparent 72%)",
           }}
         />
 
@@ -230,18 +246,18 @@ function Home() {
 
         {/* vertical side label */}
         <div className="pointer-events-none absolute right-4 top-28 z-10 hidden flex-col items-center gap-3 lg:flex">
-          <AranyaMark size={18} className="text-terra/80" />
+          <Bird className="h-5 w-5 text-terra/80" strokeWidth={1} />
           <span className="h-10 w-px bg-cream/15" />
           <span
             className="text-[9px] uppercase tracking-[0.5em] text-cream/40"
             style={{ writingMode: "vertical-rl" }}
           >
-            Sacred Bloom
+            Naturalist Archive
           </span>
         </div>
 
         {/* offer marquee */}
-        <div className="relative z-10 mt-[96px] overflow-hidden border-y border-cream/10 bg-clay/25 py-1.5 backdrop-blur-sm md:mt-[112px]">
+        <div className="relative z-10 mt-[72px] overflow-hidden border-y border-sand/35 bg-walnut/60 py-1.5 md:mt-[88px]">
           <motion.div
             className="flex w-max gap-10 whitespace-nowrap"
             animate={{ x: ["0%", "-50%"] }}
@@ -250,7 +266,7 @@ function Home() {
             {[...marquee, ...marquee].map((m, i) => (
               <span
                 key={i}
-                className="flex items-center gap-3 text-[10px] uppercase tracking-[0.28em] text-cream/80"
+                className="flex items-center gap-3 text-[10px] uppercase tracking-[0.28em] text-cream/75"
               >
                 <Sparkles className="h-3 w-3 text-sand" /> {m}
               </span>
@@ -259,13 +275,14 @@ function Home() {
         </div>
 
         {/* top band — editorial copy + background-blended product showcase */}
-        <div className="mx-auto grid w-full max-w-7xl items-center gap-8 px-6 pb-6 pt-10 md:grid-cols-2 md:gap-10 md:px-10 md:pb-8 md:pt-12">
+        <div className="relative mx-auto my-6 grid w-[calc(100%-2rem)] max-w-7xl items-center gap-8 px-6 pb-8 pt-10 atlas-frame md:grid-cols-2 md:gap-10 md:px-10 md:pb-10 md:pt-12">
+          <Leaf className="pointer-events-none absolute -left-3 bottom-10 h-28 w-28 rotate-[-28deg] text-sand/15" strokeWidth={0.55} />
           <div className="w-full max-w-xl">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease }}
-              className="inline-flex items-center gap-2 rounded-full border border-sand/25 bg-sand/5 px-4 py-1.5 text-[10px] uppercase tracking-[0.32em] text-sand"
+              className="inline-flex items-center gap-2 border border-sand/45 bg-umber/60 px-4 py-1.5 text-[10px] uppercase tracking-[0.32em] text-terra"
             >
               <Leaf className="h-3 w-3" /> Certified Pure · Sacred Bloom
             </motion.span>
@@ -275,11 +292,11 @@ function Home() {
               transition={{ duration: 0.9, delay: 0.1, ease }}
               className="text-shadow-soft mt-5 font-display text-[clamp(2.2rem,4.2vw,3.7rem)] leading-[1.05]"
             >
-              From the Forest,
+              The Living Archive,
               <br />
-              to Your Ritual —
+              Rooted in Nature —
               <br />
-              <em className="italic text-terra">Pure. Proven.</em>
+               <em className="italic text-terra">Pure. Proven.</em>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 14 }}
@@ -299,14 +316,14 @@ function Home() {
             >
               <a
                 href="/products"
-                className="group inline-flex items-center gap-3 rounded-full bg-sand px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-umber transition hover:bg-cream"
+                 className="group inline-flex items-center gap-3 border border-cream bg-cream px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-umber transition hover:bg-terra hover:text-umber"
               >
                 Explore Botanicals
                 <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
               </a>
               <a
                 href="/philosophy"
-                className="inline-flex items-center gap-3 rounded-full border border-cream/25 px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-cream transition hover:border-sand hover:text-sand"
+                 className="inline-flex items-center gap-3 border border-sand/60 px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-cream transition hover:bg-walnut"
               >
                 Our Philosophy
               </a>
@@ -320,7 +337,7 @@ function Home() {
             >
               {heroBadges.map((b) => (
                 <div key={b.label} className="flex items-center gap-2.5">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-sand/25 bg-sand/5 text-sand">
+                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-sand/45 bg-umber text-terra">
                     <b.icon className="h-3.5 w-3.5" />
                   </span>
                   <span className="text-[9px] uppercase leading-tight tracking-[0.16em] text-cream/60">
@@ -346,7 +363,7 @@ function Home() {
               className="pointer-events-none absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(46% 52% at 50% 46%, oklch(0.50 0.11 52 / 0.45), transparent 74%)",
+                  "radial-gradient(46% 52% at 50% 46%, color-mix(in oklab, var(--gold) 19%, transparent), transparent 74%)",
               }}
             />
             {/* slow rotating dashed halo */}
@@ -380,7 +397,7 @@ function Home() {
                   animate="center"
                   exit="exit"
                   transition={{ duration: 0.85, ease }}
-                  className="absolute inset-0 h-full w-full object-cover [mask-image:radial-gradient(72%_72%_at_50%_46%,black_52%,transparent_98%)]"
+                  className="absolute inset-0 h-full w-full object-cover mix-blend-multiply [mask-image:radial-gradient(72%_72%_at_50%_46%,black_48%,transparent_96%)]"
                 />
               </AnimatePresence>
             </motion.div>
@@ -454,14 +471,7 @@ function Home() {
               transition={{ duration: 0.9, delay: 0.5, ease }}
               className="mt-6 flex w-full flex-wrap items-start justify-center gap-4 md:gap-6"
             >
-              {[
-                { img: p1, label: "Powders" },
-                { img: p3, label: "Premixes" },
-                { img: p2, label: "Oils" },
-                { img: p4, label: "Tonics" },
-                { img: ritualAwaken, label: "Ritual Sets" },
-                { img: lifestyleGlow, label: "Blends" },
-              ].map((c, i) => (
+              {animalFamilies.map((c, i) => (
                 <button
                   key={c.label}
                   type="button"
@@ -472,26 +482,22 @@ function Home() {
                     initial={{ opacity: 0, scale: 0.7 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: 0.55 + i * 0.08, ease }}
-                    className={`block h-14 w-14 overflow-hidden rounded-full ring-1 transition duration-300 group-hover:scale-105 md:h-16 md:w-16 ${
+                    className={`flex h-14 w-14 items-center justify-center rounded-full bg-umber ring-1 transition duration-300 group-hover:scale-105 md:h-16 md:w-16 ${
                       i === slide
                         ? "ring-2 ring-sand shadow-[0_0_24px_oklch(0.85_0.045_70/0.25)]"
                         : "ring-cream/20 group-hover:ring-sand"
                     }`}
                   >
-                    <img
-                      src={c.img}
-                      alt={c.label}
-                      className="h-full w-full object-cover"
-                      loading="lazy"
-                    />
+                    <c.icon className="h-7 w-7 text-terra md:h-8 md:w-8" strokeWidth={0.9} aria-hidden />
                   </motion.span>
                   <span
                     className={`text-center text-[8.5px] uppercase tracking-[0.16em] transition ${
                       i === slide ? "text-sand" : "text-cream/55 group-hover:text-cream"
                     }`}
                   >
-                    {c.label}
+                     {c.label}
                   </span>
+                   <span className="text-center font-display text-[8px] italic text-sand">{c.trait}</span>
                 </button>
               ))}
             </motion.div>
@@ -499,7 +505,7 @@ function Home() {
         </div>
 
         {/* certification strip */}
-        <div className="border-y border-cream/10 bg-walnut/25">
+        <div className="border-y border-sand/35 bg-walnut/45">
           <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-6 py-3 md:justify-between md:px-10">
             {[
               "Fair For Life",
@@ -511,7 +517,7 @@ function Home() {
             ].map((c) => (
               <span
                 key={c}
-                className="flex items-center gap-2 text-[9px] uppercase tracking-[0.24em] text-cream/55"
+                className="flex items-center gap-2 text-[9px] uppercase tracking-[0.24em] text-cream/65"
               >
                 <ShieldCheck className="h-3 w-3 text-terra" /> {c}
               </span>
