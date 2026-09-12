@@ -17,9 +17,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import westernGhatsVideo from "@/assets/aranya-western-ghats.mp4.asset.json";
-import snowLeopardVideo from "@/assets/aranya-kenya-snow-leopard.mp4.asset.json";
-import elephantVideo from "@/assets/aranya-kenya-elephant.mp4.asset.json";
+import westernGhatsVideo from "@/assets/aranya-western-ghats.webm.asset.json";
+import snowLeopardVideo from "@/assets/aranya-kenya-snow-leopard.webm.asset.json";
+import elephantVideo from "@/assets/aranya-kenya-elephant.webm.asset.json";
 import p1 from "@/assets/product-1.jpg";
 import p2 from "@/assets/product-2.jpg";
 import p3 from "@/assets/product-3.jpg";
