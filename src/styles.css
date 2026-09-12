@@ -80,6 +80,16 @@
   --ring: var(--terra);
 }
 
+.admin-theme {
+  --umber: oklch(0.18 0.025 55);
+  --walnut: oklch(0.30 0.045 50);
+  --clay: oklch(0.52 0.105 48);
+  --terra: oklch(0.72 0.085 55);
+  --sand: oklch(0.85 0.045 70);
+  --cream: oklch(0.95 0.018 80);
+  --gold: oklch(0.78 0.10 75);
+}
+
 @layer base {
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }
