@@ -103,7 +103,7 @@ function Home() {
 
   return (
     <div className="cinematic-theme min-h-screen bg-background text-foreground">
-      <section ref={heroRef} className="relative min-h-[100svh] overflow-hidden bg-background px-3 pb-3 pt-3 md:px-8 md:pb-8 md:pt-6">
+      <section ref={heroRef} className="relative h-[100svh] min-h-[620px] w-full overflow-hidden bg-background">
         <motion.div style={{ y: videoY }} className="absolute inset-0 scale-110">
           <video
             aria-hidden="true"
@@ -117,7 +117,7 @@ function Home() {
           <div className="absolute inset-0 bg-background/60" />
         </motion.div>
 
-        <div className="relative mx-auto min-h-[calc(100svh-2.5rem)] max-w-[1380px] overflow-hidden border border-gold/45 bg-background shadow-2xl md:min-h-[calc(100svh-3rem)]">
+        <div className="relative h-full w-full overflow-hidden bg-background">
           <AnimatePresence mode="wait">
             <motion.video
               key={film.video}
@@ -130,7 +130,7 @@ function Home() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.02 }}
               transition={{ duration: 1.1, ease }}
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full object-contain"
             />
           </AnimatePresence>
           <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/20 to-background/30" />
@@ -139,7 +139,7 @@ function Home() {
 
           <SiteHeader />
 
-          <div className="relative z-10 flex min-h-[calc(100svh-2.5rem)] flex-col justify-end px-6 pb-8 pt-28 md:min-h-[calc(100svh-3rem)] md:px-14 md:pb-10 lg:px-20">
+          <div className="relative z-10 flex h-full min-h-0 flex-col justify-end px-6 pb-7 pt-24 md:px-14 md:pb-9 md:pt-28 lg:px-20">
             <div className="absolute right-5 top-1/2 hidden -translate-y-1/2 items-center gap-3 lg:flex" style={{ writingMode: "vertical-rl" }}>
               <span className="h-12 w-px bg-gold/60" />
               <span className="text-[9px] uppercase tracking-[0.42em] text-foreground/70">Explore the origin</span>
