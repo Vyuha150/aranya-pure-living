@@ -22,6 +22,8 @@ export const Route = createFileRoute("/rituals")({
       },
       { property: "og:title", content: "Aranya — Daily Rituals" },
       { property: "og:description", content: "A botanical companion for every hour of the day." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: RitualsPage,

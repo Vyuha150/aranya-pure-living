@@ -19,6 +19,8 @@ export const Route = createFileRoute("/journal")({
       },
       { property: "og:title", content: "Aranya — The Journal" },
       { property: "og:description", content: "Letters from the forest, written by the people who tend it." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: JournalPage,

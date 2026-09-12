@@ -25,6 +25,8 @@ export const Route = createFileRoute("/products")({
         property: "og:description",
         content: "Up to 30% off the inaugural collection. Limited harvest, hand-packed.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: ProductsPage,
