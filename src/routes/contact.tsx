@@ -38,7 +38,7 @@ function ContactPage() {
   const [sent, setSent] = useState(false);
 
   return (
-    <div className="paper-atlas-surface relative bg-umber text-cream">
+    <div className="relative bg-umber text-cream">
       <div className="bg-grain pointer-events-none fixed inset-0 z-50 opacity-[0.12] mix-blend-overlay" />
 
       <PageHero

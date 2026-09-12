@@ -11,7 +11,7 @@ type Props = {
 
 export function PageHero({ eyebrow, title, subtitle, image, imageAlt }: Props) {
   return (
-    <section className="paper-atlas-panel relative isolate overflow-hidden border-b border-sand/30 bg-umber">
+    <section className="relative isolate overflow-hidden border-b border-sand/30 bg-umber">
       <SiteHeader />
       <div className="absolute inset-0 -z-10">
         <img
