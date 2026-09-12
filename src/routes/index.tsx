@@ -145,41 +145,6 @@ function Home() {
               <span className="text-[9px] uppercase tracking-[0.42em] text-foreground/70">Explore the origin</span>
             </div>
 
-            <motion.div style={{ y: titleY }} className="mb-auto mt-auto max-w-4xl pt-20">
-              <motion.p
-                key={`${film.index}-eyebrow`}
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-5 flex items-center gap-3 text-[10px] uppercase tracking-[0.42em] text-gold"
-              >
-                <span className="h-px w-12 bg-gold" /> Origin collection · {film.index}
-              </motion.p>
-              <div className="relative">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={film.title}
-                    initial={{ opacity: 0, x: -24 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 24 }}
-                    transition={{ duration: 0.65, ease }}
-                    className="mt-7 max-w-md"
-                  >
-                    <p className="font-display text-2xl italic text-foreground md:text-3xl">{film.region}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-foreground/70">
-                      Premium botanicals shaped by altitude, monsoon and ancient growing wisdom. Pure at origin, proven in every batch.
-                    </p>
-                  </motion.div>
-                </AnimatePresence>
-                <div className="mt-7 flex flex-wrap items-center gap-4">
-                  <Button asChild className="h-12 rounded-none bg-gold px-7 text-[10px] uppercase tracking-[0.26em] text-background hover:bg-foreground">
-                    <Link to="/products">Explore collection <ArrowRight /></Link>
-                  </Button>
-                  <Button asChild variant="outline" className="h-12 rounded-none border-foreground/35 bg-background/20 px-7 text-[10px] uppercase tracking-[0.26em] text-foreground backdrop-blur-md hover:bg-foreground hover:text-background">
-                    <Link to="/philosophy"><Play /> Our story</Link>
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
 
             <div className="mt-10 grid gap-5 border-t border-foreground/20 pt-5 lg:grid-cols-[1fr_auto] lg:items-end">
               <div className="flex items-center gap-5 text-[9px] uppercase tracking-[0.28em] text-foreground/65">
