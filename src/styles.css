@@ -90,6 +90,33 @@
   --gold: oklch(0.78 0.10 75);
 }
 
+.cinematic-theme {
+  --umber: oklch(0.115 0.025 145);
+  --walnut: oklch(0.20 0.045 145);
+  --clay: oklch(0.46 0.105 42);
+  --terra: oklch(0.73 0.09 82);
+  --sand: oklch(0.68 0.105 83);
+  --cream: oklch(0.94 0.025 83);
+  --gold: oklch(0.69 0.105 82);
+  --background: var(--umber);
+  --foreground: var(--cream);
+  --card: var(--walnut);
+  --card-foreground: var(--cream);
+  --primary: var(--gold);
+  --primary-foreground: var(--umber);
+  --secondary: oklch(0.17 0.04 145);
+  --secondary-foreground: var(--cream);
+  --muted: oklch(0.23 0.035 145);
+  --muted-foreground: oklch(0.75 0.025 90);
+  --accent: var(--clay);
+  --accent-foreground: var(--cream);
+  --border: oklch(0.69 0.105 82 / 28%);
+  --input: oklch(0.94 0.025 83 / 25%);
+  --ring: var(--gold);
+  --font-display: "DM Serif Display", Georgia, serif;
+  --font-sans: "Fira Sans", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+}
+
 @layer base {
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }

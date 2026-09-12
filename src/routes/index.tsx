@@ -1,46 +1,40 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import {
+  ArrowDown,
   ArrowRight,
-  Leaf,
-  ShieldCheck,
-  Sparkles,
-  Sun,
-  FlaskConical,
-  Truck,
   Bird,
-  Rabbit,
   Fish,
-  Turtle,
-  Squirrel,
+  Leaf,
+  Play,
+  Rabbit,
+  ShieldCheck,
   Snail,
+  Squirrel,
+  Turtle,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { AranyaMark } from "@/components/AranyaMark";
-import heroProducts from "@/assets/hero-products.jpg";
+import westernGhatsVideo from "@/assets/aranya-western-ghats.webm.asset.json";
+import snowLeopardVideo from "@/assets/aranya-kenya-snow-leopard.webm.asset.json";
+import elephantVideo from "@/assets/aranya-kenya-elephant.webm.asset.json";
 import p1 from "@/assets/product-1.jpg";
 import p2 from "@/assets/product-2.jpg";
 import p3 from "@/assets/product-3.jpg";
 import p4 from "@/assets/product-4.jpg";
-import ritualAwaken from "@/assets/ritual-awaken.jpg";
-import lifestyleGlow from "@/assets/lifestyle-glow.jpg";
-import careImg from "@/assets/care-banner.jpg";
-import ingredientsImg from "@/assets/ingredients-hero.jpg";
-
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Aranya — Sacred Botanicals, Certified Pure" },
+      { title: "Aranya — Wild Origins, Sacred Botanicals" },
       {
         name: "description",
-        content:
-          "Premium Ayurvedic botanicals — powders, premixes, tonics, tablets and gummies. Certified pure, ethically sourced, sacredly crafted.",
+        content: "Discover certified-pure botanicals through the wild landscapes and species that inspire every Aranya collection.",
       },
-      { property: "og:title", content: "Aranya — Sacred Botanicals" },
-      { property: "og:description", content: "Premium, certified-pure Ayurvedic botanicals." },
+      { property: "og:title", content: "Aranya — Wild Origins, Sacred Botanicals" },
+      { property: "og:description", content: "Nature-led wellness, traced from origin to ritual." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -48,844 +42,257 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+const films = [
+  {
+    video: westernGhatsVideo.url,
+    region: "The Western Ghats",
+    title: "Pepper & Herbal Tonic",
+    species: "Nilgiri Tahr",
+    index: "01",
+  },
+  {
+    video: snowLeopardVideo.url,
+    region: "Kenya Highlands",
+    title: "Baobab & Moringa",
+    species: "Snow Leopard",
+    index: "02",
+  },
+  {
+    video: elephantVideo.url,
+    region: "Kenyan Savannah",
+    title: "Ancient Vitality",
+    species: "African Elephant",
+    index: "03",
+  },
+];
+
+const families = [
+  { icon: Bird, title: "Powders", trait: "Clarity", text: "Whole roots, stone-ground slowly." },
+  { icon: Rabbit, title: "Premixes", trait: "Vitality", text: "Daily blends built for absorption." },
+  { icon: Fish, title: "Oils", trait: "Flow", text: "Cold-pressed botanical infusions." },
+  { icon: Turtle, title: "Tonics", trait: "Longevity", text: "Deep nourishment, ready to drink." },
+  { icon: Squirrel, title: "Ritual Sets", trait: "Readiness", text: "Complete routines for daily rhythm." },
+  { icon: Snail, title: "Blends", trait: "Patience", text: "Measured formulas, naturally complete." },
+];
+
 const products = [
-  { img: p1, name: "Golden Turmeric Powder", tag: "Wildcrafted Root", price: "₹ 1,240" },
-  { img: p2, name: "Ashwagandha Vitality Oil", tag: "Cold-Pressed", price: "₹ 1,890" },
-  { img: p3, name: "Triphala Morning Premix", tag: "Daily Ritual", price: "₹ 1,460" },
-  { img: p4, name: "Tulsi Amber Tonic", tag: "Adaptogen Beverage", price: "₹ 2,210" },
-];
-
-const ingredients = [
-  {
-    name: "Ashwagandha",
-    side: "left",
-    body: "Sacred root of resilience. Calms the nervous system and rebuilds vitality at the cellular level.",
-  },
-  {
-    name: "Triphala",
-    side: "left",
-    body: "The three-fruit harmony. Restores digestive intelligence and gentle daily renewal.",
-  },
-  {
-    name: "Brahmi",
-    side: "left",
-    body: "Cognitive clarity and stillness of mind. The herb of meditation and quiet focus.",
-  },
-  {
-    name: "Turmeric",
-    side: "right",
-    body: "The golden root. Pure curcuminoid concentrate — anti-inflammatory at its source.",
-  },
-  {
-    name: "Tulsi",
-    side: "right",
-    body: "Holy basil, the queen of herbs. An adaptogen that meets stress with grace.",
-  },
-  {
-    name: "Moringa",
-    side: "right",
-    body: "Complete plant nourishment. Iron, calcium and ninety phytonutrients in a single leaf.",
-  },
-];
-
-const menuItems = [
-  {
-    img: p1,
-    form: "Powder",
-    name: "Golden Turmeric",
-    note: "Energise Your Day",
-    body: "Vibrant and grounding. Stone-ground Lakadong turmeric with 7%+ curcumin and a clean, earthy lift.",
-    chips: ["Grounding", "Smooth", "Immunity"],
-    price: "₹ 1,240",
-  },
-  {
-    img: p2,
-    form: "Oil",
-    name: "Ashwagandha Vitality Oil",
-    note: "Deep Restoration",
-    body: "Creamy and restorative. Cold-pressed root infusion for quiet strength and restful evenings.",
-    chips: ["Calming", "Adaptogen", "Restorative"],
-    price: "₹ 1,890",
-  },
-  {
-    img: p3,
-    form: "Premix",
-    name: "Triphala Morning Premix",
-    note: "Pure · Balanced · Timeless",
-    body: "The classic three-fruit blend, gently dried and milled for daily digestive intelligence.",
-    chips: ["Balanced", "Digestive", "Mindful"],
-    price: "₹ 1,460",
-  },
-  {
-    img: ritualAwaken,
-    form: "Latte",
-    name: "Dawn Golden Latte",
-    note: "Gentle Energy",
-    body: "Fresh and uplifting. Turmeric, ashwagandha and cinnamon whisked into warm plant milk.",
-    chips: ["Uplifting", "Energising", "Revitalising"],
-    price: "₹ 980",
-  },
-  {
-    img: p4,
-    form: "Tonic",
-    name: "Tulsi Amber Tonic",
-    note: "Soft Comfort",
-    body: "Rich and aromatic. Holy basil steeped slow for warmth, comfort, and quiet moments.",
-    chips: ["Aromatic", "Warming", "Comforting"],
-    price: "₹ 2,210",
-  },
-  {
-    img: lifestyleGlow,
-    form: "Blend",
-    name: "Luminous Glow Blend",
-    note: "Pure · Radiant · Timeless",
-    body: "A thoughtfully crafted blend of amla, rose and moringa — harmonious balance and a soothing glow.",
-    chips: ["Refined", "Radiant", "Mindful"],
-    price: "₹ 1,650",
-  },
-];
-
-
-const marquee = [
-  "Founders' Edition — 30% off",
-  "Single-origin Turmeric — New Harvest",
-  "Free pan-India dispatch above ₹2,000",
-  "Lab-tested batch ·08· now live",
-  "Ashwagandha Vitality Oil — Restocked",
-  "Gummies & Tablets — Launch offer",
-];
-
-const heroBadges = [
-  { icon: Leaf, label: "100% Natural" },
-  { icon: FlaskConical, label: "Lab Verified" },
-  { icon: Truck, label: "Fresh Dispatch" },
-];
-
-const heroStrip = [
-  { icon: Sun, title: "Sun-dried", sub: "Slow, low-heat cure" },
-  { icon: Leaf, title: "Whole plant", sub: "Never extracted" },
-  { icon: ShieldCheck, title: "Certified pure", sub: "USDA · India Organic" },
-  { icon: Sparkles, title: "Hand-packed", sub: "Small batches" },
+  { image: p1, name: "Golden Turmeric", note: "Western Ghats · Powder", price: "₹1,240" },
+  { image: p2, name: "Ashwagandha Vitality", note: "Cold-pressed · Oil", price: "₹1,890" },
+  { image: p3, name: "Triphala Morning", note: "Three-fruit · Premix", price: "₹1,460" },
+  { image: p4, name: "Tulsi Amber", note: "Adaptogenic · Tonic", price: "₹2,210" },
 ];
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const heroSlides = [
-  { img: p1, name: "Golden Turmeric Powder", caption: "Stone-ground Lakadong", price: "\u20b9 1,240" },
-  { img: p3, name: "Triphala Morning Premix", caption: "Daily Digestive Ritual", price: "\u20b9 1,460" },
-  { img: p2, name: "Ashwagandha Vitality Oil", caption: "Cold-Pressed Root", price: "\u20b9 1,890" },
-  { img: p4, name: "Tulsi Amber Tonic", caption: "Adaptogen Beverage", price: "\u20b9 2,210" },
-  { img: ritualAwaken, name: "Awaken Ritual Set", caption: "First Light Blend", price: "\u20b9 3,150" },
-  { img: lifestyleGlow, name: "Luminous Glow Blend", caption: "Amla · Rose · Moringa", price: "\u20b9 1,650" },
-];
-
-const animalFamilies = [
-  { icon: Bird, label: "Powders", trait: "Clarity", specimen: "Hornbill" },
-  { icon: Rabbit, label: "Premixes", trait: "Vitality", specimen: "Hare" },
-  { icon: Fish, label: "Oils", trait: "Flow", specimen: "Mahseer" },
-  { icon: Turtle, label: "Tonics", trait: "Longevity", specimen: "Tortoise" },
-  { icon: Squirrel, label: "Ritual Sets", trait: "Readiness", specimen: "Palm Squirrel" },
-  { icon: Snail, label: "Blends", trait: "Patience", specimen: "Forest Snail" },
-];
-
 function Home() {
-  const [[slide, dir], setSlide] = useState<[number, number]>([0, 1]);
-  const lock = useRef(0);
-  const slideRef = useRef(0);
-  const showcaseRef = useRef<HTMLDivElement | null>(null);
-  const paginate = (d: number) =>
-    setSlide(([i]) => {
-      const n = Math.min(Math.max(i + d, 0), heroSlides.length - 1);
-      slideRef.current = n;
-      return [n, d];
-    });
-  const goTo = (i: number) => {
-    slideRef.current = i;
-    setSlide(([p]) => [i, i > p ? 1 : -1]);
-  };
+  const [activeFilm, setActiveFilm] = useState(0);
+  const heroRef = useRef<HTMLElement | null>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const videoY = useTransform(scrollYProgress, [0, 1], [0, 110]);
+  const titleY = useTransform(scrollYProgress, [0, 1], [0, -45]);
 
-  // Scroll-driven: hold the page while slides advance, then release scrolling.
   useEffect(() => {
-    const el = showcaseRef.current;
-    if (!el) return;
-    const onWheel = (e: WheelEvent) => {
-      const dy = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 100 : 1);
-      if (Math.abs(dy) < 4) return;
-      const i = slideRef.current;
-      const canAdvance = dy > 0 ? i < heroSlides.length - 1 : i > 0 && window.scrollY <= 2;
-      if (!canAdvance) return;
-      e.preventDefault();
-      const now = Date.now();
-      if (now - lock.current < 620) return;
-      lock.current = now;
-      paginate(dy > 0 ? 1 : -1);
-    };
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
+    const timer = window.setInterval(() => {
+      setActiveFilm((current) => (current + 1) % films.length);
+    }, 10000);
+    return () => window.clearInterval(timer);
   }, []);
 
-  const active = heroSlides[slide]!;
-
+  const film = films[activeFilm];
+  if (!film) return null;
 
   return (
-    <div className="relative min-h-screen bg-umber text-cream">
-      <div className="bg-grain pointer-events-none fixed inset-0 z-50 opacity-[0.2] mix-blend-multiply" />
+    <div className="cinematic-theme min-h-screen bg-background text-foreground">
+      <section ref={heroRef} className="relative min-h-[100svh] overflow-hidden bg-background px-3 pb-3 pt-3 md:px-8 md:pb-8 md:pt-6">
+        <motion.div style={{ y: videoY }} className="absolute inset-0 scale-110">
+          <video
+            aria-hidden="true"
+            src={westernGhatsVideo.url}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="h-full w-full object-cover opacity-35 blur-[2px]"
+          />
+          <div className="absolute inset-0 bg-background/60" />
+        </motion.div>
 
-      {/* HERO — apothecary menu composition */}
-      <section className="relative isolate overflow-hidden border-b border-sand/40">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-walnut/35 via-umber to-umber" />
-        <div
-          className="absolute inset-0 -z-10 opacity-50"
-          style={{
-            background:
-                "radial-gradient(45% 35% at 72% 22%, color-mix(in oklab, var(--gold) 18%, transparent), transparent 72%)",
-          }}
-        />
-
-        <SiteHeader />
-
-        {/* vertical side label */}
-        <div className="pointer-events-none absolute right-4 top-28 z-10 hidden flex-col items-center gap-3 lg:flex">
-          <Bird className="h-5 w-5 text-terra/80" strokeWidth={1} />
-          <span className="h-10 w-px bg-cream/15" />
-          <span
-            className="text-[9px] uppercase tracking-[0.5em] text-cream/40"
-            style={{ writingMode: "vertical-rl" }}
-          >
-            Naturalist Archive
-          </span>
-        </div>
-
-        {/* offer marquee */}
-        <div className="relative z-10 mt-[72px] overflow-hidden border-y border-sand/35 bg-walnut/60 py-1.5 md:mt-[88px]">
-          <motion.div
-            className="flex w-max gap-10 whitespace-nowrap"
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ duration: 30, ease: "linear", repeat: Infinity }}
-          >
-            {[...marquee, ...marquee].map((m, i) => (
-              <span
-                key={i}
-                className="flex items-center gap-3 text-[10px] uppercase tracking-[0.28em] text-cream/75"
-              >
-                <Sparkles className="h-3 w-3 text-sand" /> {m}
-              </span>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* top band — editorial copy + background-blended product showcase */}
-        <div className="relative mx-auto my-6 grid w-[calc(100%-2rem)] max-w-7xl items-center gap-8 px-6 pb-8 pt-10 atlas-frame md:grid-cols-2 md:gap-10 md:px-10 md:pb-10 md:pt-12">
-          <Leaf className="pointer-events-none absolute -left-3 bottom-10 h-28 w-28 rotate-[-28deg] text-sand/15" strokeWidth={0.55} />
-          <div className="w-full max-w-xl">
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease }}
-              className="inline-flex items-center gap-2 border border-sand/45 bg-umber/60 px-4 py-1.5 text-[10px] uppercase tracking-[0.32em] text-terra"
-            >
-              <Leaf className="h-3 w-3" /> Certified Pure · Sacred Bloom
-            </motion.span>
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.1, ease }}
-              className="text-shadow-soft mt-5 font-display text-[clamp(2.2rem,4.2vw,3.7rem)] leading-[1.05]"
-            >
-              The Living Archive,
-              <br />
-              Rooted in Nature —
-              <br />
-               <em className="italic text-terra">Pure. Proven.</em>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.22, ease }}
-              className="mt-4 max-w-md text-[13px] leading-relaxed text-cream/60"
-            >
-              Powders, premixes, tonics and gummies — grown on our own
-              certified farms, packed in small batches, and traced from soil to
-              your shelf.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.32, ease }}
-              className="mt-7 flex flex-wrap items-center gap-3"
-            >
-              <a
-                href="/products"
-                 className="group inline-flex items-center gap-3 border border-cream bg-cream px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-umber transition hover:bg-terra hover:text-umber"
-              >
-                Explore Botanicals
-                <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
-              </a>
-              <a
-                href="/philosophy"
-                 className="inline-flex items-center gap-3 border border-sand/60 px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-cream transition hover:bg-walnut"
-              >
-                Our Philosophy
-              </a>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.42, ease }}
-              className="mt-8 grid grid-cols-3 gap-3"
-            >
-              {heroBadges.map((b) => (
-                <div key={b.label} className="flex items-center gap-2.5">
-                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-sand/45 bg-umber text-terra">
-                    <b.icon className="h-3.5 w-3.5" />
-                  </span>
-                  <span className="text-[9px] uppercase leading-tight tracking-[0.16em] text-cream/60">
-                    {b.label}
-                  </span>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* right column — blended showcase + category circles */}
-          <div className="flex w-full flex-col items-center">
-          {/* hero showcase — frameless, blended into the umber backdrop */}
-          <motion.div
-            initial={{ opacity: 0, scale: 1.04 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.15, ease }}
-            ref={showcaseRef}
-            className="relative h-[clamp(340px,56svh,560px)] w-full overflow-hidden overscroll-contain"
-          >
-            {/* warm glow behind the product */}
-            <div
-              className="pointer-events-none absolute inset-0"
-              style={{
-                background:
-                  "radial-gradient(46% 52% at 50% 46%, color-mix(in oklab, var(--gold) 19%, transparent), transparent 74%)",
-              }}
+        <div className="relative mx-auto min-h-[calc(100svh-2.5rem)] max-w-[1380px] overflow-hidden border border-gold/45 bg-background shadow-2xl md:min-h-[calc(100svh-3rem)]">
+          <AnimatePresence mode="wait">
+            <motion.video
+              key={film.video}
+              src={film.video}
+              autoPlay
+              muted
+              loop
+              playsInline
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.02 }}
+              transition={{ duration: 1.1, ease }}
+              className="absolute inset-0 h-full w-full object-cover"
             />
-            {/* slow rotating dashed halo */}
-            <motion.div
-              aria-hidden
-              animate={{ rotate: 360 }}
-              transition={{ duration: 46, repeat: Infinity, ease: "linear" }}
-              className="pointer-events-none absolute left-1/2 top-1/2 h-[78%] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-sand/20"
-            />
+          </AnimatePresence>
+          <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/20 to-background/30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/75 via-transparent to-background/90" />
+          <div className="pointer-events-none absolute inset-3 border border-foreground/15" />
 
-            {/* floating wrapper + scroll-driven transitions */}
-            <motion.div
-              animate={{ y: [0, -12, 0] }}
-              transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0"
-            >
-              <AnimatePresence initial={false} custom={dir} mode="popLayout">
-                <motion.img
-                  key={slide}
-                  custom={dir}
-                  src={active.img}
-                  alt={active.name}
-                  width={1600}
-                  height={1024}
-                  variants={{
-                    enter: (d: number) => ({ opacity: 0, y: d > 0 ? 70 : -70, scale: 1.1, rotate: d > 0 ? 2.5 : -2.5 }),
-                    center: { opacity: 1, y: 0, scale: 1, rotate: 0 },
-                    exit: (d: number) => ({ opacity: 0, y: d > 0 ? -70 : 70, scale: 1.05, rotate: d > 0 ? -2 : 2 }),
-                  }}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.85, ease }}
-                  className="absolute inset-0 h-full w-full object-cover mix-blend-multiply [mask-image:radial-gradient(72%_72%_at_50%_46%,black_48%,transparent_96%)]"
-                />
-              </AnimatePresence>
-            </motion.div>
+          <SiteHeader />
 
+          <div className="relative z-10 flex min-h-[calc(100svh-2.5rem)] flex-col justify-end px-6 pb-8 pt-28 md:min-h-[calc(100svh-3rem)] md:px-14 md:pb-10 lg:px-20">
+            <div className="absolute right-5 top-1/2 hidden -translate-y-1/2 items-center gap-3 lg:flex" style={{ writingMode: "vertical-rl" }}>
+              <span className="h-12 w-px bg-gold/60" />
+              <span className="text-[9px] uppercase tracking-[0.42em] text-foreground/70">Explore the origin</span>
+            </div>
 
-            {/* price + caption rail */}
-            <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-6 md:p-8">
-              <div className="flex items-start justify-end">
+            <motion.div style={{ y: titleY }} className="mb-auto mt-auto max-w-4xl pt-20">
+              <motion.p
+                key={`${film.index}-eyebrow`}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-5 flex items-center gap-3 text-[10px] uppercase tracking-[0.42em] text-gold"
+              >
+                <span className="h-px w-12 bg-gold" /> Origin collection · {film.index}
+              </motion.p>
+              <div className="relative">
+                <motion.h1
+                  initial={{ opacity: 0, y: 55 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.15, ease }}
+                  className="font-display text-[clamp(5rem,13vw,11rem)] leading-[0.7] text-foreground"
+                >
+                  WILD
+                  <span className="block text-transparent [-webkit-text-stroke:1px_color-mix(in_oklab,var(--foreground)_65%,transparent)]">NATURE</span>
+                </motion.h1>
                 <AnimatePresence mode="wait">
                   <motion.div
-                    key={active.name}
-                    initial={{ opacity: 0, y: 14 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -14 }}
-                    transition={{ duration: 0.5, ease }}
-                    className="text-right"
+                    key={film.title}
+                    initial={{ opacity: 0, x: -24 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 24 }}
+                    transition={{ duration: 0.65, ease }}
+                    className="mt-7 max-w-md"
                   >
-                    <span className="font-display text-3xl text-sand md:text-4xl">
-                      {active.price}
-                    </span>
-                    <p className="mt-1 text-[10px] uppercase tracking-[0.28em] text-cream/55">
-                      {active.name}
+                    <p className="font-display text-2xl italic text-foreground md:text-3xl">{film.region}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-foreground/70">
+                      Premium botanicals shaped by altitude, monsoon and ancient growing wisdom. Pure at origin, proven in every batch.
                     </p>
                   </motion.div>
                 </AnimatePresence>
-              </div>
-
-              <div className="flex items-end justify-between">
-                {/* arrows + counter */}
-                <div className="pointer-events-auto flex items-center gap-3">
-                  <button
-                    aria-label="Previous botanical"
-                    onClick={() => paginate(-1)}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-cream/25 text-cream/80 transition hover:border-sand hover:bg-cream hover:text-umber"
-                  >
-                    <ArrowRight className="h-3.5 w-3.5 rotate-180" />
-                  </button>
-                  <button
-                    aria-label="Next botanical"
-                    onClick={() => paginate(1)}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-cream/25 text-cream/80 transition hover:border-sand hover:bg-cream hover:text-umber"
-                  >
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </button>
-                  <span className="ml-1 text-[10px] tracking-[0.28em] text-cream/50">
-                    {String(slide + 1).padStart(2, "0")} /{" "}
-                    {String(heroSlides.length).padStart(2, "0")}
-                  </span>
+                <div className="mt-7 flex flex-wrap items-center gap-4">
+                  <Button asChild className="h-12 rounded-none bg-gold px-7 text-[10px] uppercase tracking-[0.26em] text-background hover:bg-foreground">
+                    <Link to="/products">Explore collection <ArrowRight /></Link>
+                  </Button>
+                  <Button asChild variant="outline" className="h-12 rounded-none border-foreground/35 bg-background/20 px-7 text-[10px] uppercase tracking-[0.26em] text-foreground backdrop-blur-md hover:bg-foreground hover:text-background">
+                    <Link to="/philosophy"><Play /> Our story</Link>
+                  </Button>
                 </div>
-
               </div>
-            </div>
-
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={active.caption}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="pointer-events-none absolute bottom-24 left-1/2 -translate-x-1/2 text-[9px] uppercase tracking-[0.34em] text-cream/60"
-              >
-                {active.caption}
-              </motion.span>
-            </AnimatePresence>
-          </motion.div>
-            {/* category circles */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.5, ease }}
-              className="mt-6 flex w-full flex-wrap items-start justify-center gap-4 md:gap-6"
-            >
-              {animalFamilies.map((c, i) => (
-                <button
-                  key={c.label}
-                  type="button"
-                  onClick={() => goTo(i)}
-                  className="group flex w-[64px] flex-col items-center gap-2"
-                >
-                  <motion.span
-                    initial={{ opacity: 0, scale: 0.7 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: 0.55 + i * 0.08, ease }}
-                    className={`flex h-14 w-14 items-center justify-center rounded-full bg-umber ring-1 transition duration-300 group-hover:scale-105 md:h-16 md:w-16 ${
-                      i === slide
-                        ? "ring-2 ring-sand shadow-[0_0_24px_oklch(0.85_0.045_70/0.25)]"
-                        : "ring-cream/20 group-hover:ring-sand"
-                    }`}
-                  >
-                    <c.icon className="h-7 w-7 text-terra md:h-8 md:w-8" strokeWidth={0.9} aria-hidden />
-                  </motion.span>
-                  <span
-                    className={`text-center text-[8.5px] uppercase tracking-[0.16em] transition ${
-                      i === slide ? "text-sand" : "text-cream/55 group-hover:text-cream"
-                    }`}
-                  >
-                     {c.label}
-                  </span>
-                   <span className="text-center font-display text-[8px] italic text-sand">{c.trait}</span>
-                </button>
-              ))}
             </motion.div>
-          </div>
-        </div>
 
-        {/* certification strip */}
-        <div className="border-y border-sand/35 bg-walnut/45">
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-8 gap-y-2 px-6 py-3 md:justify-between md:px-10">
-            {[
-              "Fair For Life",
-              "India Organic",
-              "USDA Organic",
-              "FSSAI Certified",
-              "Non-GMO Verified",
-              "Lab Tested",
-            ].map((c) => (
-              <span
-                key={c}
-                className="flex items-center gap-2 text-[9px] uppercase tracking-[0.24em] text-cream/65"
-              >
-                <ShieldCheck className="h-3 w-3 text-terra" /> {c}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* apothecary menu grid */}
-        <div className="mx-auto w-full max-w-7xl px-6 pb-16 md:px-10">
-          <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.9, ease }}
-            className="overflow-hidden rounded-sm border border-cream/12 bg-gradient-to-b from-walnut/30 to-umber/60 backdrop-blur-sm"
-          >
-            <div className="grid md:grid-cols-[1fr_3fr]">
-              {/* sidebar — category panel */}
-              <aside className="flex flex-col justify-between gap-8 border-b border-cream/10 p-6 md:border-b-0 md:border-r md:p-8">
-                <div>
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-terra">
-                    <Leaf className="h-4 w-4" />
-                  </span>
-                  <h2 className="mt-4 font-display text-2xl leading-tight text-cream md:text-3xl">
-                    Signature
-                    <br />
-                    Botanicals
-                  </h2>
-                  <p className="mt-3 max-w-[26ch] text-[12px] leading-relaxed text-cream/55">
-                    Carefully crafted whole-plant preparations that balance
-                    tradition and modernity.
-                  </p>
-                  <a
-                    href="/products"
-                    className="group mt-4 inline-flex items-center gap-3 rounded-full border border-cream/30 px-4 py-2 text-[10px] uppercase tracking-[0.24em] text-cream transition hover:border-sand hover:bg-cream hover:text-umber"
+            <div className="mt-10 grid gap-5 border-t border-foreground/20 pt-5 lg:grid-cols-[1fr_auto] lg:items-end">
+              <div className="flex items-center gap-5 text-[9px] uppercase tracking-[0.28em] text-foreground/65">
+                <span>{film.species}</span><span className="h-px w-12 bg-gold/70" /><span>Certified pure</span><span>10 sec film</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                {films.map((item, index) => (
+                  <Button
+                    key={item.title}
+                    type="button"
+                    variant="ghost"
+                    onClick={() => setActiveFilm(index)}
+                    className={`group relative h-auto w-24 overflow-hidden rounded-none border p-0 md:w-36 ${activeFilm === index ? "border-gold" : "border-foreground/20"}`}
+                    aria-label={`Show ${item.region}`}
                   >
-                    Explore Botanicals
-                    <ArrowRight className="h-3 w-3 transition group-hover:translate-x-1" />
-                  </a>
-                </div>
-
-                {/* origin card */}
-                <div className="relative overflow-hidden rounded-sm bg-gradient-to-br from-clay/40 to-walnut/50 p-5">
-                  <AranyaMark size={100} className="absolute -right-5 -top-5 text-cream/8" />
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-sand/80">
-                    From the Nilgiris, India
-                  </span>
-                  <p className="mt-2 text-[11px] leading-relaxed text-cream/65">
-                    Our botanicals are sourced directly from heritage farms —
-                    known for their rich soil, pure water, and centuries of
-                    plant mastery.
-                  </p>
-                  <span className="mt-3 flex items-center gap-2 text-[9px] uppercase tracking-[0.24em] text-cream/45">
-                    <ShieldCheck className="h-3 w-3 text-terra" /> USDA · India
-                    Organic Certified
-                  </span>
-                </div>
-              </aside>
-
-              {/* product cards */}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3">
-                {menuItems.map((m, i) => (
-                  <motion.article
-                    key={m.name}
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{ duration: 0.7, delay: i * 0.07, ease }}
-                    className="group flex flex-col border-cream/10 p-5 transition hover:bg-cream/[0.03] sm:border-l sm:[&:nth-child(odd)]:border-l-0 lg:[&:nth-child(odd)]:border-l lg:[&:nth-child(3n+1)]:border-l-0 [&:nth-child(n+2)]:border-t sm:[&:nth-child(-n+2)]:border-t-0 lg:[&:nth-child(-n+3)]:border-t-0 lg:[&:nth-child(n+2)]:border-t"
-                  >
-                    <div className="relative mx-auto aspect-square w-full max-w-[165px] overflow-hidden rounded-full">
-                      <img
-                        src={m.img}
-                        alt={m.name}
-                        loading="lazy"
-                        width={768}
-                        height={768}
-                        className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 rounded-full ring-1 ring-inset ring-cream/15" />
-                    </div>
-
-                    <span className="mt-4 w-fit rounded-full border border-cream/20 px-3 py-1 text-[9px] uppercase tracking-[0.22em] text-cream/70">
-                      {m.form}
-                    </span>
-                    <h3 className="mt-2 font-display text-xl leading-tight text-cream">
-                      {m.name}
-                    </h3>
-                    <p className="mt-0.5 font-display text-[12px] italic text-terra/90">
-                      {m.note}
-                    </p>
-                    <p className="mt-2 text-[11px] leading-relaxed text-cream/55">
-                      {m.body}
-                    </p>
-
-                    <div className="mt-3 flex flex-wrap gap-1.5">
-                      {m.chips.map((c) => (
-                        <span
-                          key={c}
-                          className="rounded-sm bg-cream/8 px-2 py-0.5 text-[9px] uppercase tracking-[0.14em] text-cream/60"
-                        >
-                          {c}
-                        </span>
-                      ))}
-                    </div>
-
-                    <span className="mt-4 font-display text-lg text-sand">
-                      {m.price}
-                    </span>
-                  </motion.article>
+                    <video src={item.video} muted playsInline className="aspect-video w-full object-cover opacity-75 transition duration-700 group-hover:scale-105 group-hover:opacity-100" />
+                    <span className="absolute inset-x-0 bottom-0 bg-background/80 px-2 py-1 text-left text-[7px] uppercase tracking-[0.18em] text-foreground">{item.index} · {item.region}</span>
+                  </Button>
                 ))}
               </div>
             </div>
-
-            {/* bottom feature strip */}
-            <div className="grid grid-cols-2 gap-4 border-t border-cream/10 bg-walnut/25 px-6 py-3 md:grid-cols-4 md:px-8">
-              {heroStrip.map((s, i) => (
-                <motion.div
-                  key={s.title}
-                  initial={{ opacity: 0, y: 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: i * 0.08, ease }}
-                  className="flex items-center gap-2.5"
-                >
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-clay/25 text-sand">
-                    <s.icon className="h-3.5 w-3.5" />
-                  </span>
-                  <span>
-                    <span className="block text-[11px] text-cream/90">{s.title}</span>
-                    <span className="block text-[9px] uppercase tracking-[0.16em] text-cream/45">
-                      {s.sub}
-                    </span>
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+          </div>
         </div>
+
+        <a href="#origins" aria-label="Discover more" className="absolute bottom-5 left-1/2 z-20 hidden -translate-x-1/2 text-foreground/55 transition hover:text-gold md:block">
+          <ArrowDown className="h-5 w-5 animate-bounce" />
+        </a>
       </section>
 
-
-      {/* BEST SELLERS */}
-      <section id="catalog" className="relative px-6 py-28 md:px-10 md:py-36">
+      <section id="origins" className="border-y border-gold/25 bg-secondary px-6 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
             <div>
-              <span className="text-xs uppercase tracking-[0.32em] text-sand/70">
-                The Apothecary
-              </span>
-              <h2 className="mt-4 font-display text-5xl md:text-6xl">Most cherished.</h2>
+              <p className="text-[10px] uppercase tracking-[0.42em] text-gold">The living taxonomy</p>
+              <h2 className="mt-5 max-w-xl font-display text-5xl leading-[0.95] md:text-7xl">Every form carries a wild instinct.</h2>
             </div>
-            <a
-              href="#"
-              className="group inline-flex items-center gap-2 text-[12px] uppercase tracking-[0.25em] text-cream/70 hover:text-cream"
-            >
-              View all 84 botanicals
-              <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-            </a>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {products.map((p) => (
-              <article
-                key={p.name}
-                className="group overflow-hidden rounded-sm border border-cream/8 bg-walnut/30 transition hover:border-sand/30"
-              >
-                <div className="relative aspect-[4/5] overflow-hidden bg-umber">
-                  <img
-                    src={p.img}
-                    alt={p.name}
-                    loading="lazy"
-                    width={768}
-                    height={896}
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                  />
-                  <span className="absolute left-4 top-4 rounded-full border border-cream/20 bg-umber/60 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-cream/80 backdrop-blur">
-                    {p.tag}
-                  </span>
-                </div>
-                <div className="flex items-start justify-between gap-4 p-5">
-                  <div>
-                    <h3 className="font-display text-xl leading-tight">{p.name}</h3>
-                    <p className="mt-2 text-[11px] uppercase tracking-[0.22em] text-cream/50">
-                      Add to ritual
-                    </p>
-                  </div>
-                  <span className="font-display text-lg text-sand">{p.price}</span>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CARE / STORY */}
-      <section id="story" className="relative px-6 py-24 md:px-10 md:py-32">
-        <div className="mx-auto max-w-7xl">
-          <span className="text-xs uppercase tracking-[0.32em] text-sand/70">
-            Care inspired by nature
-          </span>
-          <div className="mt-10 grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-center">
-            <div className="relative h-[280px] overflow-hidden rounded-sm md:h-[360px]">
-              <img
-                src={careImg}
-                alt="Hand harvesting turmeric root"
-                loading="lazy"
-                width={1600}
-                height={700}
-                className="h-full w-full object-cover"
-              />
-            </div>
-            <div className="space-y-5 text-cream/75">
-              <p className="leading-relaxed">
-                For four generations, our growers have tended these soils — turning, drying
-                and grinding by the rhythm of the sun. Every batch carries the fingerprint
-                of a single farm.
-              </p>
-              <p className="leading-relaxed">
-                We never blend across origins. We never extract. What you receive is the
-                whole plant, made fine — nothing added, nothing taken away.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* QUOTE */}
-      <section className="relative px-6 py-32 md:px-10 md:py-40">
-        <div className="mx-auto max-w-5xl text-center">
-          <AranyaMark size={56} className="mx-auto text-sand/80" />
-          <h2 className="mt-10 font-display text-[clamp(2.4rem,5.5vw,5rem)] leading-[1.05] text-cream">
-            Healthy living begins{" "}
-            <em className="not-italic italic text-terra">with balance.</em>
-            <br />
-            <span className="text-sand">Nature</span> already knows the answer.
-          </h2>
-        </div>
-      </section>
-
-      {/* INGREDIENTS */}
-      <section className="relative overflow-hidden border-t border-cream/8 bg-walnut/20 px-6 py-28 md:px-10 md:py-36">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-20 max-w-2xl">
-            <span className="text-xs uppercase tracking-[0.32em] text-sand/70">
-              Science-Driven Ingredients
-            </span>
-            <h2 className="mt-4 font-display text-5xl md:text-6xl">
-              Six roots. <em className="not-italic italic text-terra">One philosophy.</em>
-            </h2>
-            <p className="mt-6 text-cream/70 leading-relaxed">
-              A carefully selected lineage of vitamins and botanical compounds — assayed,
-              standardized and verified to support health from root to bloom.
+            <p className="max-w-2xl text-sm leading-7 text-foreground/65 lg:justify-self-end">
+              Each product family is represented by an animal whose defining instinct mirrors its purpose—from the hornbill’s clarity to the tortoise’s longevity.
             </p>
           </div>
-
-          <div className="relative grid gap-12 md:grid-cols-[1fr_auto_1fr] md:items-center">
-            {/* LEFT */}
-            <div className="space-y-12 md:text-right">
-              {ingredients
-                .filter((i) => i.side === "left")
-                .map((i) => (
-                  <div key={i.name} className="md:pr-6">
-                    <div className="mb-2 flex items-center gap-3 md:justify-end">
-                      <h4 className="font-display text-2xl text-sand">{i.name}</h4>
-                      <span className="h-px w-10 bg-sand/40" />
-                    </div>
-                    <p className="text-sm leading-relaxed text-cream/65">{i.body}</p>
-                  </div>
-                ))}
-            </div>
-
-            {/* CENTER IMAGE */}
-            <div className="relative mx-auto aspect-square w-full max-w-[420px]">
-              <img
-                src={ingredientsImg}
-                alt="Aranya botanical bottle"
-                loading="lazy"
-                width={1024}
-                height={1024}
-                className="h-full w-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-walnut/40" />
-            </div>
-
-            {/* RIGHT */}
-            <div className="space-y-12">
-              {ingredients
-                .filter((i) => i.side === "right")
-                .map((i) => (
-                  <div key={i.name} className="md:pl-6">
-                    <div className="mb-2 flex items-center gap-3">
-                      <span className="h-px w-10 bg-sand/40" />
-                      <h4 className="font-display text-2xl text-sand">{i.name}</h4>
-                    </div>
-                    <p className="text-sm leading-relaxed text-cream/65">{i.body}</p>
-                  </div>
-                ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CATEGORIES STRIP */}
-      <section className="border-t border-cream/8 px-6 py-24 md:px-10">
-        <div className="mx-auto max-w-7xl">
-          <span className="text-xs uppercase tracking-[0.32em] text-sand/70">
-            The full apothecary
-          </span>
-          <h2 className="mt-4 font-display text-4xl md:text-5xl">
-            Eleven forms. One purity.
-          </h2>
-          <div className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-cream/10 bg-cream/10 md:grid-cols-4 lg:grid-cols-6">
-            {[
-              "Powders",
-              "Raw Packed",
-              "Premixes",
-              "Ready Mixes",
-              "Pastes",
-              "Shreds",
-              "Toppings",
-              "Slices",
-              "Snacks",
-              "Beverages",
-              "Tablets",
-              "Gummies",
-            ].map((c) => (
-              <div
-                key={c}
-                className="group flex aspect-square cursor-pointer flex-col items-center justify-center gap-3 bg-umber p-4 text-center transition hover:bg-walnut/60"
+          <div className="mt-14 grid grid-cols-2 border-l border-t border-gold/25 md:grid-cols-3 lg:grid-cols-6">
+            {families.map((family, index) => (
+              <motion.article
+                key={family.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.7, delay: index * 0.06, ease }}
+                className="group min-h-64 border-b border-r border-gold/25 p-5 transition-colors hover:bg-accent/15"
               >
-                <AranyaMark size={26} className="text-sand/70 transition group-hover:text-sand" />
-                <span className="text-[11px] uppercase tracking-[0.22em] text-cream/70 group-hover:text-cream">
-                  {c}
-                </span>
-              </div>
+                <span className="text-[9px] tracking-[0.3em] text-gold">0{index + 1}</span>
+                <family.icon className="my-8 h-14 w-14 text-gold transition-transform duration-500 group-hover:-translate-y-2" strokeWidth={0.75} />
+                <h3 className="font-display text-2xl">{family.title}</h3>
+                <p className="mt-1 font-display text-sm italic text-gold">{family.trait}</p>
+                <p className="mt-4 text-xs leading-5 text-foreground/55">{family.text}</p>
+              </motion.article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="relative isolate overflow-hidden px-6 py-28 md:px-10 md:py-36">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-clay/30 via-walnut/40 to-umber" />
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="text-xs uppercase tracking-[0.32em] text-sand/80">
-            Join the inner circle
-          </span>
-          <h2 className="mt-6 font-display text-4xl md:text-5xl">
-            Letters from the forest.
-          </h2>
-          <p className="mt-5 text-cream/70">
-            Quiet dispatches on rituals, harvests and new arrivals — sent only when
-            something is worth sending.
-          </p>
-          <form className="mx-auto mt-10 flex max-w-md gap-2 border-b border-cream/30 pb-2">
-            <input
-              type="email"
-              placeholder="your@address"
-              className="flex-1 bg-transparent py-2 text-sm placeholder:text-cream/40 focus:outline-none"
-            />
-            <button
-              type="submit"
-              className="text-[12px] uppercase tracking-[0.25em] text-sand transition hover:text-cream"
-            >
-              Subscribe →
-            </button>
-          </form>
+      <section className="bg-background px-6 py-20 md:px-10 md:py-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
+            <div><p className="text-[10px] uppercase tracking-[0.42em] text-gold">The apothecary</p><h2 className="mt-4 font-display text-5xl md:text-7xl">From wilderness to ritual.</h2></div>
+            <Link to="/products" className="flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-foreground/70 transition hover:text-gold">View all botanicals <ArrowRight className="h-4 w-4" /></Link>
+          </div>
+          <div className="grid gap-px bg-gold/25 sm:grid-cols-2 lg:grid-cols-4">
+            {products.map((product, index) => (
+              <motion.article key={product.name} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.08 }} className="group bg-background">
+                <div className="aspect-[4/5] overflow-hidden"><img src={product.image} alt={product.name} loading="lazy" width={768} height={960} className="h-full w-full object-cover transition duration-1000 group-hover:scale-105" /></div>
+                <div className="border-t border-gold/25 p-5"><p className="text-[9px] uppercase tracking-[0.25em] text-gold">{product.note}</p><div className="mt-3 flex items-start justify-between gap-4"><h3 className="font-display text-xl">{product.name}</h3><span className="text-sm text-foreground/70">{product.price}</span></div></div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden border-y border-gold/25 bg-secondary px-6 py-24 md:px-10 md:py-36">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:items-center">
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease }}>
+            <p className="text-[10px] uppercase tracking-[0.42em] text-gold">Film journal · 02</p>
+            <h2 className="mt-5 font-display text-5xl leading-none md:text-7xl">Different lands.<br /><em className="text-gold">A deeper you.</em></h2>
+            <p className="mt-6 max-w-md text-sm leading-7 text-foreground/65">Trace our ingredients across climates, species and old growing cultures. Every origin has a character. Every formula keeps its story intact.</p>
+            <Button asChild variant="outline" className="mt-8 h-12 rounded-none border-gold/45 bg-transparent px-7 text-[10px] uppercase tracking-[0.28em] text-foreground hover:bg-gold hover:text-background"><Link to="/journal">Enter the journal <ArrowRight /></Link></Button>
+          </motion.div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {[films[1], films[2]].map((item) => item && (
+              <motion.div key={item.video} whileHover={{ y: -6 }} transition={{ duration: 0.4 }} className="group relative aspect-video overflow-hidden border border-gold/30">
+                <video src={item.video} autoPlay muted loop playsInline className="h-full w-full object-cover transition duration-1000 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-5"><p className="text-[8px] uppercase tracking-[0.3em] text-gold">Origin film · {item.index}</p><p className="mt-1 font-display text-2xl">{item.region}</p></div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-background px-6 py-24 text-center md:px-10 md:py-36">
+        <Leaf className="mx-auto h-8 w-8 text-gold" strokeWidth={1} />
+        <p className="mt-7 text-[10px] uppercase tracking-[0.42em] text-gold">Certified by nature · verified by science</p>
+        <h2 className="mx-auto mt-6 max-w-4xl font-display text-5xl leading-[1.02] md:text-7xl">Pure enough to trace.<br /><em className="text-gold">Beautiful enough to show.</em></h2>
+        <div className="mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-x-8 gap-y-4 border-y border-gold/25 py-5 text-[9px] uppercase tracking-[0.25em] text-foreground/60">
+          {["USDA Organic", "India Organic", "Non-GMO", "Lab Verified"].map((item) => <span key={item} className="flex items-center gap-2"><ShieldCheck className="h-3 w-3 text-gold" />{item}</span>)}
         </div>
       </section>
 
