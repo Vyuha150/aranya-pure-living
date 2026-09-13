@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 
 import appCss from "../styles.css?url";
 import { LogoLoader } from "@/components/LogoLoader";
+import { AmbientAudio } from "@/components/AmbientAudio";
 
 function NotFoundComponent() {
   return (
@@ -132,6 +133,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {showLoader && <LogoLoader />}
+      <AmbientAudio />
       <Outlet />
     </QueryClientProvider>
   );
