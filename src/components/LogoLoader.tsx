@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import aranyaLogo from "@/assets/aranya-logo.jpg";
+import aranyaLogo from "@/assets/aranya-logo.png";
 
-export function LogoLoader({ duration = 2200 }: { duration?: number }) {
+export function LogoLoader({ duration = 2400 }: { duration?: number }) {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export function LogoLoader({ duration = 2200 }: { duration?: number }) {
         <motion.div
           key="logo-loader"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, filter: "blur(8px)" }}
+          exit={{ opacity: 0, filter: "blur(10px)" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="paper-panel fixed inset-0 z-[200] flex items-center justify-center overflow-hidden bg-[var(--umber)]"
         >
@@ -38,103 +38,89 @@ export function LogoLoader({ duration = 2200 }: { duration?: number }) {
             className="bg-grain pointer-events-none absolute inset-0 opacity-30 mix-blend-overlay"
           />
 
-          <div className="relative flex flex-col items-center gap-8">
+          <div className="relative flex flex-col items-center gap-7">
             <motion.div
-              initial={{ scale: 0.85, opacity: 0 }}
+              initial={{ scale: 0.88, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
               className="relative"
             >
               {/* orbiting outer ring */}
               <motion.div
-                className="absolute inset-0"
+                className="absolute -inset-5"
                 animate={{ rotate: 360 }}
-                transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
               >
-                <svg viewBox="0 0 180 180" width={180} height={180}>
+                <svg viewBox="0 0 220 220" width="100%" height="100%">
                   <circle
-                    cx="90"
-                    cy="90"
-                    r="86"
+                    cx="110"
+                    cy="110"
+                    r="106"
                     fill="none"
                     stroke="var(--sand)"
-                    strokeOpacity="0.35"
-                    strokeWidth="0.6"
-                    strokeDasharray="1 4"
+                    strokeOpacity="0.32"
+                    strokeWidth="0.5"
+                    strokeDasharray="2 5"
                   />
                 </svg>
               </motion.div>
 
               {/* counter-rotating inner dashed ring */}
               <motion.div
-                className="absolute inset-0"
+                className="absolute -inset-3"
                 animate={{ rotate: -360 }}
-                transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
               >
-                <svg viewBox="0 0 180 180" width={180} height={180}>
+                <svg viewBox="0 0 200 200" width="100%" height="100%">
                   <circle
-                    cx="90"
-                    cy="90"
-                    r="76"
+                    cx="100"
+                    cy="100"
+                    r="96"
                     fill="none"
                     stroke="var(--terra)"
-                    strokeOpacity="0.5"
+                    strokeOpacity="0.45"
                     strokeWidth="0.5"
-                    strokeDasharray="2 6"
+                    strokeDasharray="3 7"
                   />
                 </svg>
               </motion.div>
 
-              {/* uploaded logo mark */}
+              {/* full logo mark with built-in wordmark */}
               <motion.img
                 src={aranyaLogo}
                 alt="Aranya"
-                width={160}
-                height={160}
-                className="relative h-40 w-40 rounded-full object-cover ring-1 ring-sand/20 md:h-44 md:w-44"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                width={1024}
+                height={1024}
+                className="relative h-44 w-44 object-contain drop-shadow-[0_8px_30px_rgba(0,0,0,0.18)] md:h-52 md:w-52"
+                initial={{ opacity: 0, scale: 0.85, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
               />
             </motion.div>
 
-            {/* wordmark with staggered letters */}
-            <div className="flex flex-col items-center gap-3">
-              <div className="flex overflow-hidden">
-                {"ARANYA".split("").map((ch, i) => (
-                  <motion.span
-                    key={i}
-                    initial={{ y: 28, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{
-                      duration: 0.8,
-                      delay: 0.6 + i * 0.06,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                className="font-display text-[var(--cream)] text-3xl tracking-[0.45em] pl-[0.45em]"
-                  >
-                    {ch}
-                  </motion.span>
-                ))}
-              </div>
-
-              {/* hairline progress */}
+            {/* tagline */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col items-center gap-3"
+            >
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ duration: duration / 1000 - 0.3, ease: "easeInOut" }}
-                style={{ transformOrigin: "left" }}
-                className="h-px w-40 bg-gradient-to-r from-transparent via-[var(--sand)] to-transparent"
+                transition={{ duration: duration / 1000 - 0.4, ease: "easeInOut" }}
+                style={{ transformOrigin: "center" }}
+                className="h-px w-44 bg-gradient-to-r from-transparent via-[var(--sand)] to-transparent"
               />
               <motion.p
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.6 }}
-                transition={{ delay: 0.9, duration: 0.6 }}
+                animate={{ opacity: 0.65 }}
+                transition={{ delay: 1.1, duration: 0.6 }}
                 className="text-[10px] uppercase tracking-[0.5em] text-[var(--sand)]"
               >
                 sacred botanicals
               </motion.p>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       )}
