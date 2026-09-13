@@ -17,7 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import westernGhatsVideo from "@/assets/aranya-western-ghats.webm.asset.json";
+import newOriginVideo from "@/assets/aranya-new-origin.webm.asset.json";
 import snowLeopardVideo from "@/assets/aranya-kenya-snow-leopard.webm.asset.json";
 import elephantVideo from "@/assets/aranya-kenya-elephant.webm.asset.json";
 import p1 from "@/assets/product-1.jpg";
@@ -44,10 +44,10 @@ export const Route = createFileRoute("/")({
 
 const films = [
   {
-    video: westernGhatsVideo.url,
-    region: "The Western Ghats",
-    title: "Pepper & Herbal Tonic",
-    species: "Nilgiri Tahr",
+    video: newOriginVideo.url,
+    region: "African Highlands",
+    title: "Wild Botanical Collection",
+    species: "Black Rhino",
     index: "01",
   },
   {
