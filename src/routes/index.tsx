@@ -104,7 +104,7 @@ function Home() {
     <div className="cinematic-theme min-h-screen bg-background text-foreground">
       <section ref={heroRef} className="relative h-[100svh] min-h-[620px] w-full overflow-hidden bg-background">
         <div className="relative h-full w-full overflow-hidden">
-          <div className="absolute inset-0 flex items-center justify-center p-5 md:p-12">
+          <div className="absolute inset-0 flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.video
                 key={film.video}
@@ -117,15 +117,15 @@ function Home() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.01 }}
                 transition={{ duration: 1.1, ease }}
-                className="h-[78%] w-[92%] border border-foreground/10 object-cover opacity-95 shadow-2xl"
+                className="h-full w-full object-cover opacity-100 contrast-[1.08] saturate-[1.08]"
               />
             </AnimatePresence>
           </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-background/40 via-background/10 to-background/25" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/35 via-transparent to-background/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/20 via-transparent to-background/10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/15 via-transparent to-background/55" />
           <div className="pointer-events-none absolute inset-3 border border-foreground/15" />
 
-          <SiteHeader />
+          <SiteHeader immersive />
 
           <div className="relative z-10 flex h-full min-h-0 flex-col justify-end px-6 pb-7 pt-24 md:px-14 md:pb-9 md:pt-28 lg:px-20">
             <div className="absolute right-5 top-1/2 hidden -translate-y-1/2 items-center gap-3 lg:flex" style={{ writingMode: "vertical-rl" }}>

@@ -11,7 +11,11 @@ const links = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  immersive?: boolean;
+};
+
+export function SiteHeader({ immersive = false }: SiteHeaderProps) {
   return (
     <header className="absolute inset-x-0 top-0 z-30 border-b border-cream/15 bg-transparent">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10 md:py-5">
@@ -41,13 +45,13 @@ export function SiteHeader() {
             to="/admin"
             aria-label="Admin Panel"
             title="Admin Panel"
-            className="flex h-10 w-10 items-center justify-center border border-sand/35 bg-umber text-cream/80 transition hover:bg-walnut"
+            className={`flex h-10 w-10 items-center justify-center border border-sand/35 text-cream/80 transition hover:bg-walnut ${immersive ? "bg-background/20 backdrop-blur-sm" : "bg-umber"}`}
           >
             <LayoutDashboard className="h-4 w-4" />
           </Link>
           <button
             aria-label="Cart"
-            className="flex h-10 w-10 items-center justify-center border border-sand/35 bg-umber text-cream/80 transition hover:bg-walnut"
+            className={`flex h-10 w-10 items-center justify-center border border-sand/35 text-cream/80 transition hover:bg-walnut ${immersive ? "bg-background/20 backdrop-blur-sm" : "bg-umber"}`}
           >
             <ShoppingBag className="h-4 w-4" />
           </button>
