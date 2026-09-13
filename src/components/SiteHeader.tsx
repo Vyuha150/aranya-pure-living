@@ -18,12 +18,12 @@ type SiteHeaderProps = {
 export function SiteHeader({ immersive = false }: SiteHeaderProps) {
   return (
     <header className="absolute inset-x-0 top-0 z-30 border-b border-cream/15 bg-transparent">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10 md:py-5">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 md:px-10 md:py-4">
         <Link to="/" className="group flex items-center text-cream">
           <img
             src={aranyaLogo}
             alt="Aranya — Truly Natural"
-            className="h-12 w-auto object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)] transition duration-500 group-hover:scale-[1.03] md:h-14"
+            className="h-16 w-auto object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)] transition duration-500 group-hover:scale-[1.03] md:h-20"
             width={664}
             height={874}
           />
