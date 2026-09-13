@@ -85,16 +85,20 @@ export function LogoLoader({ duration = 2800 }: { duration?: number }) {
                 </svg>
               </motion.div>
 
-              <motion.img
-                src={aranyaLogo}
-                alt="Aranya"
-                width={1024}
-                height={1024}
-                className="relative h-48 w-48 object-contain md:h-60 md:w-60"
+              <motion.div
                 initial={{ opacity: 0, scale: 0.78, y: 14, filter: "blur(8px)" }}
                 animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
                 transition={{ delay: 0.12, duration: 1.25, ease }}
-              />
+                className="relative overflow-hidden rounded-full bg-umber/40 p-1 shadow-[0_0_60px_-16px_rgba(185,154,77,0.35)] ring-1 ring-gold/20"
+              >
+                <img
+                  src={aranyaLogo}
+                  alt="Aranya"
+                  width={1024}
+                  height={1024}
+                  className="h-44 w-44 rounded-full object-cover md:h-56 md:w-56"
+                />
+              </motion.div>
             </motion.div>
 
             <motion.div
