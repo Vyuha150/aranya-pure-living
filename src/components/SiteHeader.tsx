@@ -13,12 +13,11 @@ const links = [
 
 type SiteHeaderProps = {
   immersive?: boolean;
-  relative?: boolean;
 };
 
-export function SiteHeader({ immersive = false, relative = false }: SiteHeaderProps) {
+export function SiteHeader({ immersive = false }: SiteHeaderProps) {
   return (
-    <header className={`${relative ? "relative" : "absolute inset-x-0 top-0"} z-30 border-b border-cream/15 bg-transparent`}>
+    <header className="absolute inset-x-0 top-0 z-30 border-b border-cream/15 bg-transparent">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10 md:py-5">
         <Link to="/" className="flex items-center text-cream">
           <img

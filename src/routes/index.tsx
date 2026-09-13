@@ -101,9 +101,8 @@ function Home() {
   if (!film) return null;
 
   return (
-    <div className="cinematic-theme flex min-h-screen flex-col bg-background text-foreground">
-      <SiteHeader relative />
-      <section ref={heroRef} className="relative flex-1 min-h-[540px] w-full overflow-hidden bg-background">
+    <div className="cinematic-theme min-h-screen bg-background text-foreground">
+      <section ref={heroRef} className="relative h-[100svh] min-h-[620px] w-full overflow-hidden bg-background">
         <div className="relative h-full w-full overflow-hidden">
           <div className="absolute inset-0 flex items-center justify-center">
             <AnimatePresence mode="wait">
@@ -126,7 +125,9 @@ function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-background/15 via-transparent to-background/55" />
           <div className="pointer-events-none absolute inset-3 border border-foreground/15" />
 
-          <div className="relative z-10 flex h-full min-h-0 flex-col justify-end px-6 pb-7 pt-6 md:px-14 md:pb-9 lg:px-20">
+          <SiteHeader immersive />
+
+          <div className="relative z-10 flex h-full min-h-0 flex-col justify-end px-6 pb-7 pt-24 md:px-14 md:pb-9 md:pt-28 lg:px-20">
             <div className="absolute right-5 top-1/2 hidden -translate-y-1/2 items-center gap-3 lg:flex" style={{ writingMode: "vertical-rl" }}>
               <span className="h-12 w-px bg-gold/60" />
               <span className="text-[9px] uppercase tracking-[0.42em] text-foreground/70">Explore the origin</span>
