@@ -20,7 +20,7 @@ export function LogoLoader({ duration = 2800 }: { duration?: number }) {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.025, filter: "blur(8px)" }}
           transition={{ duration: 0.75, ease }}
-          className="fixed inset-0 z-[200] flex items-center justify-center overflow-hidden bg-cream"
+          className="paper-panel fixed inset-0 z-[200] flex items-center justify-center overflow-hidden bg-umber"
         >
           <motion.div
             aria-hidden
