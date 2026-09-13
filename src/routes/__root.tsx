@@ -7,7 +7,6 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 
 import appCss from "../styles.css?url";
 import { LogoLoader } from "@/components/LogoLoader";
@@ -116,23 +115,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const [showLoader, setShowLoader] = useState(false);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    try {
-      if (!sessionStorage.getItem("aranya:loaded")) {
-        setShowLoader(true);
-        sessionStorage.setItem("aranya:loaded", "1");
-      }
-    } catch {
-      setShowLoader(true);
-    }
-  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
-      {showLoader && <LogoLoader />}
+      <LogoLoader />
       <AmbientAudio />
       <Outlet />
     </QueryClientProvider>
