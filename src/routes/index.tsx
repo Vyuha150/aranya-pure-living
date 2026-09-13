@@ -157,6 +157,43 @@ function Home() {
         </a>
       </section>
 
+      <section className="px-6 py-24 md:px-10 md:py-32">
+        <div className="mx-auto max-w-7xl overflow-hidden border border-border bg-card/45">
+          <div className="grid lg:grid-cols-[270px_1fr]">
+            <aside className="relative border-b border-border p-7 lg:border-b-0 lg:border-r lg:p-8">
+              <Leaf className="h-8 w-8 text-accent" strokeWidth={1} />
+              <h2 className="mt-5 font-display text-4xl leading-tight">Signature<br />Botanicals</h2>
+              <p className="mt-5 max-w-xs text-xs leading-6 text-muted-foreground">Carefully crafted whole-plant preparations that balance tradition and modernity.</p>
+              <Button asChild variant="outline" className="mt-6 h-10 rounded-full border-border bg-transparent px-5 text-[9px] uppercase tracking-[0.22em] hover:bg-accent hover:text-accent-foreground"><Link to="/products">Explore botanicals <ArrowRight /></Link></Button>
+              <div className="mt-14 border border-border bg-secondary/70 p-5 lg:absolute lg:bottom-8 lg:left-8 lg:right-8">
+                <p className="text-[9px] uppercase tracking-[0.24em] text-accent">From the Nilgiris, India</p>
+                <p className="mt-3 text-[11px] leading-5 text-muted-foreground">Directly sourced from heritage farms known for rich soil, pure water and patient mastery.</p>
+              </div>
+            </aside>
+            <div className="grid sm:grid-cols-2 xl:grid-cols-3">
+              {products.map((product, index) => (
+                <motion.article key={product.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: (index % 3) * 0.08, ease }} className="group border-b border-border p-5 sm:border-r last:border-b-0 xl:[&:nth-child(n+4)]:border-b-0">
+                  <div className="mx-auto aspect-square w-36 overflow-hidden rounded-full border border-border bg-secondary p-1 md:w-40">
+                    <img src={product.image} alt={product.name} loading="lazy" width={768} height={896} className="h-full w-full rounded-full object-cover transition duration-700 group-hover:scale-105" />
+                  </div>
+                  <p className="mt-5 inline-flex rounded-full border border-border px-3 py-1 text-[8px] uppercase tracking-[0.2em] text-muted-foreground">{product.type}</p>
+                  <h3 className="mt-2 font-display text-xl leading-tight">{product.name}</h3>
+                  <p className="mt-1 font-display text-xs italic text-accent">{product.line}</p>
+                  <p className="mt-3 min-h-12 text-[10px] leading-5 text-muted-foreground">{product.description}</p>
+                  <div className="mt-3 flex flex-wrap gap-1">{product.tags.map((tag) => <span key={tag} className="bg-secondary px-2 py-1 text-[7px] uppercase tracking-[0.14em] text-muted-foreground">{tag}</span>)}</div>
+                  <p className="mt-5 font-display text-lg text-accent">{product.price}</p>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+          <div className="grid border-t border-border sm:grid-cols-2 lg:grid-cols-4">
+            {[{ icon: Sparkles, a: "Sun-dried", b: "Slow, low-heat cure" }, { icon: Leaf, a: "Whole plant", b: "Never extracted" }, { icon: ShieldCheck, a: "Certified pure", b: "USDA · India Organic" }, { icon: Squirrel, a: "Hand-packed", b: "Small batches" }].map((item) => (
+              <div key={item.a} className="flex items-center gap-3 border-b border-border px-6 py-4 sm:border-r lg:border-b-0"><item.icon className="h-7 w-7 rounded-full bg-secondary p-1.5 text-accent" /><div><p className="text-[9px]">{item.a}</p><p className="text-[7px] uppercase tracking-[0.16em] text-muted-foreground">{item.b}</p></div></div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="roots" className="px-6 py-24 md:px-10 md:py-32">
         <div className="mx-auto max-w-6xl">
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease }}>
@@ -194,43 +231,6 @@ function Home() {
                 <h3 className="mt-5 text-[10px] uppercase tracking-[0.25em]">{form.name}</h3>
                 <p className="mt-2 text-[9px] uppercase tracking-[0.12em] text-muted-foreground opacity-0 transition-opacity duration-300 group-hover:opacity-100">{form.animal}</p>
               </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-24 md:px-10 md:py-32">
-        <div className="mx-auto max-w-7xl overflow-hidden border border-border bg-card/45">
-          <div className="grid lg:grid-cols-[270px_1fr]">
-            <aside className="relative border-b border-border p-7 lg:border-b-0 lg:border-r lg:p-8">
-              <Leaf className="h-8 w-8 text-accent" strokeWidth={1} />
-              <h2 className="mt-5 font-display text-4xl leading-tight">Signature<br />Botanicals</h2>
-              <p className="mt-5 max-w-xs text-xs leading-6 text-muted-foreground">Carefully crafted whole-plant preparations that balance tradition and modernity.</p>
-              <Button asChild variant="outline" className="mt-6 h-10 rounded-full border-border bg-transparent px-5 text-[9px] uppercase tracking-[0.22em] hover:bg-accent hover:text-accent-foreground"><Link to="/products">Explore botanicals <ArrowRight /></Link></Button>
-              <div className="mt-14 border border-border bg-secondary/70 p-5 lg:absolute lg:bottom-8 lg:left-8 lg:right-8">
-                <p className="text-[9px] uppercase tracking-[0.24em] text-accent">From the Nilgiris, India</p>
-                <p className="mt-3 text-[11px] leading-5 text-muted-foreground">Directly sourced from heritage farms known for rich soil, pure water and patient mastery.</p>
-              </div>
-            </aside>
-            <div className="grid sm:grid-cols-2 xl:grid-cols-3">
-              {products.map((product, index) => (
-                <motion.article key={product.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: (index % 3) * 0.08, ease }} className="group border-b border-border p-5 sm:border-r last:border-b-0 xl:[&:nth-child(n+4)]:border-b-0">
-                  <div className="mx-auto aspect-square w-36 overflow-hidden rounded-full border border-border bg-secondary p-1 md:w-40">
-                    <img src={product.image} alt={product.name} loading="lazy" width={768} height={896} className="h-full w-full rounded-full object-cover transition duration-700 group-hover:scale-105" />
-                  </div>
-                  <p className="mt-5 inline-flex rounded-full border border-border px-3 py-1 text-[8px] uppercase tracking-[0.2em] text-muted-foreground">{product.type}</p>
-                  <h3 className="mt-2 font-display text-xl leading-tight">{product.name}</h3>
-                  <p className="mt-1 font-display text-xs italic text-accent">{product.line}</p>
-                  <p className="mt-3 min-h-12 text-[10px] leading-5 text-muted-foreground">{product.description}</p>
-                  <div className="mt-3 flex flex-wrap gap-1">{product.tags.map((tag) => <span key={tag} className="bg-secondary px-2 py-1 text-[7px] uppercase tracking-[0.14em] text-muted-foreground">{tag}</span>)}</div>
-                  <p className="mt-5 font-display text-lg text-accent">{product.price}</p>
-                </motion.article>
-              ))}
-            </div>
-          </div>
-          <div className="grid border-t border-border sm:grid-cols-2 lg:grid-cols-4">
-            {[{ icon: Sparkles, a: "Sun-dried", b: "Slow, low-heat cure" }, { icon: Leaf, a: "Whole plant", b: "Never extracted" }, { icon: ShieldCheck, a: "Certified pure", b: "USDA · India Organic" }, { icon: Squirrel, a: "Hand-packed", b: "Small batches" }].map((item) => (
-              <div key={item.a} className="flex items-center gap-3 border-b border-border px-6 py-4 sm:border-r lg:border-b-0"><item.icon className="h-7 w-7 rounded-full bg-secondary p-1.5 text-accent" /><div><p className="text-[9px]">{item.a}</p><p className="text-[7px] uppercase tracking-[0.16em] text-muted-foreground">{item.b}</p></div></div>
             ))}
           </div>
         </div>
