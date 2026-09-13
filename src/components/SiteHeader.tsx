@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ShoppingBag, LayoutDashboard } from "lucide-react";
-import aranyaLogo from "@/assets/aranya-logo-horizontal.png";
+import aranyaLogo from "@/assets/aranya-logo-gold.png";
 
 const links = [
   { to: "/philosophy", label: "Philosophy" },
@@ -18,14 +18,14 @@ type SiteHeaderProps = {
 export function SiteHeader({ immersive = false }: SiteHeaderProps) {
   return (
     <header className="absolute inset-x-0 top-0 z-30 border-b border-cream/15 bg-transparent">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10 md:py-5">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 md:px-10 md:py-4">
         <Link to="/" className="group flex items-center text-cream">
           <img
             src={aranyaLogo}
-            alt="Aranya"
-            className="h-9 w-auto object-contain opacity-95 transition duration-500 group-hover:opacity-100 md:h-11"
-            width={1536}
-            height={512}
+            alt="Aranya — Truly Natural"
+            className="h-16 w-auto object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.25)] transition duration-500 group-hover:scale-[1.03] md:h-20"
+            width={664}
+            height={874}
           />
         </Link>
         <nav className="hidden items-center gap-8 text-[11px] tracking-[0.2em] uppercase text-black md:flex">
