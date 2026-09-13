@@ -11,10 +11,9 @@ export function AmbientAudio() {
   const playedRef = useRef(false);
 
   useEffect(() => {
-    const audio = new Audio(introAudio.url);
+    const audio = audioRef.current;
+    if (!audio) return;
     audio.volume = 0.6;
-    audio.preload = "auto";
-    audioRef.current = audio;
 
     const tryPlay = () => {
       if (playedRef.current) return;
@@ -43,9 +42,16 @@ export function AmbientAudio() {
     return () => {
       removeListeners();
       audio.pause();
-      audioRef.current = null;
     };
   }, []);
 
-  return null;
+  return (
+    <audio
+      ref={audioRef}
+      src={introAudio.url}
+      preload="auto"
+      aria-hidden="true"
+      className="hidden"
+    />
+  );
 }
