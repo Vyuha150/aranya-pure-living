@@ -28,13 +28,13 @@ export function SiteHeader({ immersive = false }: SiteHeaderProps) {
             height={512}
           />
         </Link>
-        <nav className="hidden items-center gap-8 text-[11px] tracking-[0.2em] uppercase text-cream/70 md:flex">
+        <nav className="hidden items-center gap-8 text-[11px] tracking-[0.2em] uppercase text-black md:flex">
           {links.map((l) => (
             <Link
               key={l.label}
               to={l.to}
-              className="transition hover:text-cream"
-              activeProps={{ className: "text-cream" }}
+              className="transition hover:text-black/70"
+              activeProps={{ className: "text-black" }}
             >
               {l.label}
             </Link>
