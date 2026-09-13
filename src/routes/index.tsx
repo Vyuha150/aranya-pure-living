@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowDown,
   ArrowRight,
-  Bird,
   Candy,
   CircleDot,
   Coffee,
@@ -12,9 +11,7 @@ import {
   Fish,
   Flower2,
   Leaf,
-  Rabbit,
   ShieldCheck,
-  Snail,
   Sparkles,
   Sprout,
   Squirrel,
