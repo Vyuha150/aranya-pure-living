@@ -51,9 +51,9 @@ export function LogoLoader({ duration = 2800 }: { duration?: number }) {
               >
                 <svg viewBox="0 0 240 240" width="100%" height="100%" aria-hidden>
                   <motion.circle
-                    cx="110"
-                    cy="110"
-                    r="103"
+                    cx="120"
+                    cy="120"
+                    r="113"
                     fill="none"
                     stroke="var(--sand)"
                     strokeOpacity="0.55"
@@ -92,7 +92,7 @@ export function LogoLoader({ duration = 2800 }: { duration?: number }) {
                 height={1024}
                 className="relative h-48 w-48 object-contain md:h-60 md:w-60"
                 initial={{ opacity: 0, scale: 0.78, y: 14, filter: "blur(8px)" }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
+                animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
                 transition={{ delay: 0.12, duration: 1.25, ease }}
               />
             </motion.div>
