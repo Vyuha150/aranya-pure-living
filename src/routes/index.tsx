@@ -100,48 +100,61 @@ function Home() {
 
   return (
     <div className="paper-home min-h-screen bg-background text-foreground">
-      <section className="relative min-h-[680px] overflow-hidden border-b border-border md:h-[92svh]">
-        <AnimatePresence mode="wait">
-          <motion.video
-            key={film.video}
-            src={film.video}
-            autoPlay
-            muted
-            loop
-            playsInline
-            initial={{ opacity: 0, scale: 1.025 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.25, ease }}
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/65 via-primary/15 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-primary/20" />
-        <SiteHeader immersive />
+      <section className="cinematic-theme relative h-[100svh] min-h-[620px] w-full overflow-hidden bg-background">
+        <div className="relative h-full w-full overflow-hidden">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.video
+                key={film.video}
+                src={film.video}
+                autoPlay
+                muted
+                loop
+                playsInline
+                initial={{ opacity: 0, scale: 1.04 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.01 }}
+                transition={{ duration: 1.1, ease }}
+                className="h-full w-full object-cover opacity-100 contrast-[1.08] saturate-[1.08]"
+              />
+            </AnimatePresence>
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-background/20 via-transparent to-background/10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/15 via-transparent to-background/55" />
+          <div className="pointer-events-none absolute inset-3 border border-foreground/15" />
 
-        <div className="relative z-10 mx-auto flex h-full min-h-[680px] max-w-7xl flex-col justify-end px-6 pb-16 pt-32 md:px-10 md:pb-20">
-          <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="text-[10px] uppercase tracking-[0.36em] text-primary-foreground/75">
-            The living origin · Film {film.number}
-          </motion.p>
-          <motion.h1 key={film.place} initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease }} className="mt-4 max-w-3xl font-display text-5xl leading-[0.95] text-primary-foreground md:text-7xl lg:text-8xl">
-            Nature, kept whole.
-          </motion.h1>
-          <div className="mt-8 flex flex-wrap items-end justify-between gap-8 border-t border-primary-foreground/30 pt-5">
-            <div>
-              <p className="font-display text-2xl text-primary-foreground">{film.place}</p>
-              <p className="mt-1 text-xs uppercase tracking-[0.24em] text-primary-foreground/65">{film.subject}</p>
-            </div>
-            <div className="flex gap-2">
-              {films.map((item, index) => (
-                <Button key={item.number} type="button" variant="ghost" size="icon" onClick={() => setActiveFilm(index)} aria-label={`Show ${item.place}`} className={`h-10 w-10 rounded-full border text-xs ${index === activeFilm ? "border-primary-foreground bg-primary-foreground text-primary" : "border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/15"}`}>
-                  {item.number}
-                </Button>
-              ))}
+          <SiteHeader immersive />
+
+          <div className="relative z-10 flex h-full min-h-0 flex-col justify-end px-6 pb-7 pt-24 md:px-14 md:pb-9 md:pt-28 lg:px-20">
+            <div className="mt-10 grid gap-5 border-t border-foreground/20 pt-5 lg:grid-cols-[1fr_auto] lg:items-end">
+              <div className="flex flex-wrap items-center gap-5 text-[9px] uppercase tracking-[0.28em] text-foreground/65">
+                <span>{film.subject}</span>
+                <span className="h-px w-12 bg-gold/70" />
+                <span>Certified pure</span>
+                <span>10 sec film</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                {films.map((item, index) => (
+                  <Button
+                    key={item.number}
+                    type="button"
+                    variant="ghost"
+                    onClick={() => setActiveFilm(index)}
+                    className={`group relative h-auto w-24 overflow-hidden rounded-none border p-0 md:w-36 ${activeFilm === index ? "border-gold" : "border-foreground/20"}`}
+                    aria-label={`Show ${item.place}`}
+                  >
+                    <video src={item.video} muted playsInline className="aspect-video w-full object-cover opacity-75 transition duration-700 group-hover:scale-105 group-hover:opacity-100" />
+                    <span className="absolute inset-x-0 bottom-0 bg-background/80 px-2 py-1 text-left text-[7px] uppercase tracking-[0.18em] text-foreground">{item.number} · {item.place}</span>
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-        <a href="#roots" aria-label="Explore the botanical philosophy" className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 text-primary-foreground/75"><ArrowDown className="h-5 w-5 animate-bounce" /></a>
+
+        <a href="#roots" aria-label="Explore the botanical philosophy" className="absolute bottom-5 left-1/2 z-20 hidden -translate-x-1/2 text-foreground/55 transition hover:text-gold md:block">
+          <ArrowDown className="h-5 w-5 animate-bounce" />
+        </a>
       </section>
 
       <section id="roots" className="px-6 py-24 md:px-10 md:py-32">
