@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import aranyaLogo from "@/assets/aranya-logo.png";
 
-export function LogoLoader({ duration = 2400 }: { duration?: number }) {
+const ease = [0.22, 1, 0.36, 1] as const;
+
+export function LogoLoader({ duration = 2800 }: { duration?: number }) {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
@@ -16,60 +18,58 @@ export function LogoLoader({ duration = 2400 }: { duration?: number }) {
         <motion.div
           key="logo-loader"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, filter: "blur(10px)" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="paper-panel fixed inset-0 z-[200] flex items-center justify-center overflow-hidden bg-[var(--umber)]"
+          exit={{ opacity: 0, scale: 1.025, filter: "blur(8px)" }}
+          transition={{ duration: 0.75, ease }}
+          className="fixed inset-0 z-[200] flex items-center justify-center overflow-hidden bg-cream"
         >
-          {/* radial warmth */}
-          <div
+          <motion.div
             aria-hidden
-            className="pointer-events-none absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--gold) 18%, transparent) 0%, transparent 55%)",
-            }}
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 2.2, ease }}
+            className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"
           />
-          {/* drifting grain */}
           <motion.div
             aria-hidden
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.35 }}
+            animate={{ opacity: 0.22 }}
             transition={{ duration: 1.2 }}
-            className="bg-grain pointer-events-none absolute inset-0 opacity-30 mix-blend-overlay"
+            className="bg-grain pointer-events-none absolute inset-0 mix-blend-soft-light"
           />
 
-          <div className="relative flex flex-col items-center gap-7">
+          <div className="relative flex flex-col items-center gap-8">
             <motion.div
-              initial={{ scale: 0.88, opacity: 0 }}
+              initial={{ scale: 0.82, opacity: 0, rotate: -3 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 1.35, ease }}
               className="relative"
             >
-              {/* orbiting outer ring */}
               <motion.div
-                className="absolute -inset-5"
+                className="absolute -inset-8"
                 animate={{ rotate: 360 }}
-                transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
               >
-                <svg viewBox="0 0 220 220" width="100%" height="100%">
-                  <circle
+                <svg viewBox="0 0 240 240" width="100%" height="100%" aria-hidden>
+                  <motion.circle
                     cx="110"
                     cy="110"
-                    r="106"
+                    r="103"
                     fill="none"
                     stroke="var(--sand)"
-                    strokeOpacity="0.32"
-                    strokeWidth="0.5"
-                    strokeDasharray="2 5"
+                    strokeOpacity="0.55"
+                    strokeWidth="0.7"
+                    strokeDasharray="1 7"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 1.8, ease }}
                   />
                 </svg>
               </motion.div>
 
-              {/* counter-rotating inner dashed ring */}
               <motion.div
-                className="absolute -inset-3"
+                className="absolute -inset-4"
                 animate={{ rotate: -360 }}
-                transition={{ duration: 24, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 26, repeat: Infinity, ease: "linear" }}
               >
                 <svg viewBox="0 0 200 200" width="100%" height="100%">
                   <circle
@@ -78,47 +78,45 @@ export function LogoLoader({ duration = 2400 }: { duration?: number }) {
                     r="96"
                     fill="none"
                     stroke="var(--terra)"
-                    strokeOpacity="0.45"
-                    strokeWidth="0.5"
-                    strokeDasharray="3 7"
+                    strokeOpacity="0.72"
+                    strokeWidth="0.65"
+                    strokeDasharray="3 9"
                   />
                 </svg>
               </motion.div>
 
-              {/* full logo mark with built-in wordmark */}
               <motion.img
                 src={aranyaLogo}
                 alt="Aranya"
                 width={1024}
                 height={1024}
-                className="relative h-44 w-44 object-contain drop-shadow-[0_8px_30px_rgba(0,0,0,0.18)] md:h-52 md:w-52"
-                initial={{ opacity: 0, scale: 0.85, y: 10 }}
+                className="relative h-48 w-48 object-contain md:h-60 md:w-60"
+                initial={{ opacity: 0, scale: 0.78, y: 14, filter: "blur(8px)" }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ delay: 0.12, duration: 1.25, ease }}
               />
             </motion.div>
 
-            {/* tagline */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: 0.85, duration: 0.7, ease }}
               className="flex flex-col items-center gap-3"
             >
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ duration: duration / 1000 - 0.4, ease: "easeInOut" }}
+                transition={{ delay: 0.6, duration: 1.45, ease }}
                 style={{ transformOrigin: "center" }}
-                className="h-px w-44 bg-gradient-to-r from-transparent via-[var(--sand)] to-transparent"
+                className="h-px w-48 bg-gradient-to-r from-transparent via-gold to-transparent"
               />
               <motion.p
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 0.65 }}
+                animate={{ opacity: 0.8 }}
                 transition={{ delay: 1.1, duration: 0.6 }}
-                className="text-[10px] uppercase tracking-[0.5em] text-[var(--sand)]"
+                className="text-[10px] uppercase tracking-[0.5em] text-sand"
               >
-                sacred botanicals
+                Rooted in purity
               </motion.p>
             </motion.div>
           </div>
