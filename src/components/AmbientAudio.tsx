@@ -48,7 +48,7 @@ export function AmbientAudio() {
   return (
     <audio
       ref={audioRef}
-      src={introAudio.url}
+      src={introAudioUrl}
       preload="auto"
       aria-hidden="true"
       className="hidden"

@@ -47,9 +47,9 @@ export const Route = createFileRoute("/")({
 });
 
 const films = [
-  { video: newOriginVideo.url, place: "Wild origin", subject: "Botanical harvest", number: "01" },
-  { video: snowLeopardVideo.url, place: "Kenya Highlands", subject: "Snow leopard", number: "02" },
-  { video: elephantVideo.url, place: "Kenyan Savannah", subject: "African elephant", number: "03" },
+  { video: newOriginVideoUrl, place: "Wild origin", subject: "Botanical harvest", number: "01" },
+  { video: snowLeopardVideoUrl, place: "Kenya Highlands", subject: "Snow leopard", number: "02" },
+  { video: elephantVideoUrl, place: "Kenyan Savannah", subject: "African elephant", number: "03" },
 ];
 
 const roots = [
