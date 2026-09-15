@@ -56,14 +56,9 @@ function ProductDetail() {
               <div className="h-full w-full overflow-hidden rounded-full border border-border bg-secondary p-2">
                 <img src={product.image} alt={product.name} width={768} height={896} className="h-full w-full rounded-full object-cover" />
               </div>
-              {product.badge && !product.badge.startsWith("−") && (
+              {(discount || (product.badge && !product.badge.startsWith("−"))) && (
                 <span className="absolute right-4 top-4 rounded-full bg-accent px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-accent-foreground">
-                  {product.badge}
-                </span>
-              )}
-              {discount && (
-                <span className="absolute right-4 top-4 rounded-full bg-accent px-4 py-2 text-[10px] uppercase tracking-[0.22em] text-accent-foreground">
-                  −{discount}%
+                  {discount ? `−${discount}%` : product.badge}
                 </span>
               )}
             </motion.div>
