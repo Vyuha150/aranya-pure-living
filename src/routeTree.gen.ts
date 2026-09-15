@@ -17,7 +17,9 @@ import { Route as JournalRouteImport } from './routes/journal'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminProductsRouteImport } from './routes/admin.products'
 import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
@@ -65,10 +67,20 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductsIndexRoute = ProductsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProductsRoute,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRoute,
+} as any)
+const ProductsSlugRoute = ProductsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ProductsRoute,
 } as any)
 const AdminSettingsRoute = AdminSettingsRouteImport.update({
   id: '/settings',
@@ -108,7 +120,7 @@ export interface FileRoutesByFullPath {
   '/journal': typeof JournalRoute
   '/lifestyle': typeof LifestyleRoute
   '/philosophy': typeof PhilosophyRoute
-  '/products': typeof ProductsRoute
+  '/products': typeof ProductsRouteWithChildren
   '/rituals': typeof RitualsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/content': typeof AdminContentRoute
@@ -116,7 +128,9 @@ export interface FileRoutesByFullPath {
   '/admin/orders': typeof AdminOrdersRoute
   '/admin/products': typeof AdminProductsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/products/$slug': typeof ProductsSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/products/': typeof ProductsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -124,7 +138,6 @@ export interface FileRoutesByTo {
   '/journal': typeof JournalRoute
   '/lifestyle': typeof LifestyleRoute
   '/philosophy': typeof PhilosophyRoute
-  '/products': typeof ProductsRoute
   '/rituals': typeof RitualsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/content': typeof AdminContentRoute
@@ -132,7 +145,9 @@ export interface FileRoutesByTo {
   '/admin/orders': typeof AdminOrdersRoute
   '/admin/products': typeof AdminProductsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/products/$slug': typeof ProductsSlugRoute
   '/admin': typeof AdminIndexRoute
+  '/products': typeof ProductsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -142,7 +157,7 @@ export interface FileRoutesById {
   '/journal': typeof JournalRoute
   '/lifestyle': typeof LifestyleRoute
   '/philosophy': typeof PhilosophyRoute
-  '/products': typeof ProductsRoute
+  '/products': typeof ProductsRouteWithChildren
   '/rituals': typeof RitualsRoute
   '/admin/analytics': typeof AdminAnalyticsRoute
   '/admin/content': typeof AdminContentRoute
@@ -150,7 +165,9 @@ export interface FileRoutesById {
   '/admin/orders': typeof AdminOrdersRoute
   '/admin/products': typeof AdminProductsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/products/$slug': typeof ProductsSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/products/': typeof ProductsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -169,7 +186,9 @@ export interface FileRouteTypes {
     | '/admin/orders'
     | '/admin/products'
     | '/admin/settings'
+    | '/products/$slug'
     | '/admin/'
+    | '/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -177,7 +196,6 @@ export interface FileRouteTypes {
     | '/journal'
     | '/lifestyle'
     | '/philosophy'
-    | '/products'
     | '/rituals'
     | '/admin/analytics'
     | '/admin/content'
@@ -185,7 +203,9 @@ export interface FileRouteTypes {
     | '/admin/orders'
     | '/admin/products'
     | '/admin/settings'
+    | '/products/$slug'
     | '/admin'
+    | '/products'
   id:
     | '__root__'
     | '/'
@@ -202,7 +222,9 @@ export interface FileRouteTypes {
     | '/admin/orders'
     | '/admin/products'
     | '/admin/settings'
+    | '/products/$slug'
     | '/admin/'
+    | '/products/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -212,7 +234,7 @@ export interface RootRouteChildren {
   JournalRoute: typeof JournalRoute
   LifestyleRoute: typeof LifestyleRoute
   PhilosophyRoute: typeof PhilosophyRoute
-  ProductsRoute: typeof ProductsRoute
+  ProductsRoute: typeof ProductsRouteWithChildren
   RitualsRoute: typeof RitualsRoute
 }
 
@@ -274,12 +296,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/': {
+      id: '/products/'
+      path: '/'
+      fullPath: '/products/'
+      preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof ProductsRoute
+    }
     '/admin/': {
       id: '/admin/'
       path: '/'
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/products/$slug': {
+      id: '/products/$slug'
+      path: '/$slug'
+      fullPath: '/products/$slug'
+      preLoaderRoute: typeof ProductsSlugRouteImport
+      parentRoute: typeof ProductsRoute
     }
     '/admin/settings': {
       id: '/admin/settings'
@@ -348,6 +384,20 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
+interface ProductsRouteChildren {
+  ProductsSlugRoute: typeof ProductsSlugRoute
+  ProductsIndexRoute: typeof ProductsIndexRoute
+}
+
+const ProductsRouteChildren: ProductsRouteChildren = {
+  ProductsSlugRoute: ProductsSlugRoute,
+  ProductsIndexRoute: ProductsIndexRoute,
+}
+
+const ProductsRouteWithChildren = ProductsRoute._addFileChildren(
+  ProductsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
@@ -355,7 +405,7 @@ const rootRouteChildren: RootRouteChildren = {
   JournalRoute: JournalRoute,
   LifestyleRoute: LifestyleRoute,
   PhilosophyRoute: PhilosophyRoute,
-  ProductsRoute: ProductsRoute,
+  ProductsRoute: ProductsRouteWithChildren,
   RitualsRoute: RitualsRoute,
 }
 export const routeTree = rootRouteImport

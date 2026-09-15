@@ -77,12 +77,12 @@ const forms = [
 ];
 
 const products = [
-  { image: p1, type: "Powder", name: "Golden Turmeric", line: "Energise Your Day", description: "Stone-ground Lakadong turmeric with naturally rich curcumin and an earthy lift.", tags: ["Grounding", "Smooth", "Immunity"], price: "₹ 1,240" },
-  { image: p2, type: "Oil", name: "Ashwagandha Vitality Oil", line: "Deep Restoration", description: "A cold-pressed root infusion for quiet strength and restorative evenings.", tags: ["Calming", "Adaptogen", "Restorative"], price: "₹ 1,890" },
-  { image: p3, type: "Premix", name: "Triphala Morning Premix", line: "Pure · Balanced · Timeless", description: "A gentle three-fruit blend milled for daily digestive intelligence.", tags: ["Balanced", "Digestive", "Mindful"], price: "₹ 1,460" },
-  { image: ritualBundle, type: "Latte", name: "Dawn Golden Latte", line: "Gentle Energy", description: "Turmeric, ashwagandha and cinnamon whisked into a warm plant ritual.", tags: ["Uplifting", "Energising", "Daily"], price: "₹ 980" },
-  { image: p4, type: "Tonic", name: "Tulsi Amber Tonic", line: "Soft Comfort", description: "Holy basil steeped slowly for warmth, comfort and quiet moments.", tags: ["Aromatic", "Warming", "Comforting"], price: "₹ 2,210" },
-  { image: lifestyleGlow, type: "Blend", name: "Luminous Glow Blend", line: "Pure · Radiant · Timeless", description: "A thoughtful blend of amla, rose and moringa for a luminous daily ritual.", tags: ["Refined", "Radiant", "Mindful"], price: "₹ 1,650" },
+  { slug: "golden-turmeric", image: p1, type: "Powder", name: "Golden Turmeric", line: "Energise Your Day", description: "Stone-ground Lakadong turmeric with naturally rich curcumin and an earthy lift.", tags: ["Grounding", "Smooth", "Immunity"], price: "₹ 1,240" },
+  { slug: "ashwagandha-vitality-oil", image: p2, type: "Oil", name: "Ashwagandha Vitality Oil", line: "Deep Restoration", description: "A cold-pressed root infusion for quiet strength and restorative evenings.", tags: ["Calming", "Adaptogen", "Restorative"], price: "₹ 1,890" },
+  { slug: "triphala-morning-premix", image: p3, type: "Premix", name: "Triphala Morning Premix", line: "Pure · Balanced · Timeless", description: "A gentle three-fruit blend milled for daily digestive intelligence.", tags: ["Balanced", "Digestive", "Mindful"], price: "₹ 1,460" },
+  { slug: "dawn-golden-latte", image: ritualBundle, type: "Latte", name: "Dawn Golden Latte", line: "Gentle Energy", description: "Turmeric, ashwagandha and cinnamon whisked into a warm plant ritual.", tags: ["Uplifting", "Energising", "Daily"], price: "₹ 980" },
+  { slug: "tulsi-amber-tonic", image: p4, type: "Tonic", name: "Tulsi Amber Tonic", line: "Soft Comfort", description: "Holy basil steeped slowly for warmth, comfort and quiet moments.", tags: ["Aromatic", "Warming", "Comforting"], price: "₹ 2,210" },
+  { slug: "luminous-glow-blend", image: lifestyleGlow, type: "Blend", name: "Luminous Glow Blend", line: "Pure · Radiant · Timeless", description: "A thoughtful blend of amla, rose and moringa for a luminous daily ritual.", tags: ["Refined", "Radiant", "Mindful"], price: "₹ 1,650" },
 ];
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -172,16 +172,18 @@ function Home() {
             </aside>
             <div className="grid sm:grid-cols-2 xl:grid-cols-3">
               {products.map((product, index) => (
-                <motion.article key={product.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: (index % 3) * 0.08, ease }} className="group border-b border-border p-5 sm:border-r last:border-b-0 xl:[&:nth-child(n+4)]:border-b-0">
-                  <div className="mx-auto aspect-square w-36 overflow-hidden rounded-full border border-border bg-secondary p-1 md:w-40">
-                    <img src={product.image} alt={product.name} loading="lazy" width={768} height={896} className="h-full w-full rounded-full object-cover transition duration-700 group-hover:scale-105" />
-                  </div>
-                  <p className="mt-5 inline-flex rounded-full border border-border px-3 py-1 text-[8px] uppercase tracking-[0.2em] text-muted-foreground">{product.type}</p>
-                  <h3 className="mt-2 font-display text-xl leading-tight">{product.name}</h3>
-                  <p className="mt-1 font-display text-xs italic text-accent">{product.line}</p>
-                  <p className="mt-3 min-h-12 text-[10px] leading-5 text-muted-foreground">{product.description}</p>
-                  <div className="mt-3 flex flex-wrap gap-1">{product.tags.map((tag) => <span key={tag} className="bg-secondary px-2 py-1 text-[7px] uppercase tracking-[0.14em] text-muted-foreground">{tag}</span>)}</div>
-                  <p className="mt-5 font-display text-lg text-accent">{product.price}</p>
+                <motion.article key={product.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: (index % 3) * 0.08, ease }} className="group border-b border-border sm:border-r last:border-b-0 xl:[&:nth-child(n+4)]:border-b-0">
+                  <Link to="/products/$slug" params={{ slug: product.slug }} className="block p-5 transition hover:bg-secondary/50" aria-label={`View ${product.name}`}>
+                    <div className="mx-auto aspect-square w-36 overflow-hidden rounded-full border border-border bg-secondary p-1 md:w-40">
+                      <img src={product.image} alt={product.name} loading="lazy" width={768} height={896} className="h-full w-full rounded-full object-cover transition duration-700 group-hover:scale-105" />
+                    </div>
+                    <p className="mt-5 inline-flex rounded-full border border-border px-3 py-1 text-[8px] uppercase tracking-[0.2em] text-muted-foreground">{product.type}</p>
+                    <h3 className="mt-2 font-display text-xl leading-tight">{product.name}</h3>
+                    <p className="mt-1 font-display text-xs italic text-accent">{product.line}</p>
+                    <p className="mt-3 min-h-12 text-[10px] leading-5 text-muted-foreground">{product.description}</p>
+                    <div className="mt-3 flex flex-wrap gap-1">{product.tags.map((tag) => <span key={tag} className="bg-secondary px-2 py-1 text-[7px] uppercase tracking-[0.14em] text-muted-foreground">{tag}</span>)}</div>
+                    <p className="mt-5 font-display text-lg text-accent">{product.price}</p>
+                  </Link>
                 </motion.article>
               ))}
             </div>
