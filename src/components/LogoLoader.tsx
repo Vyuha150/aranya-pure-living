@@ -89,7 +89,7 @@ export function LogoLoader({ duration = 2800 }: { duration?: number }) {
                 initial={{ opacity: 0, scale: 0.78, y: 14, filter: "blur(8px)" }}
                 animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
                 transition={{ delay: 0.12, duration: 1.25, ease }}
-                className="relative flex items-center justify-center overflow-hidden rounded-full bg-[#0b0b0b]/85 p-6 shadow-[0_0_60px_-16px_rgba(185,154,77,0.45)] ring-1 ring-gold/40 md:p-8"
+                className="relative flex items-center justify-center overflow-hidden rounded-full bg-terra/90 p-6 shadow-[0_0_60px_-16px_rgba(185,154,77,0.45)] ring-1 ring-gold/40 md:p-8"
               >
                 <img
                   src={aranyaLogo}
