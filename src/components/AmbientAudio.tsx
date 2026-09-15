@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import introAudio from "@/assets/bamboo-intro.mp3.asset.json";
+import introAudioUrl from "@/assets/bamboo-intro.mp3";
 
 /**
  * Plays the Aranya bamboo greeting once when the site opens.
@@ -48,7 +48,7 @@ export function AmbientAudio() {
   return (
     <audio
       ref={audioRef}
-      src={introAudio.url}
+      src={introAudioUrl}
       preload="auto"
       aria-hidden="true"
       className="hidden"
