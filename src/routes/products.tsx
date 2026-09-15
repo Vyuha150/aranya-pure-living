@@ -44,14 +44,14 @@ const categories = [
 ];
 
 const grid = [
-  { img: p1, name: "Golden Turmeric Powder", tag: "Powders", price: 1240, was: 1640, badge: "−24%" },
-  { img: p2, name: "Ashwagandha Vitality Oil", tag: "Tonics", price: 1890, was: 2490, badge: "−24%" },
-  { img: p3, name: "Triphala Morning Premix", tag: "Premixes", price: 1460, was: 1990, badge: "−27%" },
-  { img: p4, name: "Tulsi Amber Tonic", tag: "Tonics", price: 2210, was: 2890, badge: "−23%" },
-  { img: p1, name: "Moringa Greens Powder", tag: "Powders", price: 1180, was: 1490, badge: "Best Seller" },
-  { img: p3, name: "Brahmi Focus Gummies", tag: "Gummies", price: 1690, was: 2190, badge: "New" },
-  { img: p2, name: "Forest Honey Paste", tag: "Pastes", price: 1340, was: 1690, badge: "−20%" },
-  { img: p4, name: "Shatavari Bliss Tablets", tag: "Tablets", price: 1990, was: 2590, badge: "−23%" },
+  { slug: "golden-turmeric", img: p1, name: "Golden Turmeric Powder", tag: "Powders", price: 1240, was: 1640, badge: "−24%" },
+  { slug: "ashwagandha-vitality-oil", img: p2, name: "Ashwagandha Vitality Oil", tag: "Tonics", price: 1890, was: 2490, badge: "−24%" },
+  { slug: "triphala-morning-premix", img: p3, name: "Triphala Morning Premix", tag: "Premixes", price: 1460, was: 1990, badge: "−27%" },
+  { slug: "tulsi-amber-tonic", img: p4, name: "Tulsi Amber Tonic", tag: "Tonics", price: 2210, was: 2890, badge: "−23%" },
+  { slug: "moringa-greens-powder", img: p1, name: "Moringa Greens Powder", tag: "Powders", price: 1180, was: 1490, badge: "Best Seller" },
+  { slug: "brahmi-focus-gummies", img: p3, name: "Brahmi Focus Gummies", tag: "Gummies", price: 1690, was: 2190, badge: "New" },
+  { slug: "forest-honey-paste", img: p2, name: "Forest Honey Paste", tag: "Pastes", price: 1340, was: 1690, badge: "−20%" },
+  { slug: "shatavari-bliss-tablets", img: p4, name: "Shatavari Bliss Tablets", tag: "Tablets", price: 1990, was: 2590, badge: "−23%" },
 ];
 
 function ProductsPage() {
@@ -123,32 +123,34 @@ function ProductsPage() {
                 transition={{ duration: 0.6, delay: (i % 4) * 0.08 }}
                 className="group relative overflow-hidden rounded-sm border border-cream/8 bg-walnut/30 transition hover:border-sand/30"
               >
-                <div className="relative aspect-[4/5] overflow-hidden bg-umber">
-                  <img
-                    src={p.img}
-                    alt={p.name}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                  />
-                  <span className="absolute left-4 top-4 rounded-full bg-terra px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-umber">
-                    {p.badge}
-                  </span>
-                  <span className="absolute right-4 top-4 rounded-full border border-cream/20 bg-umber/60 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-cream/80 backdrop-blur">
-                    {p.tag}
-                  </span>
-                </div>
-                <div className="flex items-start justify-between gap-4 p-5">
-                  <div>
-                    <h3 className="font-display text-xl leading-tight">{p.name}</h3>
-                    <p className="mt-2 text-[11px] uppercase tracking-[0.22em] text-cream/50">
-                      Add to ritual
-                    </p>
+                <Link to="/products/$slug" params={{ slug: p.slug }} aria-label={`View ${p.name}`}>
+                  <div className="relative aspect-[4/5] overflow-hidden bg-umber">
+                    <img
+                      src={p.img}
+                      alt={p.name}
+                      loading="lazy"
+                      className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                    />
+                    <span className="absolute left-4 top-4 rounded-full bg-terra px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-umber">
+                      {p.badge}
+                    </span>
+                    <span className="absolute right-4 top-4 rounded-full border border-cream/20 bg-umber/60 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-cream/80 backdrop-blur">
+                      {p.tag}
+                    </span>
                   </div>
-                  <div className="text-right">
-                    <span className="block font-display text-lg text-sand">₹ {p.price.toLocaleString()}</span>
-                    <span className="text-[11px] text-cream/40 line-through">₹ {p.was.toLocaleString()}</span>
+                  <div className="flex items-start justify-between gap-4 p-5">
+                    <div>
+                      <h3 className="font-display text-xl leading-tight">{p.name}</h3>
+                      <p className="mt-2 text-[11px] uppercase tracking-[0.22em] text-cream/50">
+                        Add to ritual
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <span className="block font-display text-lg text-sand">₹ {p.price.toLocaleString()}</span>
+                      <span className="text-[11px] text-cream/40 line-through">₹ {p.was.toLocaleString()}</span>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </motion.article>
             ))}
           </div>
