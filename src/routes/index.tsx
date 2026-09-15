@@ -21,9 +21,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import newOriginVideo from "@/assets/aranya-new-origin.webm.asset.json";
-import snowLeopardVideo from "@/assets/aranya-kenya-snow-leopard.webm.asset.json";
-import elephantVideo from "@/assets/aranya-kenya-elephant.webm.asset.json";
+import newOriginVideoUrl from "@/assets/aranya-new-origin.webm";
+import snowLeopardVideoUrl from "@/assets/aranya-kenya-snow-leopard.webm";
+import elephantVideoUrl from "@/assets/aranya-kenya-elephant.webm";
 import ingredientsHero from "@/assets/ingredients-hero.jpg";
 import p1 from "@/assets/product-1.jpg";
 import p2 from "@/assets/product-2.jpg";
