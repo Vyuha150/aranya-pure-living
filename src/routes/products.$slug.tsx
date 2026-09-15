@@ -32,6 +32,7 @@ export const Route = createFileRoute("/products/$slug")({
 
 function ProductDetail() {
   const product = Route.useLoaderData();
+  const [qty, setQty] = useState(1);
   const related = catalog.filter((p) => p.slug !== product.slug).slice(0, 3);
   const discount = product.was ? Math.round((1 - product.price / product.was) * 100) : null;
 
