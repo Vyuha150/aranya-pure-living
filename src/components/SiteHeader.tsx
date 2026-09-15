@@ -3,7 +3,6 @@ import { ShoppingBag, LayoutDashboard } from "lucide-react";
 import { motion } from "framer-motion";
 import aranyaLogo from "@/assets/aranya-logo-gold.png";
 import { useCart } from "@/lib/cart";
-import { CartDrawer } from "@/components/CartDrawer";
 
 const links = [
   { to: "/philosophy", label: "Philosophy" },
@@ -74,7 +73,6 @@ export function SiteHeader({ immersive = false }: SiteHeaderProps) {
           </button>
         </div>
       </div>
-      <CartDrawer />
     </header>
   );
 }
