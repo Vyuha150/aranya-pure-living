@@ -21,6 +21,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { AddToCartButton } from "@/components/AddToCartButton";
+import { BuyNowButton } from "@/components/BuyNowButton";
 import newOriginVideoUrl from "@/assets/aranya-new-origin.webm";
 import snowLeopardVideoUrl from "@/assets/aranya-kenya-snow-leopard.webm";
 import elephantVideoUrl from "@/assets/aranya-kenya-elephant.webm";
@@ -184,6 +186,17 @@ function Home() {
                     <div className="mt-3 flex flex-wrap gap-1">{product.tags.map((tag) => <span key={tag} className="bg-secondary px-2 py-1 text-[7px] uppercase tracking-[0.14em] text-muted-foreground">{tag}</span>)}</div>
                     <p className="mt-5 font-display text-lg text-accent">{product.price}</p>
                   </Link>
+                  <div className="flex gap-2 px-5 pb-5">
+                    <AddToCartButton
+                      slug={product.slug}
+                      openCartOnAdd={false}
+                      className="flex-1 rounded-full border border-border px-3 py-2.5 text-[9px] uppercase tracking-[0.18em] text-muted-foreground hover:border-accent hover:text-accent"
+                    />
+                    <BuyNowButton
+                      slug={product.slug}
+                      className="rounded-full bg-foreground px-4 py-2.5 text-[9px] uppercase tracking-[0.18em] text-background transition hover:bg-accent hover:text-accent-foreground"
+                    />
+                  </div>
                 </motion.article>
               ))}
             </div>

@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Leaf, ShieldCheck, Sparkles, Squirrel } from "lucide-react";
+import { ArrowLeft, ArrowRight, Leaf, Minus, Plus, ShieldCheck, Sparkles, Squirrel, Truck } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { AddToCartButton } from "@/components/AddToCartButton";
+import { BuyNowButton } from "@/components/BuyNowButton";
 import { catalog, getProduct } from "@/lib/catalog";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -29,6 +32,7 @@ export const Route = createFileRoute("/products/$slug")({
 
 function ProductDetail() {
   const product = Route.useLoaderData();
+  const [qty, setQty] = useState(1);
   const related = catalog.filter((p) => p.slug !== product.slug).slice(0, 3);
   const discount = product.was ? Math.round((1 - product.price / product.was) * 100) : null;
 
@@ -83,9 +87,30 @@ function ProductDetail() {
                 ))}
               </div>
 
-              <button className="mt-8 inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 text-[11px] uppercase tracking-[0.25em] text-background transition hover:bg-accent hover:text-accent-foreground">
-                Add to ritual <ArrowRight className="h-4 w-4" />
-              </button>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <div className="flex items-center gap-4 rounded-full border border-border px-4 py-3">
+                  <button onClick={() => setQty((q) => Math.max(1, q - 1))} aria-label="Decrease quantity" className="text-muted-foreground transition hover:text-accent">
+                    <Minus className="h-4 w-4" />
+                  </button>
+                  <span className="min-w-6 text-center text-sm">{qty}</span>
+                  <button onClick={() => setQty((q) => Math.min(99, q + 1))} aria-label="Increase quantity" className="text-muted-foreground transition hover:text-accent">
+                    <Plus className="h-4 w-4" />
+                  </button>
+                </div>
+                <AddToCartButton
+                  slug={product.slug}
+                  qty={qty}
+                  className="rounded-full bg-foreground px-8 py-4 text-[11px] uppercase tracking-[0.25em] text-background hover:bg-accent hover:text-accent-foreground"
+                />
+                <BuyNowButton
+                  slug={product.slug}
+                  qty={qty}
+                  className="rounded-full border border-accent px-8 py-4 text-[11px] uppercase tracking-[0.25em] text-accent transition hover:bg-accent hover:text-accent-foreground"
+                />
+              </div>
+              <p className="mt-4 flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                <Truck className="h-4 w-4 text-accent" /> Free shipping over ₹ 1,500 · ships in 48 hours
+              </p>
 
               <div className="mt-8 grid gap-3 border-t border-border pt-6 text-[10px] uppercase tracking-[0.2em] text-muted-foreground sm:grid-cols-2">
                 <span className="flex items-center gap-2"><ShieldCheck className="h-4 w-4 text-accent" /> 60-day purity guarantee</span>

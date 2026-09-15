@@ -11,6 +11,8 @@ import {
 import appCss from "../styles.css?url";
 import { LogoLoader } from "@/components/LogoLoader";
 import { AmbientAudio } from "@/components/AmbientAudio";
+import { CartProvider } from "@/lib/cart";
+import { CartDrawer } from "@/components/CartDrawer";
 
 function NotFoundComponent() {
   return (
@@ -118,9 +120,12 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <LogoLoader />
-      <AmbientAudio />
-      <Outlet />
+      <CartProvider>
+        <LogoLoader />
+        <AmbientAudio />
+        <Outlet />
+        <CartDrawer />
+      </CartProvider>
     </QueryClientProvider>
   );
 }

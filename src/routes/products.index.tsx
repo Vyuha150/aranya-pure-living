@@ -5,6 +5,8 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { AranyaMark } from "@/components/AranyaMark";
+import { AddToCartButton } from "@/components/AddToCartButton";
+import { BuyNowButton } from "@/components/BuyNowButton";
 import productsHero from "@/assets/products-hero.jpg";
 import p1 from "@/assets/product-1.jpg";
 import p2 from "@/assets/product-2.jpg";
@@ -138,11 +140,11 @@ function ProductsPage() {
                       {p.tag}
                     </span>
                   </div>
-                  <div className="flex items-start justify-between gap-4 p-5">
+                  <div className="flex items-start justify-between gap-4 p-5 pb-3">
                     <div>
                       <h3 className="font-display text-xl leading-tight">{p.name}</h3>
                       <p className="mt-2 text-[11px] uppercase tracking-[0.22em] text-cream/50">
-                        Add to ritual
+                        View details
                       </p>
                     </div>
                     <div className="text-right">
@@ -151,6 +153,17 @@ function ProductsPage() {
                     </div>
                   </div>
                 </Link>
+                <div className="flex gap-2 px-5 pb-5">
+                  <AddToCartButton
+                    slug={p.slug}
+                    openCartOnAdd={false}
+                    className="flex-1 rounded-full border border-cream/20 px-4 py-2.5 text-[10px] uppercase tracking-[0.2em] text-cream/80 hover:border-sand/60 hover:text-cream"
+                  />
+                  <BuyNowButton
+                    slug={p.slug}
+                    className="rounded-full bg-sand px-5 py-2.5 text-[10px] uppercase tracking-[0.2em] text-umber transition hover:bg-terra"
+                  />
+                </div>
               </motion.article>
             ))}
           </div>
